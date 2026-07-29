@@ -1,15 +1,25 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { cn } from "~/lib/utils";
+
+type NoteFont = "sans" | "serif" | "mono";
 
 interface Note {
   id: string;
   title: string;
   content: string;
   updatedAt: number;
+  font?: NoteFont;
 }
 
 const STORAGE_KEY = "lumos-notes";
+
+const FONT_OPTIONS: { value: NoteFont; label: string; className: string }[] = [
+  { value: "sans", label: "Sans", className: "font-sans" },
+  { value: "serif", label: "Serif", className: "font-serif" },
+  { value: "mono", label: "Mono", className: "font-mono" },
+];
 
 function loadNotes(): Note[] {
   if (typeof window === "undefined") return [];
@@ -30,6 +40,7 @@ export default function NotesPage() {
   const [selectedId, setSelectedId] = useState<string | null>(null);
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
+  const [font, setFont] = useState<NoteFont>("sans");
 
   useEffect(() => {
     setNotes(loadNotes());
@@ -41,6 +52,7 @@ export default function NotesPage() {
     setSelectedId(note.id);
     setTitle(note.title);
     setContent(note.content);
+    setFont(note.font ?? "sans");
   }
 
   function createNote() {
@@ -49,6 +61,7 @@ export default function NotesPage() {
       title: "Untitled",
       content: "",
       updatedAt: Date.now(),
+      font: "sans",
     };
     setNotes((prev) => {
       const next = [note, ...prev];
@@ -63,11 +76,23 @@ export default function NotesPage() {
     setNotes((prev) => {
       const next = prev.map((n) =>
         n.id === selectedId
-          ? { ...n, title, content, updatedAt: Date.now() }
+          ? { ...n, title, content, font, updatedAt: Date.now() }
           : n,
       );
       saveNotes(next);
       return next;
+    });
+  }
+
+  function changeFont(next: NoteFont) {
+    setFont(next);
+    if (!selectedId) return;
+    setNotes((prev) => {
+      const updated = prev.map((n) =>
+        n.id === selectedId ? { ...n, font: next, updatedAt: Date.now() } : n,
+      );
+      saveNotes(updated);
+      return updated;
     });
   }
 
@@ -140,9 +165,30 @@ export default function NotesPage() {
                 onChange={(e) => setContent(e.target.value)}
                 onBlur={updateNote}
                 placeholder="Start writing..."
-                className="flex-1 resize-none bg-transparent text-sm leading-relaxed outline-none placeholder:text-muted-foreground"
+                className={cn(
+                  "flex-1 resize-none bg-transparent text-sm leading-relaxed outline-none placeholder:text-muted-foreground",
+                  FONT_OPTIONS.find((f) => f.value === font)?.className,
+                )}
               />
-              <div className="flex justify-end">
+              <div className="flex items-center justify-between">
+                <div className="flex gap-1">
+                  {FONT_OPTIONS.map((option) => (
+                    <button
+                      key={option.value}
+                      type="button"
+                      onClick={() => changeFont(option.value)}
+                      className={cn(
+                        "rounded-md px-2.5 py-1 text-xs transition-colors",
+                        option.className,
+                        font === option.value
+                          ? "bg-accent text-accent-foreground"
+                          : "text-muted-foreground hover:bg-accent/50 hover:text-foreground",
+                      )}
+                    >
+                      {option.label}
+                    </button>
+                  ))}
+                </div>
                 <button
                   type="button"
                   onClick={deleteNote}
