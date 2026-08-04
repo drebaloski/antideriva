@@ -13,7 +13,7 @@ interface Note {
   font?: NoteFont;
 }
 
-const STORAGE_KEY = "lumos-notes";
+const STORAGE_KEY = "antideriva-notes";
 
 const FONT_OPTIONS: { value: NoteFont; label: string; className: string }[] = [
   { value: "sans", label: "Sans", className: "font-sans" },

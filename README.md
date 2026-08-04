@@ -1,6 +1,6 @@
-# antideriva
+# Antideriva
 
-Created with [create-lumos-app](https://github.com/lumos-fellows/create-lumos-app).
+Antideriva identifies your weaknesses and recommends the lessons that will help you the most.
 
 ## Stack
 
