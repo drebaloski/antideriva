@@ -1,11 +1,14 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Space_Grotesk } from "next/font/google";
 import { Navbar } from "~/components/navbar";
 import { createClient } from "~/lib/supabase/server";
 import { ThemeProvider } from "./theme-provider";
 import "./globals.css";
 
-const inter = Inter({ subsets: ["latin"] });
+const spaceGrotesk = Space_Grotesk({
+  subsets: ["latin"],
+  variable: "--font-sans",
+});
 
 export const metadata: Metadata = {
   title: "Antideriva",
@@ -31,7 +34,7 @@ export default async function RootLayout({
 
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={inter.className}>
+      <body className={`${spaceGrotesk.variable} font-sans`}>
         <ThemeProvider>
           <Navbar
             user={user ? { email: user.email ?? null } : null}
