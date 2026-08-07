@@ -7,11 +7,6 @@ import { Button } from "~/components/ui/button";
 import { createClient } from "~/lib/supabase/client";
 import { cn } from "~/lib/utils";
 
-const links = [
-  { href: "/", label: "Home" },
-  { href: "/notes", label: "Notes" },
-];
-
 interface NavbarProps {
   user: { email: string | null } | null;
   isAdmin: boolean;
@@ -39,20 +34,6 @@ export function Navbar({ user, isAdmin }: NavbarProps) {
             Antideriva
           </Link>
           <div className="flex gap-4">
-            {links.map((link) => (
-              <Link
-                key={link.href}
-                href={link.href}
-                className={cn(
-                  "text-sm transition-colors hover:text-foreground",
-                  pathname === link.href
-                    ? "text-foreground"
-                    : "text-muted-foreground",
-                )}
-              >
-                {link.label}
-              </Link>
-            ))}
             {isAdmin && (
               <Link
                 href="/admin"
