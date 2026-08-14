@@ -34,6 +34,17 @@ export function Navbar({ user, isAdmin }: NavbarProps) {
             Antideriva
           </Link>
           <div className="flex gap-4">
+            <Link
+              href="/units"
+              className={cn(
+                "text-sm transition-colors hover:text-foreground",
+                pathname === "/units"
+                  ? "text-foreground"
+                  : "text-muted-foreground",
+              )}
+            >
+              Units
+            </Link>
             {isAdmin && (
               <Link
                 href="/admin"
