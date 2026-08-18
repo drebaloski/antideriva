@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { useState } from "react";
+import { Badge } from "~/components/ui/badge";
 import { Button } from "~/components/ui/button";
 import { createClient } from "~/lib/supabase/client";
 import { cn } from "~/lib/utils";
@@ -10,9 +11,10 @@ import { cn } from "~/lib/utils";
 interface NavbarProps {
   user: { email: string | null } | null;
   isAdmin: boolean;
+  plan: "free" | "plus";
 }
 
-export function Navbar({ user, isAdmin }: NavbarProps) {
+export function Navbar({ user, isAdmin, plan }: NavbarProps) {
   const pathname = usePathname();
   const router = useRouter();
   const [signingOut, setSigningOut] = useState(false);
@@ -45,6 +47,17 @@ export function Navbar({ user, isAdmin }: NavbarProps) {
             >
               Units
             </Link>
+            <Link
+              href="/pricing"
+              className={cn(
+                "text-sm transition-colors hover:text-foreground",
+                pathname === "/pricing"
+                  ? "text-foreground"
+                  : "text-muted-foreground",
+              )}
+            >
+              Pricing
+            </Link>
             {isAdmin && (
               <Link
                 href="/admin"
@@ -62,14 +75,19 @@ export function Navbar({ user, isAdmin }: NavbarProps) {
         </div>
         <div className="flex items-center gap-2">
           {user ? (
-            <Button
-              variant="outline"
-              size="sm"
-              disabled={signingOut}
-              onClick={handleSignOut}
-            >
-              {signingOut ? "Signing out..." : "Sign Out"}
-            </Button>
+            <>
+              <Badge variant={plan === "plus" ? "default" : "outline"}>
+                {plan === "plus" ? "Plus" : "Free"}
+              </Badge>
+              <Button
+                variant="outline"
+                size="sm"
+                disabled={signingOut}
+                onClick={handleSignOut}
+              >
+                {signingOut ? "Signing out..." : "Sign Out"}
+              </Button>
+            </>
           ) : (
             <>
               <Button variant="ghost" size="sm" asChild>

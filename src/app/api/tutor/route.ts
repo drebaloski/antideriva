@@ -1,8 +1,14 @@
 import { createGroq } from "@ai-sdk/groq";
 import { convertToModelMessages, streamText, type UIMessage } from "ai";
 import { env } from "~/env";
+import { createClient } from "~/lib/supabase/server";
 
 export const maxDuration = 30;
+
+const WEEKLY_LIMIT_BY_PLAN: Record<string, number> = {
+  free: 10,
+  plus: 1000,
+};
 
 interface QuestionContext {
   prompt: string;
@@ -51,6 +57,43 @@ export async function POST(req: Request) {
     );
   }
 
+  const supabase = await createClient();
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
+
+  if (!user) {
+    return new Response("Log in to ask the tutor for help.", { status: 401 });
+  }
+
+  const { data: profile } = await supabase
+    .from("profiles")
+    .select("plan")
+    .eq("id", user.id)
+    .maybeSingle();
+
+  const plan = profile?.plan ?? "free";
+  const weeklyLimit = WEEKLY_LIMIT_BY_PLAN[plan] ?? WEEKLY_LIMIT_BY_PLAN.free;
+
+  const oneWeekAgo = new Date(Date.now() - 7 * 24 * 60 * 60 * 1000);
+  const { count: usageThisWeek } = await supabase
+    .from("tutor_usage")
+    .select("*", { count: "exact", head: true })
+    .eq("user_id", user.id)
+    .gte("created_at", oneWeekAgo.toISOString());
+
+  if ((usageThisWeek ?? 0) >= weeklyLimit) {
+    return new Response(
+      plan === "free"
+        ? "You've used all 10 tutor messages for this week. Upgrade to Plus for 1,000/week."
+        : "You've reached this week's tutor message limit. It resets 7 days after each message.",
+      { status: 429 },
+    );
+  }
+
+  await supabase.from("tutor_usage").insert({ user_id: user.id });
+  const isLastMessageThisWeek = (usageThisWeek ?? 0) + 1 >= weeklyLimit;
+
   const { messages, question, studentWork } =
     (await req.json()) as TutorRequestBody;
 
@@ -62,5 +105,7 @@ export async function POST(req: Request) {
     messages: await convertToModelMessages(messages),
   });
 
-  return result.toUIMessageStreamResponse();
+  return result.toUIMessageStreamResponse({
+    headers: { "X-Tutor-Limit-Reached": String(isLastMessageThisWeek) },
+  });
 }

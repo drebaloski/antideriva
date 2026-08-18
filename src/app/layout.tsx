@@ -27,9 +27,14 @@ export default async function RootLayout({
   } = await supabase.auth.getUser();
 
   let isAdmin = false;
+  let plan: "free" | "plus" = "free";
   if (user) {
-    const { data } = await supabase.rpc("current_user_is_admin");
-    isAdmin = data ?? false;
+    const [{ data: isAdminData }, { data: profile }] = await Promise.all([
+      supabase.rpc("current_user_is_admin"),
+      supabase.from("profiles").select("plan").eq("id", user.id).maybeSingle(),
+    ]);
+    isAdmin = isAdminData ?? false;
+    plan = profile?.plan === "plus" ? "plus" : "free";
   }
 
   return (
@@ -39,6 +44,7 @@ export default async function RootLayout({
           <Navbar
             user={user ? { email: user.email ?? null } : null}
             isAdmin={isAdmin}
+            plan={plan}
           />
           {children}
         </ThemeProvider>
