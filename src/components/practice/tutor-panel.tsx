@@ -2,6 +2,7 @@
 
 import { useChat } from "@ai-sdk/react";
 import { DefaultChatTransport } from "ai";
+import Link from "next/link";
 import { useState } from "react";
 import { Button } from "~/components/ui/button";
 import { Textarea } from "~/components/ui/textarea";
@@ -14,8 +15,20 @@ interface TutorPanelProps {
 }
 
 export function TutorPanel({ question, studentWork }: TutorPanelProps) {
+  const [limitReached, setLimitReached] = useState(false);
   const [transport] = useState(
-    () => new DefaultChatTransport({ api: "/api/tutor" }),
+    () =>
+      new DefaultChatTransport({
+        api: "/api/tutor",
+        fetch: async (url, init) => {
+          const res = await fetch(url, init);
+          setLimitReached(
+            res.status === 429 ||
+              res.headers.get("X-Tutor-Limit-Reached") === "true",
+          );
+          return res;
+        },
+      }),
   );
   const [input, setInput] = useState("");
   const { messages, sendMessage, status, error } = useChat({ transport });
@@ -78,22 +91,35 @@ export function TutorPanel({ question, studentWork }: TutorPanelProps) {
         )}
         {error && (
           <p className="text-sm text-destructive">
-            Something went wrong reaching the tutor. Try again.
+            {error.message ||
+              "Something went wrong reaching the tutor. Try again."}
+          </p>
+        )}
+        {limitReached && !error && (
+          <p className="text-sm text-muted-foreground">
+            That was your last tutor message for this week. Upgrade to Plus for
+            1,000/week.
           </p>
         )}
       </div>
-      <form onSubmit={handleSubmit} className="flex gap-2">
-        <Textarea
-          value={input}
-          onChange={(e) => setInput(e.target.value)}
-          placeholder="What are you stuck on?"
-          className="min-h-9 flex-1 resize-none"
-          rows={1}
-        />
-        <Button type="submit" size="sm" disabled={isBusy || !input.trim()}>
-          Send
+      {limitReached ? (
+        <Button asChild size="sm" className="self-start">
+          <Link href="/pricing">Upgrade to Plus</Link>
         </Button>
-      </form>
+      ) : (
+        <form onSubmit={handleSubmit} className="flex gap-2">
+          <Textarea
+            value={input}
+            onChange={(e) => setInput(e.target.value)}
+            placeholder="What are you stuck on?"
+            className="min-h-9 flex-1 resize-none"
+            rows={1}
+          />
+          <Button type="submit" size="sm" disabled={isBusy || !input.trim()}>
+            Send
+          </Button>
+        </form>
+      )}
     </div>
   );
 }
