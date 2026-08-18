@@ -1,6 +1,8 @@
 "use client";
 
+import Link from "next/link";
 import { useState } from "react";
+import { getPracticeQuestions } from "~/lib/practice-questions";
 import { UNITS } from "~/lib/units";
 import { cn } from "~/lib/utils";
 
@@ -80,17 +82,31 @@ export default function UnitsPage() {
                 />
               </button>
               {isOpen && (
-                <ul className="flex flex-col gap-2 border-t px-4 py-3">
-                  {unit.chapters.map((chapter) => (
-                    <li
-                      key={chapter.title}
-                      className="flex items-center gap-2 text-sm text-muted-foreground"
+                <div className="flex flex-col gap-3 border-t px-4 py-3">
+                  <ul className="flex flex-col gap-2">
+                    {unit.chapters.map((chapter) => (
+                      <li
+                        key={chapter.title}
+                        className="flex items-center gap-2 text-sm text-muted-foreground"
+                      >
+                        <span>{chapter.title}</span>
+                        {chapter.bcOnly && <BcBadge />}
+                      </li>
+                    ))}
+                  </ul>
+                  {getPracticeQuestions(unit.number) ? (
+                    <Link
+                      href={`/units/${unit.number}/practice`}
+                      className="text-sm font-medium text-primary hover:underline"
                     >
-                      <span>{chapter.title}</span>
-                      {chapter.bcOnly && <BcBadge />}
-                    </li>
-                  ))}
-                </ul>
+                      Practice questions →
+                    </Link>
+                  ) : (
+                    <p className="text-sm text-muted-foreground italic">
+                      Practice questions coming soon.
+                    </p>
+                  )}
+                </div>
               )}
             </div>
           );
