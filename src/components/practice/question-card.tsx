@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useState } from "react";
 import { Badge } from "~/components/ui/badge";
 import { Button } from "~/components/ui/button";
 import { Card, CardContent, CardHeader } from "~/components/ui/card";
@@ -12,36 +12,13 @@ import { TutorPanel } from "./tutor-panel";
 interface QuestionCardProps {
   question: PracticeQuestion;
   index: number;
-  initialSelectedChoice?: string | null;
-  initialResponse?: string;
 }
 
-function saveAnswer(
-  questionId: string,
-  answer: { selectedChoice?: string | null; response?: string | null },
-) {
-  fetch("/api/practice-answers", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ questionId, ...answer }),
-  }).catch(() => {
-    // Not logged in, or the request failed — the answer just won't persist.
-  });
-}
-
-export function QuestionCard({
-  question,
-  index,
-  initialSelectedChoice = null,
-  initialResponse = "",
-}: QuestionCardProps) {
-  const [selectedChoice, setSelectedChoice] = useState<string | null>(
-    initialSelectedChoice,
-  );
-  const [response, setResponse] = useState(initialResponse);
+export function QuestionCard({ question, index }: QuestionCardProps) {
+  const [selectedChoice, setSelectedChoice] = useState<string | null>(null);
+  const [response, setResponse] = useState("");
   const [revealed, setRevealed] = useState(false);
   const [helpOpen, setHelpOpen] = useState(false);
-  const isFirstRender = useRef(true);
 
   const studentWork =
     question.type === "mc"
@@ -53,22 +30,6 @@ export function QuestionCard({
   const isCorrect =
     question.type === "mc" && selectedChoice === question.correctChoice;
   const canReveal = question.type === "frq" || selectedChoice !== null;
-
-  useEffect(() => {
-    if (isFirstRender.current) {
-      isFirstRender.current = false;
-      return;
-    }
-
-    const timeout = setTimeout(
-      () => {
-        saveAnswer(question.id, { selectedChoice, response });
-      },
-      question.type === "frq" ? 800 : 0,
-    );
-
-    return () => clearTimeout(timeout);
-  }, [question.id, question.type, selectedChoice, response]);
 
   return (
     <Card>
