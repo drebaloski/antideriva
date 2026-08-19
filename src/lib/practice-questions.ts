@@ -2471,8 +2471,7 @@ const UNIT_8_QUESTIONS: PracticeQuestion[] = [
     chapter: "Average value of a function",
     type: "mc",
     calculatorAllowed: false,
-    prompt:
-      "If the average value of f on [1, 5] is 7, what is ∫₁⁵ f(x) dx?",
+    prompt: "If the average value of f on [1, 5] is 7, what is ∫₁⁵ f(x) dx?",
     choices: [
       { label: "A", text: "28" },
       { label: "B", text: "7" },
