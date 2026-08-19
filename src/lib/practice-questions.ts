@@ -1648,12 +1648,12 @@ const UNIT_6_QUESTIONS: PracticeQuestion[] = [
     calculatorAllowed: false,
     prompt: "What is ∫(3x² − 4x + 5) dx?",
     choices: [
-      { label: "A", text: "x³ − 2x² + 5x + C" },
-      { label: "B", text: "6x − 4 + C" },
+      { label: "A", text: "3x³ − 2x² + 5x + C" },
+      { label: "B", text: "x³ − 2x² + 5x + C" },
       { label: "C", text: "x³ − 4x² + 5x + C" },
-      { label: "D", text: "3x³ − 2x² + 5x + C" },
+      { label: "D", text: "6x − 4 + C" },
     ],
-    correctChoice: "A",
+    correctChoice: "B",
     explanation:
       "Integrate term by term using the power rule for antiderivatives: " +
       "∫3x² dx = x³, ∫−4x dx = −2x², and ∫5 dx = 5x. Summing and adding " +
@@ -1680,17 +1680,17 @@ const UNIT_6_QUESTIONS: PracticeQuestion[] = [
     calculatorAllowed: false,
     prompt: "Which function is an antiderivative of f(x) = 5x⁴ + 2x?",
     choices: [
-      { label: "A", text: "x⁵ + x² + C" },
-      { label: "B", text: "5x⁵ + 2x² + C" },
-      { label: "C", text: "20x³ + 2 + C" },
-      { label: "D", text: "x⁵ + x² " },
+      { label: "A", text: "x⁵ + x² " },
+      { label: "B", text: "x⁵ + x² + C" },
+      { label: "C", text: "5x⁵ + 2x² + C" },
+      { label: "D", text: "20x³ + 2 + C" },
     ],
-    correctChoice: "A",
+    correctChoice: "B",
     explanation:
       "Apply the power rule for antiderivatives term by term: " +
       "∫5x⁴ dx = 5 · x⁵/5 = x⁵, and ∫2x dx = 2 · x²/2 = x². Adding the " +
-      "constant of integration gives x⁵ + x² + C. (Choice D is missing " +
-      "the '+ C', and choice B and C forget to divide by the new " +
+      "constant of integration gives x⁵ + x² + C. (One distractor is " +
+      "missing the '+ C', and two others forget to divide by the new " +
       "exponent.)",
   },
   {
@@ -1705,12 +1705,12 @@ const UNIT_6_QUESTIONS: PracticeQuestion[] = [
       "Use a left Riemann sum with the 4 subintervals shown to " +
       "approximate ∫₀⁸ f(x) dx.",
     choices: [
-      { label: "A", text: "52" },
-      { label: "B", text: "62" },
-      { label: "C", text: "72" },
-      { label: "D", text: "130" },
+      { label: "A", text: "62" },
+      { label: "B", text: "52" },
+      { label: "C", text: "130" },
+      { label: "D", text: "72" },
     ],
-    correctChoice: "A",
+    correctChoice: "B",
     explanation:
       "A left Riemann sum uses the left endpoint of each subinterval. " +
       "With width 2 and left endpoints x = 0, 2, 4, 6 (f-values 3, 5, 8, " +
@@ -1748,12 +1748,12 @@ const UNIT_6_QUESTIONS: PracticeQuestion[] = [
     prompt:
       "Evaluate ∫₁³ (2x + 1) dx using the Fundamental Theorem of Calculus.",
     choices: [
-      { label: "A", text: "10" },
-      { label: "B", text: "12" },
-      { label: "C", text: "8" },
-      { label: "D", text: "14" },
+      { label: "A", text: "12" },
+      { label: "B", text: "14" },
+      { label: "C", text: "10" },
+      { label: "D", text: "8" },
     ],
-    correctChoice: "A",
+    correctChoice: "C",
     explanation:
       "An antiderivative of 2x + 1 is F(x) = x² + x. By the Fundamental " +
       "Theorem of Calculus, ∫₁³ (2x + 1) dx = F(3) − F(1) = " +
@@ -1782,12 +1782,12 @@ const UNIT_6_QUESTIONS: PracticeQuestion[] = [
     calculatorAllowed: true,
     prompt: "If F(x) = ∫₀ˣ (t² + 1) dt, what is F(3)?",
     choices: [
-      { label: "A", text: "12" },
-      { label: "B", text: "9" },
-      { label: "C", text: "30" },
+      { label: "A", text: "9" },
+      { label: "B", text: "30" },
+      { label: "C", text: "12" },
       { label: "D", text: "10" },
     ],
-    correctChoice: "A",
+    correctChoice: "C",
     explanation:
       "By the Fundamental Theorem of Calculus, F(x) = ∫₀ˣ (t² + 1) dt = " +
       "[t³/3 + t] evaluated from 0 to x = x³/3 + x. So " +
@@ -1800,12 +1800,12 @@ const UNIT_6_QUESTIONS: PracticeQuestion[] = [
     calculatorAllowed: false,
     prompt: "Evaluate ∫ 2x(x² + 1)³ dx.",
     choices: [
-      { label: "A", text: "(x² + 1)⁴/4 + C" },
-      { label: "B", text: "(x² + 1)⁴ + C" },
-      { label: "C", text: "4(x² + 1)⁴ + C" },
-      { label: "D", text: "(x² + 1)³/3 + C" },
+      { label: "A", text: "4(x² + 1)⁴ + C" },
+      { label: "B", text: "(x² + 1)³/3 + C" },
+      { label: "C", text: "(x² + 1)⁴ + C" },
+      { label: "D", text: "(x² + 1)⁴/4 + C" },
     ],
-    correctChoice: "A",
+    correctChoice: "D",
     explanation:
       "Let u = x² + 1, so du = 2x dx. The integral becomes " +
       "∫u³ du = u⁴/4 + C. Substituting back gives (x² + 1)⁴/4 + C.",
@@ -1835,12 +1835,12 @@ const UNIT_6_QUESTIONS: PracticeQuestion[] = [
       "Fundamental Theorem of Calculus, g'(x) equals which of the " +
       "following?",
     choices: [
-      { label: "A", text: "f(x)" },
+      { label: "A", text: "∫f(x) dx" },
       { label: "B", text: "f'(x)" },
       { label: "C", text: "f(2)" },
-      { label: "D", text: "∫f(x) dx" },
+      { label: "D", text: "f(x)" },
     ],
-    correctChoice: "A",
+    correctChoice: "D",
     explanation:
       "The Fundamental Theorem of Calculus, Part 1, states that if " +
       "g(x) = ∫ₐˣ f(t) dt, then g'(x) = f(x). The lower bound and the " +
@@ -1876,12 +1876,12 @@ const UNIT_6_QUESTIONS: PracticeQuestion[] = [
     calculatorAllowed: true,
     prompt: "Let g(x) = ∫₁ˣ (2t − 4) dt. Find g(4).",
     choices: [
-      { label: "A", text: "3" },
-      { label: "B", text: "12" },
+      { label: "A", text: "7" },
+      { label: "B", text: "3" },
       { label: "C", text: "−3" },
-      { label: "D", text: "7" },
+      { label: "D", text: "12" },
     ],
-    correctChoice: "A",
+    correctChoice: "B",
     explanation:
       "An antiderivative of 2t − 4 is t² − 4t, so " +
       "g(x) = [t² − 4t] evaluated from 1 to x = (x² − 4x) − (1 − 4) = " +
@@ -1894,12 +1894,12 @@ const UNIT_6_QUESTIONS: PracticeQuestion[] = [
     calculatorAllowed: false,
     prompt: "Evaluate ∫ (x² + 3)/(x − 1) dx using polynomial long division.",
     choices: [
-      { label: "A", text: "x²/2 + x + 4 ln|x − 1| + C" },
-      { label: "B", text: "x²/2 + x + C" },
-      { label: "C", text: "x + 4 ln|x − 1| + C" },
+      { label: "A", text: "x + 4 ln|x − 1| + C" },
+      { label: "B", text: "x²/2 + x + 4 ln|x − 1| + C" },
+      { label: "C", text: "x²/2 + x + C" },
       { label: "D", text: "x²/2 + 4 ln|x − 1| + C" },
     ],
-    correctChoice: "A",
+    correctChoice: "B",
     explanation:
       "Long division gives (x² + 3)/(x − 1) = x + 1 + 4/(x − 1), since " +
       "(x − 1)(x + 1) + 4 = x² + 3. Integrating term by term: " +
@@ -1941,12 +1941,12 @@ const UNIT_7_QUESTIONS: PracticeQuestion[] = [
       "proportional to the product of P and (500 − P). Which " +
       "differential equation models this?",
     choices: [
-      { label: "A", text: "dP/dt = kP(500 − P)" },
-      { label: "B", text: "dP/dt = k(500 − P)" },
-      { label: "C", text: "dP/dt = kP + 500" },
-      { label: "D", text: "P = kt(500 − P)" },
+      { label: "A", text: "dP/dt = kP + 500" },
+      { label: "B", text: "P = kt(500 − P)" },
+      { label: "C", text: "dP/dt = kP(500 − P)" },
+      { label: "D", text: "dP/dt = k(500 − P)" },
     ],
-    correctChoice: "A",
+    correctChoice: "C",
     explanation:
       '"Proportional to the product of P and (500 − P)" translates ' +
       "directly to dP/dt = kP(500 − P) for some constant of " +
@@ -1982,12 +1982,12 @@ const UNIT_7_QUESTIONS: PracticeQuestion[] = [
       "proportional to the product of the number of people who have " +
       "heard it, y, and the number who haven't, N − y\"?",
     choices: [
-      { label: "A", text: "dy/dt = ky(N − y)" },
-      { label: "B", text: "dy/dt = kNy" },
-      { label: "C", text: "dy/dt = k(N − y)" },
-      { label: "D", text: "dy/dt = ky" },
+      { label: "A", text: "dy/dt = k(N − y)" },
+      { label: "B", text: "dy/dt = ky(N − y)" },
+      { label: "C", text: "dy/dt = ky" },
+      { label: "D", text: "dy/dt = kNy" },
     ],
-    correctChoice: "A",
+    correctChoice: "B",
     explanation:
       'The phrase "proportional to the product of y and (N − y)" ' +
       "translates directly to dy/dt = ky(N − y).",
@@ -2021,12 +2021,12 @@ const UNIT_7_QUESTIONS: PracticeQuestion[] = [
       "For the differential equation dy/dx = x − y, the slope field " +
       "segment has slope 0 at which of the following points?",
     choices: [
-      { label: "A", text: "(2, 2)" },
-      { label: "B", text: "(2, 0)" },
-      { label: "C", text: "(0, 2)" },
-      { label: "D", text: "(1, −1)" },
+      { label: "A", text: "(0, 2)" },
+      { label: "B", text: "(1, −1)" },
+      { label: "C", text: "(2, 0)" },
+      { label: "D", text: "(2, 2)" },
     ],
-    correctChoice: "A",
+    correctChoice: "D",
     explanation:
       "The slope is 0 when x − y = 0, i.e. x = y. Of the given points, " +
       "only (2, 2) satisfies x = y, since 2 − 2 = 0.",
@@ -2060,12 +2060,12 @@ const UNIT_7_QUESTIONS: PracticeQuestion[] = [
       "positive, and slopes near 0 where y is close to 0 — regardless " +
       "of x. Which differential equation best matches this slope field?",
     choices: [
-      { label: "A", text: "dy/dx = y" },
-      { label: "B", text: "dy/dx = x" },
-      { label: "C", text: "dy/dx = x − y" },
-      { label: "D", text: "dy/dx = 1/y" },
+      { label: "A", text: "dy/dx = 1/y" },
+      { label: "B", text: "dy/dx = x − y" },
+      { label: "C", text: "dy/dx = y" },
+      { label: "D", text: "dy/dx = x" },
     ],
-    correctChoice: "A",
+    correctChoice: "C",
     explanation:
       "dy/dx = y makes the slope depend only on y (not x), matching " +
       "the description. The slope is large when y is large and " +
@@ -2080,24 +2080,24 @@ const UNIT_7_QUESTIONS: PracticeQuestion[] = [
     choices: [
       {
         label: "A",
+        text: "Slope fields can only be drawn for separable differential equations.",
+      },
+      {
+        label: "B",
+        text: "The slope field is the same regardless of which differential equation produced it.",
+      },
+      {
+        label: "C",
         text:
           "At each point (x, y), the slope field segment's slope " +
           "equals dy/dx evaluated at that point.",
       },
       {
-        label: "B",
+        label: "D",
         text: "A slope field directly gives the exact equation of a solution curve.",
       },
-      {
-        label: "C",
-        text: "Slope fields can only be drawn for separable differential equations.",
-      },
-      {
-        label: "D",
-        text: "The slope field is the same regardless of which differential equation produced it.",
-      },
     ],
-    correctChoice: "A",
+    correctChoice: "C",
     explanation:
       "A slope field is built by evaluating dy/dx at a grid of points " +
       "and drawing a short segment with that slope at each point — it " +
@@ -2112,12 +2112,12 @@ const UNIT_7_QUESTIONS: PracticeQuestion[] = [
     calculatorAllowed: false,
     prompt: "Solve dy/dx = xy given y(0) = 2. What is y(x)?",
     choices: [
-      { label: "A", text: "y = 2e^(x²/2)" },
-      { label: "B", text: "y = e^(2x²)" },
+      { label: "A", text: "y = e^(2x²)" },
+      { label: "B", text: "y = 2e^(x²/2)" },
       { label: "C", text: "y = x² + 2" },
       { label: "D", text: "y = 2eˣ" },
     ],
-    correctChoice: "A",
+    correctChoice: "B",
     explanation:
       "Separate variables: dy/y = x dx. Integrating gives " +
       "ln|y| = x²/2 + C₁, so y = Ce^(x²/2). Applying y(0) = 2 gives " +
@@ -2144,12 +2144,12 @@ const UNIT_7_QUESTIONS: PracticeQuestion[] = [
     calculatorAllowed: false,
     prompt: "Which of the following differential equations is separable?",
     choices: [
-      { label: "A", text: "dy/dx = xy" },
-      { label: "B", text: "dy/dx = x + y" },
-      { label: "C", text: "dy/dx = x² + y²" },
-      { label: "D", text: "dy/dx = x/(x + y)" },
+      { label: "A", text: "dy/dx = x + y" },
+      { label: "B", text: "dy/dx = x² + y²" },
+      { label: "C", text: "dy/dx = x/(x + y)" },
+      { label: "D", text: "dy/dx = xy" },
     ],
-    correctChoice: "A",
+    correctChoice: "D",
     explanation:
       "dy/dx = xy can be rewritten as dy/y = x dx, separating the x's " +
       "and y's onto opposite sides. The other equations mix x and y in " +
@@ -2183,12 +2183,12 @@ const UNIT_7_QUESTIONS: PracticeQuestion[] = [
       "k > 0. If the substance's half-life is 10 years, what is k, " +
       "rounded to 3 decimal places?",
     choices: [
-      { label: "A", text: "0.069" },
-      { label: "B", text: "0.693" },
+      { label: "A", text: "0.693" },
+      { label: "B", text: "10" },
       { label: "C", text: "0.5" },
-      { label: "D", text: "10" },
+      { label: "D", text: "0.069" },
     ],
-    correctChoice: "A",
+    correctChoice: "D",
     explanation:
       "The model is A(t) = A₀e^(−kt). Half-life means A(10) = A₀/2, so " +
       "0.5 = e^(−10k). Taking the natural log: ln(0.5) = −10k, so " +
@@ -2221,12 +2221,12 @@ const UNIT_7_QUESTIONS: PracticeQuestion[] = [
       "population and t is measured in hours, which equation models " +
       "the population P(t)?",
     choices: [
-      { label: "A", text: "P(t) = P₀e^((ln 3/4)t)" },
-      { label: "B", text: "P(t) = P₀e^(3t)" },
-      { label: "C", text: "P(t) = P₀e^(4t/3)" },
-      { label: "D", text: "P(t) = 3P₀e^(t/4)" },
+      { label: "A", text: "P(t) = P₀e^(3t)" },
+      { label: "B", text: "P(t) = P₀e^((ln 3/4)t)" },
+      { label: "C", text: "P(t) = 3P₀e^(t/4)" },
+      { label: "D", text: "P(t) = P₀e^(4t/3)" },
     ],
-    correctChoice: "A",
+    correctChoice: "B",
     explanation:
       "Tripling every 4 hours means P(t) = P₀ · 3^(t/4). Rewriting the " +
       "base as e^(ln 3): P(t) = P₀e^((ln 3)(t/4)) = P₀e^((ln 3/4)t).",
@@ -2250,12 +2250,12 @@ const UNIT_8_QUESTIONS: PracticeQuestion[] = [
       "Find the area of the region enclosed by y = x and y = x² on " +
       "[0, 1].",
     choices: [
-      { label: "A", text: "1/6" },
+      { label: "A", text: "5/6" },
       { label: "B", text: "1/3" },
-      { label: "C", text: "1/2" },
-      { label: "D", text: "5/6" },
+      { label: "C", text: "1/6" },
+      { label: "D", text: "1/2" },
     ],
-    correctChoice: "A",
+    correctChoice: "C",
     explanation:
       "On [0, 1], y = x lies above y = x² (since x ≥ x² there). The " +
       "area is ∫₀¹ (x − x²) dx = [x²/2 − x³/3] from 0 to 1 = " +
@@ -2288,12 +2288,12 @@ const UNIT_8_QUESTIONS: PracticeQuestion[] = [
       "Find the area of the region enclosed by y = x + 2 and y = x² on " +
       "the interval [−1, 2].",
     choices: [
-      { label: "A", text: "9/2" },
+      { label: "A", text: "6" },
       { label: "B", text: "3" },
-      { label: "C", text: "6" },
-      { label: "D", text: "9/4" },
+      { label: "C", text: "9/4" },
+      { label: "D", text: "9/2" },
     ],
-    correctChoice: "A",
+    correctChoice: "D",
     explanation:
       "On [−1, 2], y = x + 2 lies above y = x² (check x = 0: 2 > 0). " +
       "The area is ∫₋₁² [(x + 2) − x²] dx = " +
@@ -2311,12 +2311,12 @@ const UNIT_8_QUESTIONS: PracticeQuestion[] = [
       "and x = 4. Cross-sections perpendicular to the x-axis are " +
       "squares. Find the volume of the solid.",
     choices: [
-      { label: "A", text: "8" },
-      { label: "B", text: "16" },
-      { label: "C", text: "4" },
-      { label: "D", text: "32" },
+      { label: "A", text: "4" },
+      { label: "B", text: "32" },
+      { label: "C", text: "8" },
+      { label: "D", text: "16" },
     ],
-    correctChoice: "A",
+    correctChoice: "C",
     explanation:
       "Each square cross-section has side length √x (the height of the " +
       "region at that x), so its area is (√x)² = x. The volume is " +
@@ -2355,12 +2355,12 @@ const UNIT_8_QUESTIONS: PracticeQuestion[] = [
       "y = √(9 − x²) and the x-axis for −3 ≤ x ≤ 3. Cross-sections " +
       "perpendicular to the x-axis are squares. Find the volume.",
     choices: [
-      { label: "A", text: "36" },
+      { label: "A", text: "9π" },
       { label: "B", text: "18" },
       { label: "C", text: "72" },
-      { label: "D", text: "9π" },
+      { label: "D", text: "36" },
     ],
-    correctChoice: "A",
+    correctChoice: "D",
     explanation:
       "Each square has side length √(9 − x²), so its area is 9 − x². " +
       "The volume is ∫₋₃³ (9 − x²) dx = [9x − x³/3] from −3 to 3 = " +
@@ -2375,12 +2375,12 @@ const UNIT_8_QUESTIONS: PracticeQuestion[] = [
       "The region bounded by y = √x, the x-axis, and x = 4 is revolved " +
       "about the x-axis. Find the volume using the disk method.",
     choices: [
-      { label: "A", text: "8π" },
-      { label: "B", text: "16π" },
-      { label: "C", text: "4π" },
-      { label: "D", text: "32π" },
+      { label: "A", text: "4π" },
+      { label: "B", text: "32π" },
+      { label: "C", text: "8π" },
+      { label: "D", text: "16π" },
     ],
-    correctChoice: "A",
+    correctChoice: "C",
     explanation:
       "Using disks, V = π∫₀⁴ (√x)² dx = π∫₀⁴ x dx = π[x²/2] from 0 to " +
       "4 = π(8) = 8π.",
@@ -2412,19 +2412,19 @@ const UNIT_8_QUESTIONS: PracticeQuestion[] = [
       "x-axis. Which integral represents the volume using the washer " +
       "method?",
     choices: [
-      { label: "A", text: "π∫₋₂² (16 − x⁴) dx" },
-      { label: "B", text: "π∫₋₂² (4 − x²)² dx" },
-      { label: "C", text: "π∫₋₂² (x⁴ − 16) dx" },
-      { label: "D", text: "2π∫₀² x(4 − x²) dx" },
+      { label: "A", text: "π∫₋₂² (4 − x²)² dx" },
+      { label: "B", text: "π∫₋₂² (16 − x⁴) dx" },
+      { label: "C", text: "2π∫₀² x(4 − x²) dx" },
+      { label: "D", text: "π∫₋₂² (x⁴ − 16) dx" },
     ],
-    correctChoice: "A",
+    correctChoice: "B",
     explanation:
       "The curves intersect where x² = 4, at x = ±2. The outer radius " +
       "is 4 (the line) and the inner radius is x² (the parabola), so " +
       "the washer's area is π(outer² − inner²) = π(4² − (x²)²) = " +
-      "π(16 − x⁴). The volume is π∫₋₂² (16 − x⁴) dx. (Choice B makes " +
-      "the common mistake of squaring the difference of the radii " +
-      "instead of subtracting their squares.)",
+      "π(16 − x⁴). The volume is π∫₋₂² (16 − x⁴) dx. (One distractor " +
+      "makes the common mistake of squaring the difference of the " +
+      "radii instead of subtracting their squares.)",
   },
   {
     id: "u8-c4-q1",
@@ -2433,12 +2433,12 @@ const UNIT_8_QUESTIONS: PracticeQuestion[] = [
     calculatorAllowed: true,
     prompt: "Find the average value of f(x) = x² on [0, 3].",
     choices: [
-      { label: "A", text: "3" },
-      { label: "B", text: "9" },
-      { label: "C", text: "1" },
-      { label: "D", text: "6" },
+      { label: "A", text: "6" },
+      { label: "B", text: "1" },
+      { label: "C", text: "3" },
+      { label: "D", text: "9" },
     ],
-    correctChoice: "A",
+    correctChoice: "C",
     explanation:
       "The average value is (1/(3 − 0)) ∫₀³ x² dx = (1/3)[x³/3] from " +
       "0 to 3 = (1/3)(9) = 3.",
@@ -2473,12 +2473,12 @@ const UNIT_8_QUESTIONS: PracticeQuestion[] = [
     calculatorAllowed: false,
     prompt: "If the average value of f on [1, 5] is 7, what is ∫₁⁵ f(x) dx?",
     choices: [
-      { label: "A", text: "28" },
-      { label: "B", text: "7" },
+      { label: "A", text: "7" },
+      { label: "B", text: "28" },
       { label: "C", text: "35" },
       { label: "D", text: "4" },
     ],
-    correctChoice: "A",
+    correctChoice: "B",
     explanation:
       "The average value formula is avg = (1/(5 − 1)) ∫₁⁵ f(x) dx. " +
       "Setting this equal to 7: 7 = (1/4) ∫₁⁵ f(x) dx, so " +
@@ -2494,12 +2494,12 @@ const UNIT_8_QUESTIONS: PracticeQuestion[] = [
       "(m/s) for t ≥ 0. Find the particle's displacement from t = 0 to " +
       "t = 3.",
     choices: [
-      { label: "A", text: "0 m" },
-      { label: "B", text: "9 m" },
-      { label: "C", text: "−9 m" },
+      { label: "A", text: "9 m" },
+      { label: "B", text: "−9 m" },
+      { label: "C", text: "0 m" },
       { label: "D", text: "18 m" },
     ],
-    correctChoice: "A",
+    correctChoice: "C",
     explanation:
       "Displacement is ∫₀³ v(t) dt = ∫₀³ (3t² − 6t) dt = " +
       "[t³ − 3t²] from 0 to 3 = (27 − 27) − 0 = 0.",
@@ -2537,15 +2537,624 @@ const UNIT_8_QUESTIONS: PracticeQuestion[] = [
       "A particle has acceleration a(t) = 6t − 4 (m/s²) for t ≥ 0, and " +
       "initial velocity v(0) = 3 m/s. Find v(2).",
     choices: [
-      { label: "A", text: "7 m/s" },
-      { label: "B", text: "12 m/s" },
-      { label: "C", text: "3 m/s" },
-      { label: "D", text: "16 m/s" },
+      { label: "A", text: "16 m/s" },
+      { label: "B", text: "7 m/s" },
+      { label: "C", text: "12 m/s" },
+      { label: "D", text: "3 m/s" },
     ],
-    correctChoice: "A",
+    correctChoice: "B",
     explanation:
       "v(t) = ∫a(t) dt = 3t² − 4t + C. Using v(0) = 3 gives C = 3, so " +
       "v(t) = 3t² − 4t + 3. Then v(2) = 3(4) − 4(2) + 3 = 12 − 8 + 3 = 7.",
+  },
+];
+
+// Unit 9: Parametric Equations, Polar Coordinates, and Vector-Valued
+// Functions. Chapter names match the chapters in src/lib/units.ts for Unit
+// 9 so questions can be grouped correctly. Unlike Units 6-8, Unit 9 itself
+// is entirely BC-only (see units.ts), so every chapter is fair game here —
+// no chapter-level exclusion is needed. Questions are spread evenly across
+// all 5 chapters, 3 each, for 15 total.
+const UNIT_9_QUESTIONS: PracticeQuestion[] = [
+  {
+    id: "u9-c1-q1",
+    chapter: "Parametric equations and derivatives",
+    type: "mc",
+    calculatorAllowed: false,
+    prompt:
+      "A curve is defined parametrically by x = t² − 1 and y = 2t + 1. " +
+      "Find dy/dx in terms of t.",
+    choices: [
+      { label: "A", text: "t" },
+      { label: "B", text: "2t" },
+      { label: "C", text: "1/t" },
+      { label: "D", text: "1/(2t)" },
+    ],
+    correctChoice: "C",
+    explanation:
+      "dx/dt = 2t and dy/dt = 2, so dy/dx = (dy/dt)/(dx/dt) = 2/(2t) = " +
+      "1/t.",
+  },
+  {
+    id: "u9-c1-q2",
+    chapter: "Parametric equations and derivatives",
+    type: "frq",
+    calculatorAllowed: false,
+    prompt:
+      "Given the parametric equations x = t² and y = t³ − 3t:\n\n" +
+      "(a) Find dy/dx in terms of t.\n" +
+      "(b) Find the value(s) of t in (−2, 2) where the curve has a " +
+      "horizontal tangent line.",
+    explanation:
+      "(a) dx/dt = 2t and dy/dt = 3t² − 3, so " +
+      "dy/dx = (3t² − 3)/(2t) for t ≠ 0.\n" +
+      "(b) A horizontal tangent requires dy/dt = 0 while dx/dt ≠ 0. " +
+      "Setting 3t² − 3 = 0 gives t = ±1, and at both values " +
+      "dx/dt = 2t ≠ 0. So the tangent is horizontal at t = −1 and " +
+      "t = 1.",
+  },
+  {
+    id: "u9-c1-q3",
+    chapter: "Parametric equations and derivatives",
+    type: "mc",
+    calculatorAllowed: false,
+    prompt:
+      "A curve is defined parametrically by x = t³ and y = t². Find " +
+      "dy/dx in terms of t.",
+    choices: [
+      { label: "A", text: "3t/2" },
+      { label: "B", text: "2/(3t)" },
+      { label: "C", text: "2t/3" },
+      { label: "D", text: "3/(2t)" },
+    ],
+    correctChoice: "B",
+    explanation:
+      "dx/dt = 3t² and dy/dt = 2t, so dy/dx = (dy/dt)/(dx/dt) = " +
+      "2t/(3t²) = 2/(3t).",
+  },
+  {
+    id: "u9-c2-q1",
+    chapter: "Vector-valued functions and motion",
+    type: "mc",
+    calculatorAllowed: false,
+    prompt:
+      "A particle's position is given by r(t) = ⟨t², 2t − 1⟩. Find the " +
+      "velocity vector v(t) = r'(t).",
+    choices: [
+      { label: "A", text: "⟨2, 2t⟩" },
+      { label: "B", text: "⟨t², 2t − 1⟩" },
+      { label: "C", text: "⟨2t, 0⟩" },
+      { label: "D", text: "⟨2t, 2⟩" },
+    ],
+    correctChoice: "D",
+    explanation:
+      "The velocity vector is found by differentiating each component " +
+      "of the position vector: r'(t) = ⟨2t, 2⟩.",
+  },
+  {
+    id: "u9-c2-q2",
+    chapter: "Vector-valued functions and motion",
+    type: "frq",
+    calculatorAllowed: true,
+    prompt:
+      "A particle moves along the path r(t) = ⟨t², ln(t)⟩ for t > 0.\n\n" +
+      "(a) Find the velocity vector v(t) and the acceleration vector " +
+      "a(t).\n" +
+      "(b) Find the speed of the particle at t = 1.",
+    explanation:
+      "(a) v(t) = r'(t) = ⟨2t, 1/t⟩. a(t) = r''(t) = ⟨2, −1/t²⟩.\n" +
+      "(b) Speed is the magnitude of velocity: " +
+      "|v(1)| = √(2(1))² + (1/1)² = √(4 + 1) = √5.",
+  },
+  {
+    id: "u9-c2-q3",
+    chapter: "Vector-valued functions and motion",
+    type: "mc",
+    calculatorAllowed: false,
+    prompt:
+      "A particle's position is given by r(t) = ⟨cos(2t), sin(2t)⟩. " +
+      "Find the speed |v(t)| of the particle.",
+    choices: [
+      { label: "A", text: "2" },
+      { label: "B", text: "4" },
+      { label: "C", text: "1" },
+      { label: "D", text: "2t" },
+    ],
+    correctChoice: "A",
+    explanation:
+      "v(t) = ⟨−2sin(2t), 2cos(2t)⟩, so " +
+      "|v(t)| = √(4sin²(2t) + 4cos²(2t)) = √4 = 2.",
+  },
+  {
+    id: "u9-c3-q1",
+    chapter: "Polar coordinates and curves",
+    type: "mc",
+    calculatorAllowed: false,
+    prompt: "Which rectangular equation is equivalent to r = 4 cos θ?",
+    choices: [
+      { label: "A", text: "x² + y² = 16" },
+      { label: "B", text: "(x − 4)² + y² = 16" },
+      { label: "C", text: "(x − 2)² + y² = 4" },
+      { label: "D", text: "(x + 2)² + y² = 4" },
+    ],
+    correctChoice: "C",
+    explanation:
+      "Multiply both sides by r: r² = 4r cos θ. Since r² = x² + y² and " +
+      "r cos θ = x, this becomes x² + y² = 4x, i.e. x² − 4x + y² = 0. " +
+      "Completing the square: (x − 2)² + y² = 4, a circle centered at " +
+      "(2, 0) with radius 2.",
+  },
+  {
+    id: "u9-c3-q2",
+    chapter: "Polar coordinates and curves",
+    type: "frq",
+    calculatorAllowed: false,
+    prompt:
+      "Consider the cardioid r = 1 + cos θ.\n\n" +
+      "(a) Find dr/dθ.\n" +
+      "(b) Using y = r sin θ, find dy/dθ, and find a value of θ in " +
+      "[0, π] where the tangent line is horizontal.",
+    explanation:
+      "(a) dr/dθ = −sin θ.\n" +
+      "(b) y = (1 + cos θ) sin θ = sin θ + sin θ cos θ = " +
+      "sin θ + (1/2) sin(2θ), so dy/dθ = cos θ + cos(2θ). Setting " +
+      "dy/dθ = 0 and using cos(2θ) = 2cos²θ − 1 gives " +
+      "2cos²θ + cos θ − 1 = 0, which factors as " +
+      "(2cos θ − 1)(cos θ + 1) = 0. So cos θ = 1/2 or cos θ = −1, " +
+      "giving θ = π/3 or θ = π in [0, π]. At θ = π/3 the tangent line " +
+      "is horizontal.",
+  },
+  {
+    id: "u9-c3-q3",
+    chapter: "Polar coordinates and curves",
+    type: "mc",
+    calculatorAllowed: true,
+    prompt:
+      "For the polar curve r = θ, find dy/dx at θ = π/2, using " +
+      "x = r cos θ and y = r sin θ.",
+    choices: [
+      { label: "A", text: "2/π" },
+      { label: "B", text: "π/2" },
+      { label: "C", text: "−π/2" },
+      { label: "D", text: "−2/π" },
+    ],
+    correctChoice: "D",
+    explanation:
+      "x = θ cos θ, so dx/dθ = cos θ − θ sin θ. y = θ sin θ, so " +
+      "dy/dθ = sin θ + θ cos θ. At θ = π/2: cos θ = 0 and sin θ = 1, so " +
+      "dx/dθ = 0 − (π/2)(1) = −π/2, and dy/dθ = 1 + (π/2)(0) = 1. " +
+      "Then dy/dx = (dy/dθ)/(dx/dθ) = 1/(−π/2) = −2/π.",
+  },
+  {
+    id: "u9-c4-q1",
+    chapter: "Area in polar coordinates",
+    type: "mc",
+    calculatorAllowed: true,
+    prompt:
+      "Find the area enclosed by the polar curve r = 2 sin θ for " +
+      "0 ≤ θ ≤ π.",
+    choices: [
+      { label: "A", text: "2π" },
+      { label: "B", text: "π" },
+      { label: "C", text: "4π" },
+      { label: "D", text: "π/2" },
+    ],
+    correctChoice: "B",
+    explanation:
+      "Area = (1/2)∫₀^π (2 sin θ)² dθ = (1/2)∫₀^π 4sin²θ dθ = " +
+      "2∫₀^π sin²θ dθ. Since ∫₀^π sin²θ dθ = π/2, the area is " +
+      "2(π/2) = π.",
+  },
+  {
+    id: "u9-c4-q2",
+    chapter: "Area in polar coordinates",
+    type: "frq",
+    calculatorAllowed: true,
+    prompt: "Find the total area enclosed by the cardioid r = 2 + 2cos θ.",
+    explanation:
+      "Area = (1/2)∫₀^(2π) (2 + 2cos θ)² dθ = " +
+      "(1/2)∫₀^(2π) (4 + 8cos θ + 4cos²θ) dθ. Evaluating each piece: " +
+      "∫₀^(2π) 4 dθ = 8π, ∫₀^(2π) 8cos θ dθ = 0, and " +
+      "∫₀^(2π) 4cos²θ dθ = 4π. Summing: 8π + 0 + 4π = 12π. The area " +
+      "is (1/2)(12π) = 6π.",
+  },
+  {
+    id: "u9-c4-q3",
+    chapter: "Area in polar coordinates",
+    type: "mc",
+    calculatorAllowed: false,
+    prompt:
+      "Which integral represents the area of one petal of the rose " +
+      "r = cos(2θ), traced for −π/4 ≤ θ ≤ π/4?",
+    choices: [
+      { label: "A", text: "(1/2)∫₋π/4^(π/4) cos²(2θ) dθ" },
+      { label: "B", text: "∫₋π/4^(π/4) cos²(2θ) dθ" },
+      { label: "C", text: "(1/2)∫₋π/4^(π/4) cos(2θ) dθ" },
+      { label: "D", text: "(1/2)∫₀^(π/4) cos²(2θ) dθ" },
+    ],
+    correctChoice: "A",
+    explanation:
+      "The area enclosed by a polar curve is (1/2)∫ r² dθ over the " +
+      "interval that traces the region once. Here r² = cos²(2θ), and " +
+      "the petal is traced for θ from −π/4 to π/4, so the area is " +
+      "(1/2)∫₋π/4^(π/4) cos²(2θ) dθ.",
+  },
+  {
+    id: "u9-c5-q1",
+    chapter: "Arc length in parametric/polar form",
+    type: "mc",
+    calculatorAllowed: false,
+    prompt:
+      "Which integral gives the arc length of the parametric curve " +
+      "x = t² and y = t³ for 0 ≤ t ≤ 1?",
+    choices: [
+      { label: "A", text: "∫₀¹ (4t² + 9t⁴) dt" },
+      { label: "B", text: "∫₀¹ √(2t + 3t²) dt" },
+      { label: "C", text: "∫₀¹ √(4t + 9t²) dt" },
+      { label: "D", text: "∫₀¹ √(4t² + 9t⁴) dt" },
+    ],
+    correctChoice: "D",
+    explanation:
+      "Arc length for a parametric curve is " +
+      "∫ √((dx/dt)² + (dy/dt)²) dt. Here dx/dt = 2t and dy/dt = 3t², " +
+      "so (dx/dt)² + (dy/dt)² = 4t² + 9t⁴, giving " +
+      "∫₀¹ √(4t² + 9t⁴) dt.",
+  },
+  {
+    id: "u9-c5-q2",
+    chapter: "Arc length in parametric/polar form",
+    type: "frq",
+    calculatorAllowed: true,
+    prompt:
+      "Find the arc length of the parametric curve x = 3cos(t), " +
+      "y = 3sin(t) for 0 ≤ t ≤ π, and verify your answer using the " +
+      "formula for the circumference of a circle.",
+    explanation:
+      "dx/dt = −3sin(t) and dy/dt = 3cos(t), so the speed is " +
+      "√(9sin²t + 9cos²t) = √9 = 3. The arc length is " +
+      "∫₀^π 3 dt = 3π. This curve traces a semicircle of radius 3, " +
+      "and half the circumference of a circle with radius 3 is " +
+      "(1/2)(2π · 3) = 3π, which matches.",
+  },
+  {
+    id: "u9-c5-q3",
+    chapter: "Arc length in parametric/polar form",
+    type: "mc",
+    calculatorAllowed: false,
+    prompt:
+      "Which integral gives the arc length of the polar curve r = θ " +
+      "for 0 ≤ θ ≤ π? (Recall: arc length in polar form is " +
+      "∫ √(r² + (dr/dθ)²) dθ.)",
+    choices: [
+      { label: "A", text: "∫₀^π θ dθ" },
+      { label: "B", text: "∫₀^π √θ dθ" },
+      { label: "C", text: "∫₀^π √(θ² + 1) dθ" },
+      { label: "D", text: "∫₀^π (θ² + 1) dθ" },
+    ],
+    correctChoice: "C",
+    explanation:
+      "Here r = θ, so dr/dθ = 1. The arc length is " +
+      "∫₀^π √(θ² + 1²) dθ = ∫₀^π √(θ² + 1) dθ.",
+  },
+];
+
+// Unit 10: Infinite Sequences and Series. Chapter names match the chapters
+// in src/lib/units.ts for Unit 10 so questions can be grouped correctly.
+// Like Unit 9, Unit 10 itself is entirely BC-only, so every chapter is fair
+// game. Unit 10 has 10 chapters rather than 5, so questions are spread
+// across all 10 as 2, 1, 2, 1, 2, 1, 1, 2, 2, 1 (15 total), weighting the
+// chapters most central to the BC exam (geometric series, the nth term
+// test, comparison/ratio/integral tests, Taylor/Maclaurin series, and power
+// series) with 2 questions each.
+const UNIT_10_QUESTIONS: PracticeQuestion[] = [
+  {
+    id: "u10-c1-q1",
+    chapter: "Convergence and divergence of series",
+    type: "mc",
+    calculatorAllowed: false,
+    prompt:
+      "Which statement correctly defines convergence of an infinite " +
+      "series ∑aₙ?",
+    choices: [
+      { label: "A", text: "The series converges if lim(n→∞) aₙ = 0." },
+      {
+        label: "B",
+        text:
+          "The series converges if the sequence of partial sums Sₙ " +
+          "approaches a finite limit L.",
+      },
+      {
+        label: "C",
+        text: "The series converges if aₙ is a decreasing sequence.",
+      },
+      {
+        label: "D",
+        text: "The series converges if the terms aₙ are all positive.",
+      },
+    ],
+    correctChoice: "B",
+    explanation:
+      "A series ∑aₙ converges by definition when its sequence of " +
+      "partial sums Sₙ = a₁ + a₂ + ... + aₙ approaches a finite limit L " +
+      "as n → ∞. (lim aₙ = 0 is a necessary condition for convergence, " +
+      "by the nth term test, but is not sufficient on its own — the " +
+      "harmonic series is a classic counterexample.)",
+  },
+  {
+    id: "u10-c2-q1",
+    chapter: "Geometric series",
+    type: "mc",
+    calculatorAllowed: false,
+    prompt: "Find the sum of the geometric series ∑_{n=0}^∞ 3(1/2)ⁿ.",
+    choices: [
+      { label: "A", text: "3" },
+      { label: "B", text: "1.5" },
+      { label: "C", text: "6" },
+      { label: "D", text: "The series diverges." },
+    ],
+    correctChoice: "C",
+    explanation:
+      "This is a geometric series with first term a = 3 and common " +
+      "ratio r = 1/2. Since |r| < 1, it converges to " +
+      "a/(1 − r) = 3/(1/2) = 6.",
+  },
+  {
+    id: "u10-c2-q2",
+    chapter: "Geometric series",
+    type: "frq",
+    calculatorAllowed: true,
+    prompt:
+      "Consider the two series:\n" +
+      "(i) ∑_{n=1}^∞ 4(3/2)^(n−1)\n" +
+      "(ii) ∑_{n=0}^∞ 6(−1/4)ⁿ\n\n" +
+      "(a) Determine whether each series converges or diverges, and " +
+      "explain why.\n" +
+      "(b) For each series that converges, find its sum.",
+    explanation:
+      "(a) Series (i) is geometric with r = 3/2. Since |r| > 1, it " +
+      "diverges. Series (ii) is geometric with r = −1/4. Since " +
+      "|r| < 1, it converges.\n" +
+      "(b) Series (i) has no sum (it diverges). Series (ii) converges " +
+      "to a/(1 − r) = 6/(1 − (−1/4)) = 6/(5/4) = 24/5 = 4.8.",
+  },
+  {
+    id: "u10-c3-q1",
+    chapter: "The nth term test for divergence",
+    type: "mc",
+    calculatorAllowed: false,
+    prompt: "Which series can be shown to diverge using the nth term test?",
+    choices: [
+      { label: "A", text: "∑ 1/n²" },
+      { label: "B", text: "∑ 1/n" },
+      { label: "C", text: "∑ (1/2)ⁿ" },
+      { label: "D", text: "∑ n/(n + 1)" },
+    ],
+    correctChoice: "D",
+    explanation:
+      "For ∑ n/(n + 1), lim(n→∞) n/(n + 1) = 1 ≠ 0, so by the nth term " +
+      "test this series diverges. (∑ 1/n also diverges, but not by the " +
+      "nth term test — its terms do approach 0. ∑ 1/n² and ∑ (1/2)ⁿ " +
+      "both converge.)",
+  },
+  {
+    id: "u10-c3-q2",
+    chapter: "The nth term test for divergence",
+    type: "mc",
+    calculatorAllowed: false,
+    prompt:
+      "For the series ∑_{n=1}^∞ (2n² + 1)/(n² + 3), what does the nth " +
+      "term test say?",
+    choices: [
+      {
+        label: "A",
+        text: "The series diverges since lim aₙ = 2 ≠ 0.",
+      },
+      { label: "B", text: "The series converges since lim aₙ = 2." },
+      { label: "C", text: "The test is inconclusive." },
+      { label: "D", text: "The series diverges since aₙ is increasing." },
+    ],
+    correctChoice: "A",
+    explanation:
+      "lim(n→∞) (2n² + 1)/(n² + 3) = 2 (divide numerator and " +
+      "denominator by n²). Since this limit is 2, not 0, the nth term " +
+      "test says the series diverges.",
+  },
+  {
+    id: "u10-c4-q1",
+    chapter: "Harmonic series and p-series",
+    type: "mc",
+    calculatorAllowed: false,
+    prompt: "For which value of p does ∑_{n=1}^∞ 1/nᵖ converge?",
+    choices: [
+      { label: "A", text: "p = 1" },
+      { label: "B", text: "p = 0.5" },
+      { label: "C", text: "p = −1" },
+      { label: "D", text: "p = 2" },
+    ],
+    correctChoice: "D",
+    explanation:
+      "A p-series ∑ 1/nᵖ converges if and only if p > 1. Of the given " +
+      "options, only p = 2 satisfies this (p = 1 gives the divergent " +
+      "harmonic series, and p = 0.5 and p = −1 are both ≤ 1).",
+  },
+  {
+    id: "u10-c5-q1",
+    chapter: "Comparison, ratio, and integral tests",
+    type: "mc",
+    calculatorAllowed: false,
+    prompt:
+      "Using the Ratio Test, determine whether ∑_{n=1}^∞ 2ⁿ/n! " +
+      "converges or diverges.",
+    choices: [
+      { label: "A", text: "Diverges, since the limit of the ratio is 2." },
+      { label: "B", text: "Converges, since the limit of the ratio is 0." },
+      { label: "C", text: "Converges, since the limit of the ratio is 1." },
+      { label: "D", text: "The Ratio Test is inconclusive." },
+    ],
+    correctChoice: "B",
+    explanation:
+      "With aₙ = 2ⁿ/n!, the ratio is " +
+      "aₙ₊₁/aₙ = [2ⁿ⁺¹/(n+1)!] / [2ⁿ/n!] = 2/(n+1), which approaches 0 " +
+      "as n → ∞. Since this limit is less than 1, the series converges " +
+      "by the Ratio Test.",
+  },
+  {
+    id: "u10-c5-q2",
+    chapter: "Comparison, ratio, and integral tests",
+    type: "frq",
+    calculatorAllowed: true,
+    prompt:
+      "Use the Integral Test to determine whether " +
+      "∑_{n=2}^∞ 1/(n(ln n)²) converges or diverges. Show the integral " +
+      "you evaluate and state its value (or explain why it diverges).",
+    explanation:
+      "Let f(x) = 1/(x(ln x)²), which is positive, continuous, and " +
+      "decreasing for x ≥ 2, so the Integral Test applies. Using " +
+      "u = ln x, du = dx/x: " +
+      "∫₂^∞ 1/(x(ln x)²) dx = ∫_(ln 2)^∞ 1/u² du = " +
+      "[−1/u] from ln 2 to ∞ = 0 − (−1/ln 2) = 1/ln 2, a finite value. " +
+      "Since the integral converges, the series ∑ 1/(n(ln n)²) also " +
+      "converges by the Integral Test.",
+  },
+  {
+    id: "u10-c6-q1",
+    chapter: "Alternating series test",
+    type: "mc",
+    calculatorAllowed: false,
+    prompt:
+      "Which conditions are required to apply the Alternating Series " +
+      "Test to ∑ (−1)ⁿ bₙ, where bₙ > 0?",
+    choices: [
+      { label: "A", text: "bₙ is increasing and lim bₙ = ∞." },
+      { label: "B", text: "lim bₙ = 0 is the only condition needed." },
+      { label: "C", text: "bₙ is decreasing and lim bₙ = 0." },
+      { label: "D", text: "bₙ must be positive and bounded." },
+    ],
+    correctChoice: "C",
+    explanation:
+      "The Alternating Series Test requires two conditions on bₙ: it " +
+      "must be (eventually) decreasing, and its limit as n → ∞ must be " +
+      "0. If both hold, ∑ (−1)ⁿ bₙ converges.",
+  },
+  {
+    id: "u10-c7-q1",
+    chapter: "Absolute vs. conditional convergence",
+    type: "mc",
+    calculatorAllowed: false,
+    prompt:
+      "The series ∑_{n=1}^∞ (−1)ⁿ/n converges by the Alternating " +
+      "Series Test, but ∑_{n=1}^∞ 1/n (the harmonic series) diverges. " +
+      "This means ∑_{n=1}^∞ (−1)ⁿ/n is:",
+    choices: [
+      { label: "A", text: "Conditionally convergent" },
+      { label: "B", text: "Absolutely convergent" },
+      { label: "C", text: "Divergent" },
+      { label: "D", text: "Not classifiable with the given information" },
+    ],
+    correctChoice: "A",
+    explanation:
+      "A series is absolutely convergent if the series of absolute " +
+      "values also converges, and conditionally convergent if the " +
+      "series itself converges but the series of absolute values " +
+      "diverges. Here ∑ (−1)ⁿ/n converges, but ∑ |(−1)ⁿ/n| = ∑ 1/n " +
+      "diverges, so the series is conditionally convergent.",
+  },
+  {
+    id: "u10-c8-q1",
+    chapter: "Taylor and Maclaurin series",
+    type: "mc",
+    calculatorAllowed: false,
+    prompt:
+      "Find the first three nonzero terms of the Maclaurin series for " + "eˣ.",
+    choices: [
+      { label: "A", text: "1 − x + x²/2" },
+      { label: "B", text: "x + x²/2 + x³/6" },
+      { label: "C", text: "1 + x²/2 + x⁴/24" },
+      { label: "D", text: "1 + x + x²/2" },
+    ],
+    correctChoice: "D",
+    explanation:
+      "The Maclaurin series for eˣ is ∑_{n=0}^∞ xⁿ/n! = " +
+      "1 + x + x²/2! + x³/3! + ... = 1 + x + x²/2 + x³/6 + .... The " +
+      "first three nonzero terms are 1 + x + x²/2.",
+  },
+  {
+    id: "u10-c8-q2",
+    chapter: "Taylor and Maclaurin series",
+    type: "frq",
+    calculatorAllowed: false,
+    prompt:
+      "Find the third-degree Taylor polynomial for f(x) = ln(x) " +
+      "centered at x = 1. Show the derivatives you use and their " +
+      "values at x = 1.",
+    explanation:
+      "f(x) = ln x, so f(1) = 0. f'(x) = 1/x, so f'(1) = 1. " +
+      "f''(x) = −1/x², so f''(1) = −1. f'''(x) = 2/x³, so f'''(1) = 2. " +
+      "The third-degree Taylor polynomial centered at x = 1 is " +
+      "P₃(x) = f(1) + f'(1)(x − 1) + [f''(1)/2!](x − 1)² + " +
+      "[f'''(1)/3!](x − 1)³ = " +
+      "(x − 1) − (1/2)(x − 1)² + (1/3)(x − 1)³.",
+  },
+  {
+    id: "u10-c9-q1",
+    chapter: "Power series and radius of convergence",
+    type: "mc",
+    calculatorAllowed: false,
+    prompt: "Find the radius of convergence of ∑_{n=1}^∞ xⁿ/n.",
+    choices: [
+      { label: "A", text: "0" },
+      { label: "B", text: "1" },
+      { label: "C", text: "∞" },
+      { label: "D", text: "2" },
+    ],
+    correctChoice: "B",
+    explanation:
+      "By the Ratio Test, the ratio of consecutive terms is " +
+      "|xⁿ⁺¹/(n+1)| / |xⁿ/n| = |x| · n/(n+1), which approaches |x| as " +
+      "n → ∞. The series converges when |x| < 1, so the radius of " +
+      "convergence is R = 1.",
+  },
+  {
+    id: "u10-c9-q2",
+    chapter: "Power series and radius of convergence",
+    type: "frq",
+    calculatorAllowed: true,
+    prompt:
+      "Find the radius and interval of convergence of " +
+      "∑_{n=1}^∞ (x − 2)ⁿ/(n · 3ⁿ), checking both endpoints.",
+    explanation:
+      "By the Ratio Test, the ratio of consecutive terms approaches " +
+      "|x − 2|/3 · n/(n+1) → |x − 2|/3. The series converges when " +
+      "|x − 2|/3 < 1, i.e. |x − 2| < 3, so the radius of convergence " +
+      "is R = 3, giving the open interval (−1, 5) before checking " +
+      "endpoints. At x = 5: the series becomes ∑ 3ⁿ/(n · 3ⁿ) = " +
+      "∑ 1/n, the divergent harmonic series. At x = −1: the series " +
+      "becomes ∑ (−3)ⁿ/(n · 3ⁿ) = ∑ (−1)ⁿ/n, the alternating harmonic " +
+      "series, which converges (conditionally) by the Alternating " +
+      "Series Test. So the interval of convergence is [−1, 5).",
+  },
+  {
+    id: "u10-c10-q1",
+    chapter: "Error bounds for series approximations",
+    type: "mc",
+    calculatorAllowed: true,
+    prompt:
+      "The alternating series ∑_{n=1}^∞ (−1)^(n+1)/n! is approximated " +
+      "by the sum of its first 4 terms. By the Alternating Series " +
+      "Estimation Theorem, the error in this approximation is bounded " +
+      "by:",
+    choices: [
+      { label: "A", text: "1/24" },
+      { label: "B", text: "1/6" },
+      { label: "C", text: "1/120" },
+      { label: "D", text: "1" },
+    ],
+    correctChoice: "C",
+    explanation:
+      "The Alternating Series Estimation Theorem says the error is no " +
+      "more than the absolute value of the first omitted term. The " +
+      "first 4 terms use n = 1 through 4, so the first omitted term is " +
+      "at n = 5: |(−1)⁶/5!| = 1/120.",
   },
 ];
 
@@ -2558,6 +3167,8 @@ const PRACTICE_QUESTIONS_BY_UNIT: Record<number, PracticeQuestion[]> = {
   6: UNIT_6_QUESTIONS,
   7: UNIT_7_QUESTIONS,
   8: UNIT_8_QUESTIONS,
+  9: UNIT_9_QUESTIONS,
+  10: UNIT_10_QUESTIONS,
 };
 
 export function getPracticeQuestions(
