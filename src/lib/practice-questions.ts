@@ -661,9 +661,983 @@ const UNIT_2_QUESTIONS: PracticeQuestion[] = [
   },
 ];
 
+// Unit 3: Differentiation: Composite, Implicit, and Inverse Functions.
+// Chapter names match the chapters in src/lib/units.ts for Unit 3 so
+// questions can be grouped correctly.
+const UNIT_3_QUESTIONS: PracticeQuestion[] = [
+  {
+    id: "u3-c1-q1",
+    chapter: "Chain rule",
+    type: "mc",
+    calculatorAllowed: false,
+    prompt: "If f(x) = (3x² + 1)⁵, what is f'(x)?",
+    choices: [
+      { label: "A", text: "5(3x² + 1)⁴" },
+      { label: "B", text: "30x(3x² + 1)⁴" },
+      { label: "C", text: "5(6x)⁴" },
+      { label: "D", text: "6x(3x² + 1)⁴" },
+    ],
+    correctChoice: "B",
+    explanation:
+      "By the chain rule, d/dx[u⁵] = 5u⁴ · u', where u = 3x² + 1 and " +
+      "u' = 6x. So f'(x) = 5(3x² + 1)⁴ · 6x = 30x(3x² + 1)⁴.",
+  },
+  {
+    id: "u3-c1-q2",
+    chapter: "Chain rule",
+    type: "mc",
+    calculatorAllowed: false,
+    prompt: "If g(x) = sin(x²), what is g'(x)?",
+    choices: [
+      { label: "A", text: "cos(x²)" },
+      { label: "B", text: "2x cos(x²)" },
+      { label: "C", text: "2x sin(x²)" },
+      { label: "D", text: "x² cos(x²)" },
+    ],
+    correctChoice: "B",
+    explanation:
+      "By the chain rule, d/dx[sin(u)] = cos(u) · u', where u = x² and " +
+      "u' = 2x. So g'(x) = cos(x²) · 2x = 2x cos(x²).",
+  },
+  {
+    id: "u3-c1-q3",
+    chapter: "Chain rule",
+    type: "frq",
+    calculatorAllowed: false,
+    prompt:
+      "Let h(x) = e^(cos(2x)).\n\n" +
+      "(a) Find h'(x), using the chain rule twice.\n" +
+      "(b) Find the equation of the tangent line to h at x = 0.",
+    explanation:
+      "(a) Let the outer function be e^u with u = cos(2x). " +
+      "d/dx[e^u] = e^u · u'. Now u' = d/dx[cos(2x)] = −sin(2x) · 2 = " +
+      "−2sin(2x), applying the chain rule again for the inner 2x. So " +
+      "h'(x) = e^(cos(2x)) · (−2sin(2x)) = −2sin(2x)e^(cos(2x)).\n" +
+      "(b) h(0) = e^(cos(0)) = e^1 = e, and h'(0) = −2sin(0)e^(cos(0)) = " +
+      "−2(0)(e) = 0. The tangent line at x = 0 is horizontal: y = e.",
+  },
+  {
+    id: "u3-c2-q1",
+    chapter: "Implicit differentiation",
+    type: "mc",
+    calculatorAllowed: false,
+    prompt: "If x² + y² = 25, what is dy/dx?",
+    choices: [
+      { label: "A", text: "x/y" },
+      { label: "B", text: "−x/y" },
+      { label: "C", text: "y/x" },
+      { label: "D", text: "−y/x" },
+    ],
+    correctChoice: "B",
+    explanation:
+      "Differentiate both sides with respect to x: 2x + 2y(dy/dx) = 0. " +
+      "Solve for dy/dx: 2y(dy/dx) = −2x, so dy/dx = −x/y.",
+  },
+  {
+    id: "u3-c2-q2",
+    chapter: "Implicit differentiation",
+    type: "mc",
+    calculatorAllowed: false,
+    prompt: "If y³ + xy = 4, what is dy/dx in terms of x and y?",
+    choices: [
+      { label: "A", text: "−y/(3y² + x)" },
+      { label: "B", text: "y/(3y² + x)" },
+      { label: "C", text: "−y/(3y² − x)" },
+      { label: "D", text: "(4 − xy)/(3y²)" },
+    ],
+    correctChoice: "A",
+    explanation:
+      "Differentiate both sides with respect to x, using the product " +
+      "rule on xy: 3y²(dy/dx) + [x(dy/dx) + y] = 0. Group the dy/dx " +
+      "terms: 3y²(dy/dx) + x(dy/dx) = −y, so (dy/dx)(3y² + x) = −y, " +
+      "giving dy/dx = −y/(3y² + x).",
+  },
+  {
+    id: "u3-c2-q3",
+    chapter: "Implicit differentiation",
+    type: "frq",
+    calculatorAllowed: false,
+    prompt:
+      "Consider the curve defined by x² + xy + y² = 7.\n\n" +
+      "(a) Find dy/dx in terms of x and y.\n" +
+      "(b) Find the equation of the tangent line to the curve at the " +
+      "point (1, 2).",
+    explanation:
+      "(a) Differentiate both sides with respect to x, using the product " +
+      "rule on xy: 2x + [x(dy/dx) + y] + 2y(dy/dx) = 0. Group the dy/dx " +
+      "terms: x(dy/dx) + 2y(dy/dx) = −2x − y, so " +
+      "dy/dx = (−2x − y)/(x + 2y).\n" +
+      "(b) At (1, 2): dy/dx = (−2(1) − 2)/(1 + 2(2)) = −4/5. The tangent " +
+      "line is y − 2 = (−4/5)(x − 1).",
+  },
+  {
+    id: "u3-c3-q1",
+    chapter: "Derivatives of inverse functions",
+    type: "mc",
+    calculatorAllowed: false,
+    prompt:
+      "Let f(x) = x³ + 2x, and let g be the inverse function of f. Given " +
+      "that f(1) = 3, what is g'(3)?",
+    choices: [
+      { label: "A", text: "1/5" },
+      { label: "B", text: "5" },
+      { label: "C", text: "1/3" },
+      { label: "D", text: "3" },
+    ],
+    correctChoice: "A",
+    explanation:
+      "By the inverse function derivative formula, g'(f(a)) = 1/f'(a). " +
+      "Since f(1) = 3, use a = 1: f'(x) = 3x² + 2, so f'(1) = 3 + 2 = 5. " +
+      "Thus g'(3) = 1/f'(1) = 1/5.",
+  },
+  {
+    id: "u3-c3-q2",
+    chapter: "Derivatives of inverse functions",
+    type: "mc",
+    calculatorAllowed: false,
+    prompt:
+      "Let h be the inverse of f(x) = 2x⁵ + x + 4. Which expression gives " +
+      "h'(4)?",
+    choices: [
+      { label: "A", text: "1/f'(0)" },
+      { label: "B", text: "1/f'(4)" },
+      { label: "C", text: "f'(0)" },
+      { label: "D", text: "1/f(0)" },
+    ],
+    correctChoice: "A",
+    explanation:
+      "Since h is the inverse of f, h'(f(a)) = 1/f'(a). We need a such " +
+      "that f(a) = 4: f(0) = 2(0) + 0 + 4 = 4, so a = 0. Thus " +
+      "h'(4) = h'(f(0)) = 1/f'(0).",
+  },
+  {
+    id: "u3-c3-q3",
+    chapter: "Derivatives of inverse functions",
+    type: "frq",
+    calculatorAllowed: true,
+    prompt:
+      "Let f(x) = x³ + 3x − 2, and let g be the inverse of f.\n\n" +
+      "(a) Verify that f(2) = 12.\n" +
+      "(b) Find g'(12).\n" +
+      "(c) Explain why f must have an inverse function on the domain of " +
+      "all real numbers.",
+    explanation:
+      "(a) f(2) = 8 + 6 − 2 = 12, confirming the given value.\n" +
+      "(b) g'(f(a)) = 1/f'(a). Since f(2) = 12, use a = 2: " +
+      "f'(x) = 3x² + 3, so f'(2) = 12 + 3 = 15. Thus g'(12) = 1/f'(2) = " +
+      "1/15.\n" +
+      "(c) f'(x) = 3x² + 3 ≥ 3 > 0 for all real x, so f is strictly " +
+      "increasing everywhere. A strictly increasing (or strictly " +
+      "decreasing) function is one-to-one on its whole domain, so f has " +
+      "an inverse function there.",
+  },
+  {
+    id: "u3-c4-q1",
+    chapter: "Derivatives of inverse trigonometric functions",
+    type: "mc",
+    calculatorAllowed: false,
+    prompt: "If f(x) = arctan(3x), what is f'(x)?",
+    choices: [
+      { label: "A", text: "3/(1 + 9x²)" },
+      { label: "B", text: "1/(1 + 9x²)" },
+      { label: "C", text: "3/(1 + 3x²)" },
+      { label: "D", text: "1/(1 + x²)" },
+    ],
+    correctChoice: "A",
+    explanation:
+      "Using d/dx[arctan(u)] = u'/(1 + u²) with u = 3x and u' = 3: " +
+      "f'(x) = 3/(1 + (3x)²) = 3/(1 + 9x²).",
+  },
+  {
+    id: "u3-c4-q2",
+    chapter: "Derivatives of inverse trigonometric functions",
+    type: "mc",
+    calculatorAllowed: false,
+    prompt: "If g(x) = arcsin(x²), what is g'(x)?",
+    choices: [
+      { label: "A", text: "1/√(1 − x²)" },
+      { label: "B", text: "2x/√(1 − x²)" },
+      { label: "C", text: "2x/√(1 − x⁴)" },
+      { label: "D", text: "x²/√(1 − x⁴)" },
+    ],
+    correctChoice: "C",
+    explanation:
+      "Using d/dx[arcsin(u)] = u'/√(1 − u²) with u = x² and u' = 2x: " +
+      "g'(x) = 2x/√(1 − (x²)²) = 2x/√(1 − x⁴).",
+  },
+  {
+    id: "u3-c4-q3",
+    chapter: "Derivatives of inverse trigonometric functions",
+    type: "frq",
+    calculatorAllowed: false,
+    prompt:
+      "Let f(x) = x · arccos(x) for −1 < x < 1.\n\n" +
+      "(a) Use the product rule and the derivative of arccos(x) to find " +
+      "f'(x).\n" +
+      "(b) Evaluate f'(0).",
+    explanation:
+      "(a) By the product rule with u = x (u' = 1) and v = arccos(x) " +
+      "(v' = −1/√(1 − x²)): " +
+      "f'(x) = (1)arccos(x) + x(−1/√(1 − x²)) = " +
+      "arccos(x) − x/√(1 − x²).\n" +
+      "(b) f'(0) = arccos(0) − 0/√(1 − 0) = π/2 − 0 = π/2.",
+  },
+  {
+    id: "u3-c5-q1",
+    chapter: "Higher-order derivatives",
+    type: "mc",
+    calculatorAllowed: false,
+    prompt: "If f(x) = x⁴ − 6x² + 2x, what is f''(x)?",
+    choices: [
+      { label: "A", text: "4x³ − 12x + 2" },
+      { label: "B", text: "12x² − 6" },
+      { label: "C", text: "12x² − 12" },
+      { label: "D", text: "24x" },
+    ],
+    correctChoice: "C",
+    explanation:
+      "f'(x) = 4x³ − 12x + 2. Differentiating again, " + "f''(x) = 12x² − 12.",
+  },
+  {
+    id: "u3-c5-q2",
+    chapter: "Higher-order derivatives",
+    type: "mc",
+    calculatorAllowed: false,
+    prompt: "Let g(x) = sin(x). What is g⁽⁴⁾(x) (the fourth derivative of g)?",
+    choices: [
+      { label: "A", text: "sin(x)" },
+      { label: "B", text: "−sin(x)" },
+      { label: "C", text: "cos(x)" },
+      { label: "D", text: "−cos(x)" },
+    ],
+    correctChoice: "A",
+    explanation:
+      "g'(x) = cos(x), g''(x) = −sin(x), g'''(x) = −cos(x), and " +
+      "g⁽⁴⁾(x) = sin(x). The derivatives of sin(x) cycle with period 4, " +
+      "so the fourth derivative returns to sin(x).",
+  },
+  {
+    id: "u3-c5-q3",
+    chapter: "Higher-order derivatives",
+    type: "frq",
+    calculatorAllowed: true,
+    prompt:
+      "The position of a particle moving along a line is given by " +
+      "s(t) = t³ − 9t² + 24t, where s is in meters and t is in seconds, " +
+      "for t ≥ 0.\n\n" +
+      "(a) Find the particle's velocity function v(t) and acceleration " +
+      "function a(t).\n" +
+      "(b) Find all times t ≥ 0 at which the particle is momentarily at " +
+      "rest.\n" +
+      "(c) Is the particle speeding up or slowing down at t = 1? Justify " +
+      "your answer using the signs of v(t) and a(t).",
+    explanation:
+      "(a) v(t) = s'(t) = 3t² − 18t + 24. a(t) = v'(t) = s''(t) = " +
+      "6t − 18.\n" +
+      "(b) The particle is at rest when v(t) = 0: 3t² − 18t + 24 = 0, so " +
+      "t² − 6t + 8 = 0, giving (t − 2)(t − 4) = 0. Thus t = 2 and t = 4.\n" +
+      "(c) At t = 1: v(1) = 3 − 18 + 24 = 9 > 0, and " +
+      "a(1) = 6 − 18 = −12 < 0. Since velocity and acceleration have " +
+      "opposite signs, the particle is slowing down at t = 1.",
+  },
+];
+
+// Unit 4: Contextual Applications of Differentiation. Chapter names match
+// the chapters in src/lib/units.ts for Unit 4 so questions can be grouped
+// correctly.
+const UNIT_4_QUESTIONS: PracticeQuestion[] = [
+  {
+    id: "u4-c1-q1",
+    chapter: "Straight-line motion: position, velocity, and acceleration",
+    type: "mc",
+    calculatorAllowed: false,
+    prompt:
+      "A particle moves along a line with position s(t) = t³ − 3t² for " +
+      "t ≥ 0. At t = 0.5, is the particle speeding up or slowing down?",
+    choices: [
+      { label: "A", text: "Speeding up, because v(0.5) > 0 and a(0.5) > 0." },
+      { label: "B", text: "Speeding up, because v(0.5) < 0 and a(0.5) < 0." },
+      { label: "C", text: "Slowing down, because v(0.5) > 0 and a(0.5) < 0." },
+      { label: "D", text: "Slowing down, because v(0.5) < 0 and a(0.5) > 0." },
+    ],
+    correctChoice: "B",
+    explanation:
+      "v(t) = s'(t) = 3t² − 6t, so v(0.5) = 3(0.25) − 6(0.5) = " +
+      "0.75 − 3 = −2.25, which is negative. a(t) = v'(t) = 6t − 6, so " +
+      "a(0.5) = 3 − 6 = −3, also negative. Since velocity and " +
+      "acceleration have the same sign (both negative), the speed is " +
+      "increasing — the particle is speeding up.",
+  },
+  {
+    id: "u4-c1-q2",
+    chapter: "Straight-line motion: position, velocity, and acceleration",
+    type: "mc",
+    calculatorAllowed: false,
+    prompt:
+      "A particle moves along a line with velocity v(t) = t² − 4t + 3. " +
+      "For what values of t > 0 is the particle moving to the left " +
+      "(in the negative direction)?",
+    choices: [
+      { label: "A", text: "0 < t < 1" },
+      { label: "B", text: "1 < t < 3" },
+      { label: "C", text: "t > 3" },
+      { label: "D", text: "0 < t < 1 and t > 3" },
+    ],
+    correctChoice: "B",
+    explanation:
+      "The particle moves left when v(t) < 0. Factor: " +
+      "v(t) = t² − 4t + 3 = (t − 1)(t − 3), which is negative between its " +
+      "roots. So v(t) < 0 for 1 < t < 3.",
+  },
+  {
+    id: "u4-c1-q3",
+    chapter: "Straight-line motion: position, velocity, and acceleration",
+    type: "frq",
+    calculatorAllowed: true,
+    prompt:
+      "A particle moves along a line with position s(t) = t³ − 6t² + 9t " +
+      "for 0 ≤ t ≤ 4, where s is in meters and t is in seconds.\n\n" +
+      "(a) Find v(t) and the times in [0, 4] when the particle is at " +
+      "rest.\n" +
+      "(b) Find the total distance traveled by the particle over " +
+      "[0, 4].",
+    explanation:
+      "(a) v(t) = 3t² − 12t + 9 = 3(t² − 4t + 3) = 3(t − 1)(t − 3). The " +
+      "particle is at rest when v(t) = 0, i.e. at t = 1 and t = 3.\n" +
+      "(b) Compute position at each key time: s(0) = 0, s(1) = " +
+      "1 − 6 + 9 = 4, s(3) = 27 − 54 + 27 = 0, s(4) = 64 − 96 + 36 = 4. " +
+      "The particle moves from 0 to 4 (distance 4), then from 4 back to " +
+      "0 (distance 4), then from 0 to 4 again (distance 4). Total " +
+      "distance = 4 + 4 + 4 = 12 meters.",
+  },
+  {
+    id: "u4-c2-q1",
+    chapter: "Related rates",
+    type: "mc",
+    calculatorAllowed: true,
+    prompt:
+      "A circular oil spill is growing so that its radius increases at a " +
+      "constant rate of 2 m/min. At the moment the radius is 5 m, how " +
+      "fast is the area of the spill increasing?",
+    choices: [
+      { label: "A", text: "10π m²/min" },
+      { label: "B", text: "20π m²/min" },
+      { label: "C", text: "25π m²/min" },
+      { label: "D", text: "4π m²/min" },
+    ],
+    correctChoice: "B",
+    explanation:
+      "A = πr². Differentiating with respect to time: dA/dt = 2πr(dr/dt). " +
+      "At r = 5 with dr/dt = 2: dA/dt = 2π(5)(2) = 20π m²/min.",
+  },
+  {
+    id: "u4-c2-q2",
+    chapter: "Related rates",
+    type: "mc",
+    calculatorAllowed: true,
+    prompt:
+      "A 13-foot ladder leans against a vertical wall. The bottom of the " +
+      "ladder slides away from the wall at 2 ft/s. At the moment the " +
+      "bottom of the ladder is 5 feet from the wall, how fast is the top " +
+      "of the ladder sliding down the wall?",
+    choices: [
+      { label: "A", text: "5/6 ft/s" },
+      { label: "B", text: "5/12 ft/s" },
+      { label: "C", text: "6/5 ft/s" },
+      { label: "D", text: "10/12 ft/s" },
+    ],
+    correctChoice: "A",
+    explanation:
+      "Let x be the distance from the wall and y the height on the wall, " +
+      "with x² + y² = 13² = 169. When x = 5, y = √(169 − 25) = 12. " +
+      "Differentiating: 2x(dx/dt) + 2y(dy/dt) = 0, so " +
+      "dy/dt = −x(dx/dt)/y = −(5)(2)/12 = −5/6 ft/s. The top slides down " +
+      "at a rate of 5/6 ft/s.",
+  },
+  {
+    id: "u4-c2-q3",
+    chapter: "Related rates",
+    type: "frq",
+    calculatorAllowed: true,
+    prompt:
+      "Water is draining out of an inverted conical tank (vertex down) " +
+      "with height 12 m and base radius 4 m. The water level is falling " +
+      "at a rate of 0.5 m/min at the moment the water depth is 6 m.\n\n" +
+      "(a) Show that the radius r of the water's surface relates to its " +
+      "depth h by r = h/3.\n" +
+      "(b) The volume of water is V = (1/3)πr²h. Use part (a) to write V " +
+      "as a function of h alone, and find dV/dt when h = 6.",
+    explanation:
+      "(a) By similar triangles, r/h = 4/12 = 1/3, so r = h/3.\n" +
+      "(b) Substituting, V = (1/3)π(h/3)²h = (1/3)π(h²/9)h = πh³/27. " +
+      "Differentiating with respect to time: dV/dt = (3πh²/27)(dh/dt) = " +
+      "(πh²/9)(dh/dt). At h = 6 with dh/dt = −0.5 (falling): " +
+      "dV/dt = (π(36)/9)(−0.5) = 4π(−0.5) = −2π m³/min. The volume is " +
+      "decreasing at a rate of 2π m³/min.",
+  },
+  {
+    id: "u4-c3-q1",
+    chapter: "Linear approximation and local linearity",
+    type: "mc",
+    calculatorAllowed: false,
+    prompt:
+      "Let f(x) = √x. Use the tangent line to f at x = 9 to approximate " +
+      "√9.3.",
+    choices: [
+      { label: "A", text: "3" },
+      { label: "B", text: "3.05" },
+      { label: "C", text: "3.1" },
+      { label: "D", text: "3.5" },
+    ],
+    correctChoice: "B",
+    explanation:
+      "f(9) = 3 and f'(x) = 1/(2√x), so f'(9) = 1/6. The linear " +
+      "approximation is L(x) = f(9) + f'(9)(x − 9) = 3 + (1/6)(x − 9). " +
+      "At x = 9.3: L(9.3) = 3 + (1/6)(0.3) = 3 + 0.05 = 3.05.",
+  },
+  {
+    id: "u4-c3-q2",
+    chapter: "Linear approximation and local linearity",
+    type: "mc",
+    calculatorAllowed: false,
+    prompt:
+      "Suppose f is a function with f(2) = 5, f'(2) = 3, and f''(x) < 0 " +
+      "for all x near 2. Which statement must be true about the tangent " +
+      "line approximation to f at x = 2?",
+    choices: [
+      {
+        label: "A",
+        text: "It underestimates f(x) for x near 2, since f is concave down.",
+      },
+      {
+        label: "B",
+        text: "It overestimates f(x) for x near 2, since f is concave down.",
+      },
+      {
+        label: "C",
+        text: "It equals f(x) exactly for x near 2.",
+      },
+      {
+        label: "D",
+        text: "It underestimates f(x) for x near 2, since f is concave up.",
+      },
+    ],
+    correctChoice: "B",
+    explanation:
+      "When a function is concave down (f''(x) < 0), its graph curves " +
+      "downward away from any tangent line, so the graph lies below the " +
+      "tangent line. This means the tangent line approximation gives " +
+      "values greater than the actual function values — it overestimates " +
+      "f(x) for x near 2.",
+  },
+  {
+    id: "u4-c3-q3",
+    chapter: "Linear approximation and local linearity",
+    type: "frq",
+    calculatorAllowed: false,
+    prompt:
+      "Let f(x) = x^(1/3), and let L(x) be the linearization of f at " +
+      "x = 8.\n\n" +
+      "(a) Find L(x).\n" +
+      "(b) Use L(x) to approximate 8.24^(1/3).\n" +
+      "(c) Is your approximation in part (b) an overestimate or an " +
+      "underestimate of the actual value? Justify your answer using the " +
+      "concavity of f.",
+    explanation:
+      "(a) f(8) = 2 and f'(x) = (1/3)x^(−2/3), so f'(8) = " +
+      "(1/3)(1/4) = 1/12. L(x) = 2 + (1/12)(x − 8).\n" +
+      "(b) L(8.24) = 2 + (1/12)(0.24) = 2 + 0.02 = 2.02.\n" +
+      "(c) f''(x) = (1/3)(−2/3)x^(−5/3) = −(2/9)x^(−5/3), which is " +
+      "negative for x > 0. Since f is concave down near x = 8, the " +
+      "tangent line lies above the curve, so the approximation is an " +
+      "overestimate of the actual value.",
+  },
+  {
+    id: "u4-c4-q1",
+    chapter: "L'Hôpital's Rule for limits",
+    type: "mc",
+    calculatorAllowed: false,
+    prompt: "lim(x→0) (sin(3x))/(5x) =",
+    choices: [
+      { label: "A", text: "0" },
+      { label: "B", text: "3/5" },
+      { label: "C", text: "1" },
+      { label: "D", text: "5/3" },
+    ],
+    correctChoice: "B",
+    explanation:
+      "This limit has the indeterminate form 0/0, so L'Hôpital's Rule " +
+      "applies: lim(x→0) (sin(3x))/(5x) = lim(x→0) (3cos(3x))/5 = " +
+      "3cos(0)/5 = 3/5.",
+  },
+  {
+    id: "u4-c4-q2",
+    chapter: "L'Hôpital's Rule for limits",
+    type: "mc",
+    calculatorAllowed: false,
+    prompt: "lim(x→∞) (ln(x))/x =",
+    choices: [
+      { label: "A", text: "0" },
+      { label: "B", text: "1" },
+      { label: "C", text: "∞" },
+      { label: "D", text: "The limit does not exist." },
+    ],
+    correctChoice: "A",
+    explanation:
+      "As x → ∞, both ln(x) and x approach ∞, giving the indeterminate " +
+      "form ∞/∞. By L'Hôpital's Rule, lim(x→∞) (ln(x))/x = " +
+      "lim(x→∞) (1/x)/1 = lim(x→∞) 1/x = 0.",
+  },
+  {
+    id: "u4-c4-q3",
+    chapter: "L'Hôpital's Rule for limits",
+    type: "frq",
+    calculatorAllowed: false,
+    prompt:
+      "Evaluate lim(x→0⁺) x·ln(x).\n\n" +
+      "(a) Explain why this limit is not immediately in a form that " +
+      "L'Hôpital's Rule applies to, and rewrite the expression as a " +
+      "quotient so that it is.\n" +
+      "(b) Apply L'Hôpital's Rule to evaluate the limit.",
+    explanation:
+      "(a) As x → 0⁺, x → 0 and ln(x) → −∞, so the product is the " +
+      "indeterminate form 0·(−∞), which L'Hôpital's Rule does not apply " +
+      "to directly. Rewrite x·ln(x) = ln(x)/(1/x), which now has the " +
+      "form −∞/∞ as x → 0⁺.\n" +
+      "(b) By L'Hôpital's Rule, lim(x→0⁺) ln(x)/(1/x) = " +
+      "lim(x→0⁺) (1/x)/(−1/x²) = lim(x→0⁺) (−x²/x) = lim(x→0⁺) (−x) = 0. " +
+      "So lim(x→0⁺) x·ln(x) = 0.",
+  },
+  {
+    id: "u4-c5-q1",
+    chapter: "Interpreting derivatives as rates of change in context",
+    type: "mc",
+    calculatorAllowed: false,
+    prompt:
+      "Let P(t) be the number of bacteria in a culture t hours after the " +
+      "start of an experiment. If P'(5) = 120, which statement best " +
+      "interprets this value?",
+    choices: [
+      { label: "A", text: "There are 120 bacteria in the culture at t = 5." },
+      {
+        label: "B",
+        text: "The bacteria population is increasing at a rate of 120 bacteria per hour when t = 5.",
+      },
+      {
+        label: "C",
+        text: "The average rate of change of the population over [0, 5] is 120 bacteria per hour.",
+      },
+      {
+        label: "D",
+        text: "The population increased by a total of 120 bacteria between t = 0 and t = 5.",
+      },
+    ],
+    correctChoice: "B",
+    explanation:
+      "P'(t) gives the instantaneous rate of change of the population, " +
+      "in bacteria per hour, at time t. P'(5) = 120 means that at the " +
+      "instant t = 5 hours, the population is increasing at a rate of " +
+      "120 bacteria per hour — not a total or average change.",
+  },
+  {
+    id: "u4-c5-q2",
+    chapter: "Interpreting derivatives as rates of change in context",
+    type: "mc",
+    calculatorAllowed: true,
+    prompt:
+      "The table shows the volume V(t), in gallons, of water in a tank " +
+      "at time t minutes.\n\n" +
+      "t:     0    3    6    9\n" +
+      "V(t): 80   62   50   44\n\n" +
+      "Using the table, which is the best estimate of V'(6), and what " +
+      "does it represent?",
+    choices: [
+      {
+        label: "A",
+        text: "≈ −3 gallons/min; the tank is draining at about 3 gal/min at t = 6.",
+      },
+      {
+        label: "B",
+        text: "≈ 3 gallons/min; the tank is filling at about 3 gal/min at t = 6.",
+      },
+      {
+        label: "C",
+        text: "≈ −6 gallons/min; the tank is draining at about 6 gal/min at t = 6.",
+      },
+      {
+        label: "D",
+        text: "≈ −2 gallons/min; the tank is draining at about 2 gal/min at t = 6.",
+      },
+    ],
+    correctChoice: "A",
+    explanation:
+      "Estimate V'(6) with the symmetric difference quotient using the " +
+      "surrounding data: [V(9) − V(3)]/(9 − 3) = (44 − 62)/6 = −18/6 = " +
+      "−3 gallons/min. The negative sign means the volume is decreasing " +
+      "— the tank is draining — at about 3 gallons per minute at t = 6.",
+  },
+  {
+    id: "u4-c5-q3",
+    chapter: "Interpreting derivatives as rates of change in context",
+    type: "frq",
+    calculatorAllowed: true,
+    prompt:
+      "The number of subscribers to a streaming service is modeled by " +
+      "S(t) = 2000t² + 500t + 10000, where S is measured in subscribers " +
+      "and t is measured in months since launch, for 0 ≤ t ≤ 24.\n\n" +
+      "(a) Find S'(t), and state its units.\n" +
+      "(b) Find S'(6) and interpret its meaning in context.\n" +
+      "(c) Find the average rate of change of S over [0, 6], and explain " +
+      "how it differs from S'(6).",
+    explanation:
+      "(a) S'(t) = 4000t + 500, measured in subscribers per month.\n" +
+      "(b) S'(6) = 4000(6) + 500 = 24500 subscribers per month. This " +
+      "means that at exactly 6 months after launch, the number of " +
+      "subscribers is increasing at an instantaneous rate of 24,500 " +
+      "subscribers per month.\n" +
+      "(c) Average rate of change over [0, 6] is " +
+      "[S(6) − S(0)]/(6 − 0) = [(2000(36) + 500(6) + 10000) − 10000]/6 " +
+      "= [72000 + 3000]/6 = 75000/6 = 12500 subscribers per month. This " +
+      "represents the overall average growth rate across the whole " +
+      "6-month interval, while S'(6) is the instantaneous rate at the " +
+      "single moment t = 6 — since S is increasing faster over time " +
+      "(its derivative is increasing), the instantaneous rate at the end " +
+      "of the interval is larger than the average rate across it.",
+  },
+];
+
+// Unit 5: Analytical Applications of Differentiation. Chapter names match
+// the chapters in src/lib/units.ts for Unit 5 so questions can be grouped
+// correctly. Unit 5 has 8 chapters rather than 5, so questions are spread
+// across all 8 (2 each, except 1 for the Mean Value Theorem) instead of
+// the usual 3-per-chapter pattern.
+const UNIT_5_QUESTIONS: PracticeQuestion[] = [
+  {
+    id: "u5-c1-q1",
+    chapter: "The Mean Value Theorem",
+    type: "mc",
+    calculatorAllowed: false,
+    prompt:
+      "Let f(x) = x² − 4x + 3 on the interval [0, 4]. According to the " +
+      "Mean Value Theorem, there exists a c in (0, 4) such that f'(c) " +
+      "equals which value?",
+    choices: [
+      { label: "A", text: "0" },
+      { label: "B", text: "2" },
+      { label: "C", text: "−4" },
+      { label: "D", text: "4" },
+    ],
+    correctChoice: "A",
+    explanation:
+      "f is a polynomial, so it's continuous on [0, 4] and differentiable " +
+      "on (0, 4), satisfying the hypotheses of the MVT. The average rate " +
+      "of change is [f(4) − f(0)]/(4 − 0) = (3 − 3)/4 = 0. The MVT " +
+      "guarantees some c in (0, 4) with f'(c) = 0. Indeed, " +
+      "f'(x) = 2x − 4, so f'(c) = 0 gives c = 2, confirming such a c " +
+      "exists.",
+  },
+  {
+    id: "u5-c2-q1",
+    chapter: "Finding critical points and increasing/decreasing intervals",
+    type: "mc",
+    calculatorAllowed: false,
+    prompt: "What are the critical points of f(x) = 2x³ − 9x² + 12x + 1?",
+    choices: [
+      { label: "A", text: "x = 1 only" },
+      { label: "B", text: "x = 2 only" },
+      { label: "C", text: "x = 1 and x = 2" },
+      { label: "D", text: "x = 0 and x = 3" },
+    ],
+    correctChoice: "C",
+    explanation:
+      "f'(x) = 6x² − 18x + 12 = 6(x² − 3x + 2) = 6(x − 1)(x − 2). Setting " +
+      "f'(x) = 0 gives x = 1 and x = 2, and f' is defined everywhere, so " +
+      "these are the only critical points.",
+  },
+  {
+    id: "u5-c2-q2",
+    chapter: "Finding critical points and increasing/decreasing intervals",
+    type: "frq",
+    calculatorAllowed: false,
+    prompt:
+      "Let g(x) = x³ − 3x² − 9x + 5.\n\n" +
+      "(a) Find g'(x) and its critical points.\n" +
+      "(b) Determine the intervals on which g is increasing and " +
+      "decreasing, using a sign analysis of g'(x).",
+    explanation:
+      "(a) g'(x) = 3x² − 6x − 9 = 3(x² − 2x − 3) = 3(x − 3)(x + 1). " +
+      "Critical points: x = −1 and x = 3.\n" +
+      "(b) Test each interval: for x < −1 (e.g. x = −2), " +
+      "g'(−2) = 3(−5)(−1) = 15 > 0. For −1 < x < 3 (e.g. x = 0), " +
+      "g'(0) = 3(−3)(1) = −9 < 0. For x > 3 (e.g. x = 4), " +
+      "g'(4) = 3(1)(5) = 15 > 0. So g is increasing on (−∞, −1) and " +
+      "(3, ∞), and decreasing on (−1, 3).",
+  },
+  {
+    id: "u5-c3-q1",
+    chapter: "First derivative test for relative extrema",
+    type: "mc",
+    calculatorAllowed: false,
+    prompt:
+      "Suppose f'(x) changes sign from negative to positive at x = 3. " +
+      "What does the First Derivative Test conclude about x = 3?",
+    choices: [
+      { label: "A", text: "f has a relative maximum at x = 3." },
+      { label: "B", text: "f has a relative minimum at x = 3." },
+      { label: "C", text: "f has neither a relative max nor min at x = 3." },
+      {
+        label: "D",
+        text: "The First Derivative Test cannot determine this without f''.",
+      },
+    ],
+    correctChoice: "B",
+    explanation:
+      "The First Derivative Test says that if f' changes from negative to " +
+      "positive at a critical point, f has a relative minimum there — f " +
+      "is decreasing just before x = 3 and increasing just after.",
+  },
+  {
+    id: "u5-c3-q2",
+    chapter: "First derivative test for relative extrema",
+    type: "frq",
+    calculatorAllowed: false,
+    prompt:
+      "Let h(x) = x⁴ − 8x² + 3.\n\n" +
+      "(a) Find h'(x) and all critical points.\n" +
+      "(b) Use the First Derivative Test to classify each critical point " +
+      "as a relative maximum, relative minimum, or neither.",
+    explanation:
+      "(a) h'(x) = 4x³ − 16x = 4x(x² − 4) = 4x(x − 2)(x + 2). Critical " +
+      "points: x = −2, x = 0, x = 2.\n" +
+      "(b) Test each interval: for x < −2 (e.g. x = −3), " +
+      "h'(−3) = 4(−3)(−5)(−1) = −60 < 0. For −2 < x < 0 (e.g. x = −1), " +
+      "h'(−1) = 4(−1)(−3)(1) = 12 > 0. For 0 < x < 2 (e.g. x = 1), " +
+      "h'(1) = 4(1)(−1)(3) = −12 < 0. For x > 2 (e.g. x = 3), " +
+      "h'(3) = 4(3)(1)(5) = 60 > 0. So h' goes negative → positive at " +
+      "x = −2 (relative minimum), positive → negative at x = 0 " +
+      "(relative maximum), and negative → positive at x = 2 (relative " +
+      "minimum).",
+  },
+  {
+    id: "u5-c4-q1",
+    chapter: "The Candidates Test for absolute (global) extrema",
+    type: "mc",
+    calculatorAllowed: false,
+    prompt: "Find the absolute maximum value of f(x) = x³ − 3x on [0, 3].",
+    choices: [
+      { label: "A", text: "−2, at x = 1" },
+      { label: "B", text: "0, at x = 0" },
+      { label: "C", text: "18, at x = 3" },
+      { label: "D", text: "2, at x = −1" },
+    ],
+    correctChoice: "C",
+    explanation:
+      "f'(x) = 3x² − 3 = 3(x − 1)(x + 1), giving critical point x = 1 in " +
+      "[0, 3] (x = −1 is outside the interval). By the Candidates Test, " +
+      "evaluate f at the critical point and both endpoints: f(0) = 0, " +
+      "f(1) = 1 − 3 = −2, f(3) = 27 − 9 = 18. The largest value, 18 at " +
+      "x = 3, is the absolute maximum.",
+  },
+  {
+    id: "u5-c4-q2",
+    chapter: "The Candidates Test for absolute (global) extrema",
+    type: "frq",
+    calculatorAllowed: true,
+    prompt:
+      "Let f(x) = x⁴ − 4x³ on the closed interval [−1, 4].\n\n" +
+      "(a) Find f'(x) and all critical numbers in (−1, 4).\n" +
+      "(b) Use the Candidates Test to find the absolute maximum and " +
+      "absolute minimum values of f on [−1, 4].",
+    explanation:
+      "(a) f'(x) = 4x³ − 12x² = 4x²(x − 3). Setting f'(x) = 0 gives " +
+      "x = 0 and x = 3, both in (−1, 4).\n" +
+      "(b) Evaluate f at the critical numbers and both endpoints: " +
+      "f(−1) = 1 + 4 = 5, f(0) = 0, f(3) = 81 − 108 = −27, " +
+      "f(4) = 256 − 256 = 0. The absolute maximum is 5 at x = −1, and " +
+      "the absolute minimum is −27 at x = 3.",
+  },
+  {
+    id: "u5-c5-q1",
+    chapter: "Concavity and the second derivative test",
+    type: "mc",
+    calculatorAllowed: false,
+    prompt:
+      "At which x-value does f(x) = x³ − 6x² + 9x + 2 have an inflection " +
+      "point?",
+    choices: [
+      { label: "A", text: "x = 1" },
+      { label: "B", text: "x = 2" },
+      { label: "C", text: "x = 3" },
+      { label: "D", text: "x = 4" },
+    ],
+    correctChoice: "B",
+    explanation:
+      "f''(x) = 6x − 12, which equals 0 at x = 2. f''(x) is negative for " +
+      "x < 2 and positive for x > 2, so concavity changes sign at x = 2, " +
+      "confirming an inflection point there.",
+  },
+  {
+    id: "u5-c5-q2",
+    chapter: "Concavity and the second derivative test",
+    type: "frq",
+    calculatorAllowed: false,
+    prompt:
+      "Let g(x) = 3x⁴ − 4x³ − 12x² + 5.\n\n" +
+      "(a) Find g'(x) and its critical points.\n" +
+      "(b) Use the Second Derivative Test to classify each critical point " +
+      "as a relative maximum, relative minimum, or state if the test is " +
+      "inconclusive.",
+    explanation:
+      "(a) g'(x) = 12x³ − 12x² − 24x = 12x(x² − x − 2) = " +
+      "12x(x − 2)(x + 1). Critical points: x = −1, x = 0, x = 2.\n" +
+      "(b) g''(x) = 36x² − 24x − 24. At x = −1: " +
+      "g''(−1) = 36 + 24 − 24 = 36 > 0, so g has a relative minimum at " +
+      "x = −1. At x = 0: g''(0) = −24 < 0, so g has a relative maximum " +
+      "at x = 0. At x = 2: g''(2) = 144 − 48 − 24 = 72 > 0, so g has a " +
+      "relative minimum at x = 2.",
+  },
+  {
+    id: "u5-c6-q1",
+    chapter: "Interpreting graphs of f, f′, and f″ together",
+    type: "mc",
+    calculatorAllowed: false,
+    prompt:
+      "The graph of f', the derivative of f, is negative on (0, 2) and " +
+      "positive on (2, 5). What can be concluded about f?",
+    choices: [
+      { label: "A", text: "f has a relative maximum at x = 2." },
+      { label: "B", text: "f has a relative minimum at x = 2." },
+      { label: "C", text: "f is concave up on all of (0, 5)." },
+      { label: "D", text: "f has an inflection point at x = 2." },
+    ],
+    correctChoice: "B",
+    explanation:
+      "Since f' is negative just before x = 2 and positive just after, f " +
+      "is decreasing then increasing — by the First Derivative Test, f " +
+      "has a relative minimum at x = 2.",
+  },
+  {
+    id: "u5-c6-q2",
+    chapter: "Interpreting graphs of f, f′, and f″ together",
+    type: "frq",
+    calculatorAllowed: false,
+    prompt:
+      "The graph of f', the derivative of f, is a continuous curve on " +
+      "(−3, 5). f' is negative on (−3, 0), positive on (0, 3), and " +
+      "negative on (3, 5). In addition, f' is increasing on (−3, 1) and " +
+      "decreasing on (1, 5).\n\n" +
+      "(a) Find all x-values in (−3, 5) where f has a relative extremum, " +
+      "and classify each as a relative maximum or minimum.\n" +
+      "(b) Find all x-values in (−3, 5) where f has a point of " +
+      "inflection, and justify your answer.",
+    explanation:
+      "(a) f' changes from negative to positive at x = 0, so f has a " +
+      "relative minimum at x = 0. f' changes from positive to negative " +
+      "at x = 3, so f has a relative maximum at x = 3.\n" +
+      "(b) f' increasing means f'' > 0, so f is concave up on (−3, 1); f' " +
+      "decreasing means f'' < 0, so f is concave down on (1, 5). Since " +
+      "concavity changes sign at x = 1, f has a point of inflection at " +
+      "x = 1.",
+  },
+  {
+    id: "u5-c7-q1",
+    chapter: "Optimization word problems",
+    type: "mc",
+    calculatorAllowed: true,
+    prompt:
+      "A rectangular garden is to be enclosed by 200 feet of fencing " +
+      "along three sides, with an existing wall forming the fourth side. " +
+      "If x is the length of each of the two sides perpendicular to the " +
+      "wall, which dimensions maximize the enclosed area?",
+    choices: [
+      { label: "A", text: "x = 50 ft, parallel side = 100 ft" },
+      { label: "B", text: "x = 100 ft, parallel side = 0 ft" },
+      { label: "C", text: "x = 33.3 ft, parallel side = 133.3 ft" },
+      { label: "D", text: "x = 66.7 ft, parallel side = 66.7 ft" },
+    ],
+    correctChoice: "A",
+    explanation:
+      "Let x be each perpendicular side and y the side parallel to the " +
+      "wall, so 2x + y = 200, giving y = 200 − 2x. The area is " +
+      "A(x) = xy = x(200 − 2x) = 200x − 2x². A'(x) = 200 − 4x = 0 gives " +
+      "x = 50, and A''(x) = −4 < 0 confirms a maximum. Then " +
+      "y = 200 − 2(50) = 100.",
+  },
+  {
+    id: "u5-c7-q2",
+    chapter: "Optimization word problems",
+    type: "frq",
+    calculatorAllowed: true,
+    prompt:
+      "An open-top box is made by cutting squares of side length x from " +
+      "each corner of a 12 in by 12 in sheet of cardboard, then folding " +
+      "up the sides.\n\n" +
+      "(a) Write the volume V(x) of the box as a function of x, and " +
+      "state the domain of x that makes sense in context.\n" +
+      "(b) Find the value of x that maximizes the volume, and find the " +
+      "maximum volume. Justify that this value gives a maximum.",
+    explanation:
+      "(a) The base of the box is (12 − 2x) by (12 − 2x), and the height " +
+      "is x, so V(x) = x(12 − 2x)² for 0 < x < 6.\n" +
+      "(b) Expand: V(x) = x(144 − 48x + 4x²) = 4x³ − 48x² + 144x. " +
+      "V'(x) = 12x² − 96x + 144 = 12(x² − 8x + 12) = 12(x − 2)(x − 6). " +
+      "In the domain 0 < x < 6, the only critical point is x = 2 (x = 6 " +
+      "is an endpoint of the domain, giving zero volume). " +
+      "V''(x) = 24x − 96, and V''(2) = 48 − 96 = −48 < 0, confirming a " +
+      "relative maximum at x = 2. The maximum volume is " +
+      "V(2) = 2(12 − 4)² = 2(64) = 128 cubic inches.",
+  },
+  {
+    id: "u5-c8-q1",
+    chapter: "Analyzing behaviors of implicit relations",
+    type: "mc",
+    calculatorAllowed: false,
+    prompt:
+      "At which point(s) on the curve x² + y² = 25 does the curve have a " +
+      "horizontal tangent line?",
+    choices: [
+      { label: "A", text: "(0, 5) and (0, −5)" },
+      { label: "B", text: "(5, 0) and (−5, 0)" },
+      { label: "C", text: "Only (0, 5)" },
+      { label: "D", text: "The curve never has a horizontal tangent line." },
+    ],
+    correctChoice: "A",
+    explanation:
+      "Implicit differentiation gives dy/dx = −x/y. A horizontal tangent " +
+      "requires dy/dx = 0, so x = 0 (with y ≠ 0). Substituting x = 0 into " +
+      "x² + y² = 25 gives y² = 25, so y = ±5. The points are (0, 5) and " +
+      "(0, −5).",
+  },
+  {
+    id: "u5-c8-q2",
+    chapter: "Analyzing behaviors of implicit relations",
+    type: "frq",
+    calculatorAllowed: false,
+    prompt:
+      "Consider the curve defined by x² + xy + y² = 3.\n\n" +
+      "(a) Find dy/dx in terms of x and y.\n" +
+      "(b) Find all points on the curve where the tangent line is " +
+      "horizontal.",
+    explanation:
+      "(a) Differentiate both sides with respect to x, using the product " +
+      "rule on xy: 2x + [x(dy/dx) + y] + 2y(dy/dx) = 0. Grouping the " +
+      "dy/dx terms: (dy/dx)(x + 2y) = −2x − y, so " +
+      "dy/dx = −(2x + y)/(x + 2y).\n" +
+      "(b) A horizontal tangent requires dy/dx = 0, so 2x + y = 0, i.e. " +
+      "y = −2x. Substituting into the original equation: " +
+      "x² + x(−2x) + (−2x)² = 3, so x² − 2x² + 4x² = 3, giving 3x² = 3 " +
+      "and x = ±1. When x = 1, y = −2, and when x = −1, y = 2. Checking " +
+      "both satisfy the original equation confirms the points " +
+      "(1, −2) and (−1, 2).",
+  },
+];
+
 const PRACTICE_QUESTIONS_BY_UNIT: Record<number, PracticeQuestion[]> = {
   1: UNIT_1_QUESTIONS,
   2: UNIT_2_QUESTIONS,
+  3: UNIT_3_QUESTIONS,
+  4: UNIT_4_QUESTIONS,
+  5: UNIT_5_QUESTIONS,
 };
 
 export function getPracticeQuestions(
