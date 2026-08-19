@@ -1,5 +1,6 @@
 import Stripe from "stripe";
 import { env } from "~/env";
+import { stripeErrorResponse } from "~/lib/stripe/errors";
 import { createClient } from "~/lib/supabase/server";
 
 export async function POST(req: Request) {
@@ -40,10 +41,6 @@ export async function POST(req: Request) {
 
     return Response.json({ url: session.url });
   } catch (err) {
-    const message =
-      err instanceof Error
-        ? err.message
-        : "Something went wrong starting checkout.";
-    return Response.json({ error: message }, { status: 500 });
+    return stripeErrorResponse(err, "Something went wrong starting checkout.");
   }
 }
