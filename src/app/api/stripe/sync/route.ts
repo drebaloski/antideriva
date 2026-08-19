@@ -1,3 +1,4 @@
+import { stripeErrorResponse } from "~/lib/stripe/errors";
 import { syncPlanFromStripe } from "~/lib/stripe/sync-plan";
 import { createClient } from "~/lib/supabase/server";
 
@@ -21,8 +22,6 @@ export async function POST() {
     }
     return Response.json(synced);
   } catch (err) {
-    const message =
-      err instanceof Error ? err.message : "Could not sync subscription.";
-    return Response.json({ error: message }, { status: 500 });
+    return stripeErrorResponse(err, "Could not sync subscription.");
   }
 }
