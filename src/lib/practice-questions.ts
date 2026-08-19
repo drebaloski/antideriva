@@ -1632,12 +1632,933 @@ const UNIT_5_QUESTIONS: PracticeQuestion[] = [
   },
 ];
 
+// Unit 6: Integration and Accumulation of Change. Chapter names match the
+// chapters in src/lib/units.ts for Unit 6 so questions can be grouped
+// correctly. Unit 6 has 9 chapters, but the last 3 (integration by parts,
+// partial fractions, and improper integrals) are BC-only, and the practice
+// page has no AB/BC filtering — every question in a unit is shown to every
+// student — so BC-only chapters are intentionally excluded here to avoid
+// quizzing AB students on off-exam content. Questions are spread across
+// the remaining 6 AB/BC-shared chapters as 3, 2, 3, 2, 3, 2 (15 total).
+const UNIT_6_QUESTIONS: PracticeQuestion[] = [
+  {
+    id: "u6-c1-q1",
+    chapter: "Antiderivatives and indefinite integrals",
+    type: "mc",
+    calculatorAllowed: false,
+    prompt: "What is ∫(3x² − 4x + 5) dx?",
+    choices: [
+      { label: "A", text: "x³ − 2x² + 5x + C" },
+      { label: "B", text: "6x − 4 + C" },
+      { label: "C", text: "x³ − 4x² + 5x + C" },
+      { label: "D", text: "3x³ − 2x² + 5x + C" },
+    ],
+    correctChoice: "A",
+    explanation:
+      "Integrate term by term using the power rule for antiderivatives: " +
+      "∫3x² dx = x³, ∫−4x dx = −2x², and ∫5 dx = 5x. Summing and adding " +
+      "the constant of integration gives x³ − 2x² + 5x + C.",
+  },
+  {
+    id: "u6-c1-q2",
+    chapter: "Antiderivatives and indefinite integrals",
+    type: "frq",
+    calculatorAllowed: false,
+    prompt:
+      "Find the general antiderivative of f(x) = 6x² − 4/√x + 3 for " +
+      "x > 0. Show your work.",
+    explanation:
+      "Rewrite 4/√x as 4x^(−1/2). Antidifferentiate term by term: " +
+      "∫6x² dx = 2x³. ∫4x^(−1/2) dx = 4 · [x^(1/2)/(1/2)] = 8x^(1/2) = " +
+      "8√x, so the middle term contributes −8√x. ∫3 dx = 3x. Combining: " +
+      "F(x) = 2x³ − 8√x + 3x + C.",
+  },
+  {
+    id: "u6-c1-q3",
+    chapter: "Antiderivatives and indefinite integrals",
+    type: "mc",
+    calculatorAllowed: false,
+    prompt: "Which function is an antiderivative of f(x) = 5x⁴ + 2x?",
+    choices: [
+      { label: "A", text: "x⁵ + x² + C" },
+      { label: "B", text: "5x⁵ + 2x² + C" },
+      { label: "C", text: "20x³ + 2 + C" },
+      { label: "D", text: "x⁵ + x² " },
+    ],
+    correctChoice: "A",
+    explanation:
+      "Apply the power rule for antiderivatives term by term: " +
+      "∫5x⁴ dx = 5 · x⁵/5 = x⁵, and ∫2x dx = 2 · x²/2 = x². Adding the " +
+      "constant of integration gives x⁵ + x² + C. (Choice D is missing " +
+      "the '+ C', and choice B and C forget to divide by the new " +
+      "exponent.)",
+  },
+  {
+    id: "u6-c2-q1",
+    chapter: "Riemann sums and definite integrals",
+    type: "mc",
+    calculatorAllowed: true,
+    prompt:
+      "The table gives selected values of f(x):\n\n" +
+      "x:     0   2   4   6   8\n" +
+      "f(x):  3   5   8   10  13\n\n" +
+      "Use a left Riemann sum with the 4 subintervals shown to " +
+      "approximate ∫₀⁸ f(x) dx.",
+    choices: [
+      { label: "A", text: "52" },
+      { label: "B", text: "62" },
+      { label: "C", text: "72" },
+      { label: "D", text: "130" },
+    ],
+    correctChoice: "A",
+    explanation:
+      "A left Riemann sum uses the left endpoint of each subinterval. " +
+      "With width 2 and left endpoints x = 0, 2, 4, 6 (f-values 3, 5, 8, " +
+      "10), the sum is (3 + 5 + 8 + 10)(2) = 26(2) = 52.",
+  },
+  {
+    id: "u6-c2-q2",
+    chapter: "Riemann sums and definite integrals",
+    type: "frq",
+    calculatorAllowed: true,
+    prompt:
+      "The velocity of a particle, in m/s, is given by the table below " +
+      "for selected times t (in seconds).\n\n" +
+      "t:     0   3   6   9   12\n" +
+      "v(t):  2   5   9   14  20\n\n" +
+      "(a) Use a right Riemann sum with the 4 subintervals shown to " +
+      "approximate ∫₀¹² v(t) dt, and interpret this integral in the " +
+      "context of the problem.\n" +
+      "(b) Does this right Riemann sum overestimate or underestimate the " +
+      "actual distance traveled? Justify your answer.",
+    explanation:
+      "(a) With width 3 and right endpoints t = 3, 6, 9, 12 (v-values 5, " +
+      "9, 14, 20), the sum is (5 + 9 + 14 + 20)(3) = 48(3) = 144. Since " +
+      "v(t) ≥ 0, this integral represents the total distance, in " +
+      "meters, traveled by the particle from t = 0 to t = 12 seconds.\n" +
+      "(b) Because v is increasing on every subinterval shown, the right " +
+      "endpoint gives the larger value on each piece, so the right " +
+      "Riemann sum overestimates the actual distance traveled.",
+  },
+  {
+    id: "u6-c3-q1",
+    chapter: "The Fundamental Theorem of Calculus",
+    type: "mc",
+    calculatorAllowed: false,
+    prompt:
+      "Evaluate ∫₁³ (2x + 1) dx using the Fundamental Theorem of Calculus.",
+    choices: [
+      { label: "A", text: "10" },
+      { label: "B", text: "12" },
+      { label: "C", text: "8" },
+      { label: "D", text: "14" },
+    ],
+    correctChoice: "A",
+    explanation:
+      "An antiderivative of 2x + 1 is F(x) = x² + x. By the Fundamental " +
+      "Theorem of Calculus, ∫₁³ (2x + 1) dx = F(3) − F(1) = " +
+      "(9 + 3) − (1 + 1) = 12 − 2 = 10.",
+  },
+  {
+    id: "u6-c3-q2",
+    chapter: "The Fundamental Theorem of Calculus",
+    type: "frq",
+    calculatorAllowed: false,
+    prompt:
+      "Let f(x) = 3x² − 2.\n\n" +
+      "(a) Find an antiderivative F(x) of f.\n" +
+      "(b) Use the Fundamental Theorem of Calculus to evaluate " +
+      "∫₋₁² f(x) dx.",
+    explanation:
+      "(a) F(x) = x³ − 2x (any antiderivative works, so this is one " +
+      "valid choice with C = 0).\n" +
+      "(b) By the Fundamental Theorem of Calculus, " +
+      "∫₋₁² f(x) dx = F(2) − F(−1) = (8 − 4) − (−1 + 2) = 4 − 1 = 3.",
+  },
+  {
+    id: "u6-c3-q3",
+    chapter: "The Fundamental Theorem of Calculus",
+    type: "mc",
+    calculatorAllowed: true,
+    prompt: "If F(x) = ∫₀ˣ (t² + 1) dt, what is F(3)?",
+    choices: [
+      { label: "A", text: "12" },
+      { label: "B", text: "9" },
+      { label: "C", text: "30" },
+      { label: "D", text: "10" },
+    ],
+    correctChoice: "A",
+    explanation:
+      "By the Fundamental Theorem of Calculus, F(x) = ∫₀ˣ (t² + 1) dt = " +
+      "[t³/3 + t] evaluated from 0 to x = x³/3 + x. So " +
+      "F(3) = 27/3 + 3 = 9 + 3 = 12.",
+  },
+  {
+    id: "u6-c4-q1",
+    chapter: "u-substitution",
+    type: "mc",
+    calculatorAllowed: false,
+    prompt: "Evaluate ∫ 2x(x² + 1)³ dx.",
+    choices: [
+      { label: "A", text: "(x² + 1)⁴/4 + C" },
+      { label: "B", text: "(x² + 1)⁴ + C" },
+      { label: "C", text: "4(x² + 1)⁴ + C" },
+      { label: "D", text: "(x² + 1)³/3 + C" },
+    ],
+    correctChoice: "A",
+    explanation:
+      "Let u = x² + 1, so du = 2x dx. The integral becomes " +
+      "∫u³ du = u⁴/4 + C. Substituting back gives (x² + 1)⁴/4 + C.",
+  },
+  {
+    id: "u6-c4-q2",
+    chapter: "u-substitution",
+    type: "frq",
+    calculatorAllowed: true,
+    prompt:
+      "Evaluate ∫₀² x√(x² + 5) dx using u-substitution. Show your " +
+      "substitution, the new bounds, and the final numerical value.",
+    explanation:
+      "Let u = x² + 5, so du = 2x dx, i.e. x dx = du/2. When x = 0, " +
+      "u = 5; when x = 2, u = 9. The integral becomes " +
+      "∫₅⁹ √u (du/2) = (1/2) · (2/3)u^(3/2) evaluated from 5 to 9 = " +
+      "(1/3)(9^(3/2) − 5^(3/2)) = (1/3)(27 − 5√5) ≈ (1/3)(27 − 11.18) " +
+      "≈ 5.273.",
+  },
+  {
+    id: "u6-c5-q1",
+    chapter: "Accumulation functions",
+    type: "mc",
+    calculatorAllowed: false,
+    prompt:
+      "Let g(x) = ∫₂ˣ f(t) dt, where f is continuous. By the " +
+      "Fundamental Theorem of Calculus, g'(x) equals which of the " +
+      "following?",
+    choices: [
+      { label: "A", text: "f(x)" },
+      { label: "B", text: "f'(x)" },
+      { label: "C", text: "f(2)" },
+      { label: "D", text: "∫f(x) dx" },
+    ],
+    correctChoice: "A",
+    explanation:
+      "The Fundamental Theorem of Calculus, Part 1, states that if " +
+      "g(x) = ∫ₐˣ f(t) dt, then g'(x) = f(x). The lower bound and the " +
+      "specific antiderivative don't affect this result.",
+  },
+  {
+    id: "u6-c5-q2",
+    chapter: "Accumulation functions",
+    type: "frq",
+    calculatorAllowed: false,
+    prompt:
+      "Let g(x) = ∫₀ˣ f(t) dt, where the graph of f consists of " +
+      "straight-line segments: f(t) = t for 0 ≤ t ≤ 2, and f(t) = 4 − t " +
+      "for 2 ≤ t ≤ 6.\n\n" +
+      "(a) Find g'(x) and determine any x-value in (0, 6) where g has a " +
+      "relative extremum.\n" +
+      "(b) Determine whether g is concave up or concave down on (2, 6), " +
+      "and justify your answer.",
+    explanation:
+      "(a) By the Fundamental Theorem of Calculus, g'(x) = f(x). On " +
+      "(0, 2), f(t) = t > 0, so g is increasing. On (2, 6), " +
+      "f(t) = 4 − t, which is positive for t < 4 and negative for " +
+      "t > 4, so g'(x) changes from positive to negative at x = 4 — by " +
+      "the First Derivative Test, g has a relative maximum at x = 4.\n" +
+      "(b) On (2, 6), f(t) = 4 − t is decreasing, so g'(x) = f(x) is " +
+      "decreasing there, meaning g''(x) < 0. Thus g is concave down on " +
+      "(2, 6).",
+  },
+  {
+    id: "u6-c5-q3",
+    chapter: "Accumulation functions",
+    type: "mc",
+    calculatorAllowed: true,
+    prompt: "Let g(x) = ∫₁ˣ (2t − 4) dt. Find g(4).",
+    choices: [
+      { label: "A", text: "3" },
+      { label: "B", text: "12" },
+      { label: "C", text: "−3" },
+      { label: "D", text: "7" },
+    ],
+    correctChoice: "A",
+    explanation:
+      "An antiderivative of 2t − 4 is t² − 4t, so " +
+      "g(x) = [t² − 4t] evaluated from 1 to x = (x² − 4x) − (1 − 4) = " +
+      "x² − 4x + 3. Then g(4) = 16 − 16 + 3 = 3.",
+  },
+  {
+    id: "u6-c6-q1",
+    chapter: "Integration using long division and completing the square",
+    type: "mc",
+    calculatorAllowed: false,
+    prompt: "Evaluate ∫ (x² + 3)/(x − 1) dx using polynomial long division.",
+    choices: [
+      { label: "A", text: "x²/2 + x + 4 ln|x − 1| + C" },
+      { label: "B", text: "x²/2 + x + C" },
+      { label: "C", text: "x + 4 ln|x − 1| + C" },
+      { label: "D", text: "x²/2 + 4 ln|x − 1| + C" },
+    ],
+    correctChoice: "A",
+    explanation:
+      "Long division gives (x² + 3)/(x − 1) = x + 1 + 4/(x − 1), since " +
+      "(x − 1)(x + 1) + 4 = x² + 3. Integrating term by term: " +
+      "∫(x + 1) dx = x²/2 + x, and ∫4/(x − 1) dx = 4 ln|x − 1|. " +
+      "Combined: x²/2 + x + 4 ln|x − 1| + C.",
+  },
+  {
+    id: "u6-c6-q2",
+    chapter: "Integration using long division and completing the square",
+    type: "frq",
+    calculatorAllowed: false,
+    prompt:
+      "Evaluate ∫ 1/(x² − 6x + 13) dx by completing the square, and " +
+      "express the antiderivative using an inverse trigonometric " +
+      "function.",
+    explanation:
+      "Complete the square: x² − 6x + 13 = (x − 3)² + 4 = " +
+      "(x − 3)² + 2². This matches the form 1/(u² + a²) with u = x − 3 " +
+      "and a = 2, whose antiderivative is (1/a) arctan(u/a). So " +
+      "∫ 1/(x² − 6x + 13) dx = (1/2) arctan((x − 3)/2) + C.",
+  },
+];
+
+// Unit 7: Differential Equations. Chapter names match the chapters in
+// src/lib/units.ts for Unit 7 so questions can be grouped correctly. Unit 7
+// has 6 chapters, but the last 2 (Euler's Method and logistic models) are
+// BC-only, and (as with Unit 6) the practice page shows every question in a
+// unit to every student regardless of track, so those chapters are
+// intentionally excluded here. Questions are spread across the remaining 4
+// AB/BC-shared chapters as 4, 4, 4, 3 (15 total).
+const UNIT_7_QUESTIONS: PracticeQuestion[] = [
+  {
+    id: "u7-c1-q1",
+    chapter: "Setting up differential equations from context",
+    type: "mc",
+    calculatorAllowed: false,
+    prompt:
+      "The rate of change of a population P with respect to time t is " +
+      "proportional to the product of P and (500 − P). Which " +
+      "differential equation models this?",
+    choices: [
+      { label: "A", text: "dP/dt = kP(500 − P)" },
+      { label: "B", text: "dP/dt = k(500 − P)" },
+      { label: "C", text: "dP/dt = kP + 500" },
+      { label: "D", text: "P = kt(500 − P)" },
+    ],
+    correctChoice: "A",
+    explanation:
+      '"Proportional to the product of P and (500 − P)" translates ' +
+      "directly to dP/dt = kP(500 − P) for some constant of " +
+      "proportionality k.",
+  },
+  {
+    id: "u7-c1-q2",
+    chapter: "Setting up differential equations from context",
+    type: "frq",
+    calculatorAllowed: false,
+    prompt:
+      "A tank contains 100 gallons of brine (salt water) with 20 pounds " +
+      "of dissolved salt. Brine containing 2 pounds of salt per gallon " +
+      "flows in at a rate of 3 gal/min, and the well-mixed solution " +
+      "flows out at the same rate. Let S(t) be the amount of salt (in " +
+      "pounds) in the tank at time t (in minutes). Write a differential " +
+      "equation for dS/dt in terms of S. (Do not solve it.)",
+    explanation:
+      "The rate salt enters the tank is (3 gal/min)(2 lb/gal) = 6 " +
+      "lb/min. Since the tank stays at 100 gallons, the concentration " +
+      "at time t is S/100 lb/gal, so the rate salt leaves is " +
+      "(3 gal/min)(S/100 lb/gal) = 3S/100 lb/min. The net rate of " +
+      "change is dS/dt = 6 − 3S/100.",
+  },
+  {
+    id: "u7-c1-q3",
+    chapter: "Setting up differential equations from context",
+    type: "mc",
+    calculatorAllowed: false,
+    prompt:
+      'Which differential equation could represent "the rate at which ' +
+      "a rumor spreads through a population of fixed size N is " +
+      "proportional to the product of the number of people who have " +
+      "heard it, y, and the number who haven't, N − y\"?",
+    choices: [
+      { label: "A", text: "dy/dt = ky(N − y)" },
+      { label: "B", text: "dy/dt = kNy" },
+      { label: "C", text: "dy/dt = k(N − y)" },
+      { label: "D", text: "dy/dt = ky" },
+    ],
+    correctChoice: "A",
+    explanation:
+      'The phrase "proportional to the product of y and (N − y)" ' +
+      "translates directly to dy/dt = ky(N − y).",
+  },
+  {
+    id: "u7-c1-q4",
+    chapter: "Setting up differential equations from context",
+    type: "frq",
+    calculatorAllowed: false,
+    prompt:
+      "Newton's Law of Cooling states that the rate of change of an " +
+      "object's temperature T is proportional to the difference " +
+      "between T and the constant ambient temperature A.\n\n" +
+      "(a) Write a differential equation for dT/dt in terms of T and A.\n" +
+      "(b) If the object starts hotter than its surroundings (T > A), " +
+      "what does your equation say about the sign of dT/dt, and does " +
+      "that make sense in context?",
+    explanation:
+      "(a) dT/dt = k(A − T) for some positive constant k (equivalently " +
+      "dT/dt = −k(T − A)).\n" +
+      "(b) If T > A, then A − T < 0, so dT/dt = k(A − T) < 0 — the " +
+      "temperature is decreasing. This makes sense: an object hotter " +
+      "than its surroundings should cool down toward A.",
+  },
+  {
+    id: "u7-c2-q1",
+    chapter: "Slope fields",
+    type: "mc",
+    calculatorAllowed: false,
+    prompt:
+      "For the differential equation dy/dx = x − y, the slope field " +
+      "segment has slope 0 at which of the following points?",
+    choices: [
+      { label: "A", text: "(2, 2)" },
+      { label: "B", text: "(2, 0)" },
+      { label: "C", text: "(0, 2)" },
+      { label: "D", text: "(1, −1)" },
+    ],
+    correctChoice: "A",
+    explanation:
+      "The slope is 0 when x − y = 0, i.e. x = y. Of the given points, " +
+      "only (2, 2) satisfies x = y, since 2 − 2 = 0.",
+  },
+  {
+    id: "u7-c2-q2",
+    chapter: "Slope fields",
+    type: "frq",
+    calculatorAllowed: false,
+    prompt:
+      "Consider the differential equation dy/dx = x + y.\n\n" +
+      "(a) Find the slope of the solution curve at the points (0, 0), " +
+      "(1, 0), and (0, 1).\n" +
+      "(b) The line x + y = 0 is called an isocline for this equation. " +
+      "Explain what the slopes you found at (0, 0) tell you about the " +
+      "slope field along this entire line.",
+    explanation:
+      "(a) At (0, 0): dy/dx = 0 + 0 = 0. At (1, 0): dy/dx = 1 + 0 = 1. " +
+      "At (0, 1): dy/dx = 0 + 1 = 1.\n" +
+      "(b) Along the line x + y = 0, every point has x + y = 0, so " +
+      "dy/dx = 0 everywhere on that line — the slope field segments are " +
+      "all horizontal along the entire isocline, not just at (0, 0).",
+  },
+  {
+    id: "u7-c2-q3",
+    chapter: "Slope fields",
+    type: "mc",
+    calculatorAllowed: false,
+    prompt:
+      "A slope field shows steep positive slopes where y is large and " +
+      "positive, and slopes near 0 where y is close to 0 — regardless " +
+      "of x. Which differential equation best matches this slope field?",
+    choices: [
+      { label: "A", text: "dy/dx = y" },
+      { label: "B", text: "dy/dx = x" },
+      { label: "C", text: "dy/dx = x − y" },
+      { label: "D", text: "dy/dx = 1/y" },
+    ],
+    correctChoice: "A",
+    explanation:
+      "dy/dx = y makes the slope depend only on y (not x), matching " +
+      "the description. The slope is large when y is large and " +
+      "approaches 0 as y approaches 0, exactly as described.",
+  },
+  {
+    id: "u7-c2-q4",
+    chapter: "Slope fields",
+    type: "mc",
+    calculatorAllowed: false,
+    prompt: "Which statement about slope fields is true?",
+    choices: [
+      {
+        label: "A",
+        text:
+          "At each point (x, y), the slope field segment's slope " +
+          "equals dy/dx evaluated at that point.",
+      },
+      {
+        label: "B",
+        text: "A slope field directly gives the exact equation of a solution curve.",
+      },
+      {
+        label: "C",
+        text: "Slope fields can only be drawn for separable differential equations.",
+      },
+      {
+        label: "D",
+        text: "The slope field is the same regardless of which differential equation produced it.",
+      },
+    ],
+    correctChoice: "A",
+    explanation:
+      "A slope field is built by evaluating dy/dx at a grid of points " +
+      "and drawing a short segment with that slope at each point — it " +
+      "sketches the family of solution curves visually but does not by " +
+      "itself give an exact formula, and it depends entirely on the " +
+      "differential equation used to generate it.",
+  },
+  {
+    id: "u7-c3-q1",
+    chapter: "Separation of variables",
+    type: "mc",
+    calculatorAllowed: false,
+    prompt: "Solve dy/dx = xy given y(0) = 2. What is y(x)?",
+    choices: [
+      { label: "A", text: "y = 2e^(x²/2)" },
+      { label: "B", text: "y = e^(2x²)" },
+      { label: "C", text: "y = x² + 2" },
+      { label: "D", text: "y = 2eˣ" },
+    ],
+    correctChoice: "A",
+    explanation:
+      "Separate variables: dy/y = x dx. Integrating gives " +
+      "ln|y| = x²/2 + C₁, so y = Ce^(x²/2). Applying y(0) = 2 gives " +
+      "C = 2, so y = 2e^(x²/2).",
+  },
+  {
+    id: "u7-c3-q2",
+    chapter: "Separation of variables",
+    type: "frq",
+    calculatorAllowed: false,
+    prompt:
+      "Solve the differential equation dy/dx = 2x/y with initial " +
+      "condition y(0) = 3. Express y as an explicit function of x.",
+    explanation:
+      "Separate variables: y dy = 2x dx. Integrating both sides: " +
+      "y²/2 = x² + C, so y² = 2x² + C₁. Applying y(0) = 3 gives " +
+      "9 = C₁, so y² = 2x² + 9. Since y(0) = 3 > 0, take the positive " +
+      "root: y = √(2x² + 9).",
+  },
+  {
+    id: "u7-c3-q3",
+    chapter: "Separation of variables",
+    type: "mc",
+    calculatorAllowed: false,
+    prompt: "Which of the following differential equations is separable?",
+    choices: [
+      { label: "A", text: "dy/dx = xy" },
+      { label: "B", text: "dy/dx = x + y" },
+      { label: "C", text: "dy/dx = x² + y²" },
+      { label: "D", text: "dy/dx = x/(x + y)" },
+    ],
+    correctChoice: "A",
+    explanation:
+      "dy/dx = xy can be rewritten as dy/y = x dx, separating the x's " +
+      "and y's onto opposite sides. The other equations mix x and y in " +
+      "a sum that can't be split into a function of x times a function " +
+      "of y.",
+  },
+  {
+    id: "u7-c3-q4",
+    chapter: "Separation of variables",
+    type: "frq",
+    calculatorAllowed: true,
+    prompt:
+      "Consider the differential equation dy/dx = y cos(x), with " +
+      "y(0) = 1.\n\n" +
+      "(a) Solve the differential equation using separation of " +
+      "variables, expressing y explicitly in terms of x.\n" +
+      "(b) Find y(π/2).",
+    explanation:
+      "(a) Separate variables: dy/y = cos(x) dx. Integrating gives " +
+      "ln|y| = sin(x) + C, so y = Ce^(sin x). Applying y(0) = 1 gives " +
+      "C = 1, so y = e^(sin x).\n" +
+      "(b) y(π/2) = e^(sin(π/2)) = e¹ = e.",
+  },
+  {
+    id: "u7-c4-q1",
+    chapter: "Exponential growth and decay models",
+    type: "mc",
+    calculatorAllowed: true,
+    prompt:
+      "A radioactive substance decays according to dA/dt = −kA, with " +
+      "k > 0. If the substance's half-life is 10 years, what is k, " +
+      "rounded to 3 decimal places?",
+    choices: [
+      { label: "A", text: "0.069" },
+      { label: "B", text: "0.693" },
+      { label: "C", text: "0.5" },
+      { label: "D", text: "10" },
+    ],
+    correctChoice: "A",
+    explanation:
+      "The model is A(t) = A₀e^(−kt). Half-life means A(10) = A₀/2, so " +
+      "0.5 = e^(−10k). Taking the natural log: ln(0.5) = −10k, so " +
+      "k = ln(2)/10 ≈ 0.693/10 ≈ 0.069.",
+  },
+  {
+    id: "u7-c4-q2",
+    chapter: "Exponential growth and decay models",
+    type: "frq",
+    calculatorAllowed: true,
+    prompt:
+      "A population grows according to dP/dt = kP, with P(0) = 200 and " +
+      "P(5) = 500.\n\n" +
+      "(a) Find the value of k.\n" +
+      "(b) Find P(10).",
+    explanation:
+      "(a) The model is P(t) = 200e^(kt). Using P(5) = 500: " +
+      "500 = 200e^(5k), so e^(5k) = 2.5, giving " +
+      "k = ln(2.5)/5 ≈ 0.183.\n" +
+      "(b) P(10) = 200e^(10k) = 200(e^(5k))² = 200(2.5)² = " +
+      "200(6.25) = 1250.",
+  },
+  {
+    id: "u7-c4-q3",
+    chapter: "Exponential growth and decay models",
+    type: "mc",
+    calculatorAllowed: false,
+    prompt:
+      "A bacteria culture triples every 4 hours. If P₀ is the initial " +
+      "population and t is measured in hours, which equation models " +
+      "the population P(t)?",
+    choices: [
+      { label: "A", text: "P(t) = P₀e^((ln 3/4)t)" },
+      { label: "B", text: "P(t) = P₀e^(3t)" },
+      { label: "C", text: "P(t) = P₀e^(4t/3)" },
+      { label: "D", text: "P(t) = 3P₀e^(t/4)" },
+    ],
+    correctChoice: "A",
+    explanation:
+      "Tripling every 4 hours means P(t) = P₀ · 3^(t/4). Rewriting the " +
+      "base as e^(ln 3): P(t) = P₀e^((ln 3)(t/4)) = P₀e^((ln 3/4)t).",
+  },
+];
+
+// Unit 8: Applications of Integration. Chapter names match the chapters in
+// src/lib/units.ts for Unit 8 so questions can be grouped correctly. Unit 8
+// has 6 chapters, but the last one (arc length of a smooth, planar curve)
+// is BC-only, and (as with Units 6-7) the practice page shows every
+// question in a unit to every student regardless of track, so that chapter
+// is intentionally excluded here. Questions are spread evenly across the
+// remaining 5 AB/BC-shared chapters, 3 each, for 15 total.
+const UNIT_8_QUESTIONS: PracticeQuestion[] = [
+  {
+    id: "u8-c1-q1",
+    chapter: "Area between curves",
+    type: "mc",
+    calculatorAllowed: false,
+    prompt:
+      "Find the area of the region enclosed by y = x and y = x² on " +
+      "[0, 1].",
+    choices: [
+      { label: "A", text: "1/6" },
+      { label: "B", text: "1/3" },
+      { label: "C", text: "1/2" },
+      { label: "D", text: "5/6" },
+    ],
+    correctChoice: "A",
+    explanation:
+      "On [0, 1], y = x lies above y = x² (since x ≥ x² there). The " +
+      "area is ∫₀¹ (x − x²) dx = [x²/2 − x³/3] from 0 to 1 = " +
+      "1/2 − 1/3 = 1/6.",
+  },
+  {
+    id: "u8-c1-q2",
+    chapter: "Area between curves",
+    type: "frq",
+    calculatorAllowed: false,
+    prompt:
+      "Let R be the region enclosed by y = 6x − x² and y = x².\n\n" +
+      "(a) Find the x-coordinates of the points where the curves " +
+      "intersect.\n" +
+      "(b) Find the area of R.",
+    explanation:
+      "(a) Set 6x − x² = x², so 6x = 2x², giving 2x² − 6x = 0, i.e. " +
+      "2x(x − 3) = 0. The curves intersect at x = 0 and x = 3.\n" +
+      "(b) On [0, 3], 6x − x² lies above x² (check x = 1: " +
+      "6 − 1 = 5 > 1). The area is " +
+      "∫₀³ [(6x − x²) − x²] dx = ∫₀³ (6x − 2x²) dx = " +
+      "[3x² − 2x³/3] from 0 to 3 = (27 − 18) − 0 = 9.",
+  },
+  {
+    id: "u8-c1-q3",
+    chapter: "Area between curves",
+    type: "mc",
+    calculatorAllowed: true,
+    prompt:
+      "Find the area of the region enclosed by y = x + 2 and y = x² on " +
+      "the interval [−1, 2].",
+    choices: [
+      { label: "A", text: "9/2" },
+      { label: "B", text: "3" },
+      { label: "C", text: "6" },
+      { label: "D", text: "9/4" },
+    ],
+    correctChoice: "A",
+    explanation:
+      "On [−1, 2], y = x + 2 lies above y = x² (check x = 0: 2 > 0). " +
+      "The area is ∫₋₁² [(x + 2) − x²] dx = " +
+      "[x²/2 + 2x − x³/3] from −1 to 2. At x = 2: 2 + 4 − 8/3 = 10/3. " +
+      "At x = −1: 1/2 − 2 + 1/3 = −7/6. The area is " +
+      "10/3 − (−7/6) = 20/6 + 7/6 = 27/6 = 9/2.",
+  },
+  {
+    id: "u8-c2-q1",
+    chapter: "Volumes with known cross-sections",
+    type: "mc",
+    calculatorAllowed: true,
+    prompt:
+      "The base of a solid is the region bounded by y = √x, the x-axis, " +
+      "and x = 4. Cross-sections perpendicular to the x-axis are " +
+      "squares. Find the volume of the solid.",
+    choices: [
+      { label: "A", text: "8" },
+      { label: "B", text: "16" },
+      { label: "C", text: "4" },
+      { label: "D", text: "32" },
+    ],
+    correctChoice: "A",
+    explanation:
+      "Each square cross-section has side length √x (the height of the " +
+      "region at that x), so its area is (√x)² = x. The volume is " +
+      "∫₀⁴ x dx = [x²/2] from 0 to 4 = 8.",
+  },
+  {
+    id: "u8-c2-q2",
+    chapter: "Volumes with known cross-sections",
+    type: "frq",
+    calculatorAllowed: true,
+    prompt:
+      "The base of a solid is the region bounded by y = 4 − x² and the " +
+      "x-axis. Cross-sections perpendicular to the x-axis are " +
+      "equilateral triangles with one side lying in the base region.\n\n" +
+      "(a) Write an integral expression for the volume of the solid.\n" +
+      "(b) Evaluate the integral. (Recall: an equilateral triangle with " +
+      "side length s has area (√3/4)s².)",
+    explanation:
+      "(a) For each x in [−2, 2], the base region has height " +
+      "4 − x², which is the side length of the triangular " +
+      "cross-section, so its area is (√3/4)(4 − x²)². The volume is " +
+      "V = ∫₋₂² (√3/4)(4 − x²)² dx.\n" +
+      "(b) Expand (4 − x²)² = 16 − 8x² + x⁴. Using symmetry, " +
+      "V = (√3/4) · 2∫₀² (16 − 8x² + x⁴) dx. Evaluating: " +
+      "∫₀² 16 dx = 32, ∫₀² 8x² dx = 64/3, ∫₀² x⁴ dx = 32/5. So " +
+      "∫₀² (16 − 8x² + x⁴) dx = 32 − 64/3 + 32/5 = 256/15. " +
+      "Then V = (√3/4) · 2 · (256/15) = 128√3/15.",
+  },
+  {
+    id: "u8-c2-q3",
+    chapter: "Volumes with known cross-sections",
+    type: "mc",
+    calculatorAllowed: true,
+    prompt:
+      "The base of a solid is the upper half-disk bounded by " +
+      "y = √(9 − x²) and the x-axis for −3 ≤ x ≤ 3. Cross-sections " +
+      "perpendicular to the x-axis are squares. Find the volume.",
+    choices: [
+      { label: "A", text: "36" },
+      { label: "B", text: "18" },
+      { label: "C", text: "72" },
+      { label: "D", text: "9π" },
+    ],
+    correctChoice: "A",
+    explanation:
+      "Each square has side length √(9 − x²), so its area is 9 − x². " +
+      "The volume is ∫₋₃³ (9 − x²) dx = [9x − x³/3] from −3 to 3 = " +
+      "(27 − 9) − (−27 + 9) = 18 − (−18) = 36.",
+  },
+  {
+    id: "u8-c3-q1",
+    chapter: "Volumes using disk and washer methods",
+    type: "mc",
+    calculatorAllowed: false,
+    prompt:
+      "The region bounded by y = √x, the x-axis, and x = 4 is revolved " +
+      "about the x-axis. Find the volume using the disk method.",
+    choices: [
+      { label: "A", text: "8π" },
+      { label: "B", text: "16π" },
+      { label: "C", text: "4π" },
+      { label: "D", text: "32π" },
+    ],
+    correctChoice: "A",
+    explanation:
+      "Using disks, V = π∫₀⁴ (√x)² dx = π∫₀⁴ x dx = π[x²/2] from 0 to " +
+      "4 = π(8) = 8π.",
+  },
+  {
+    id: "u8-c3-q2",
+    chapter: "Volumes using disk and washer methods",
+    type: "frq",
+    calculatorAllowed: false,
+    prompt:
+      "The region bounded by y = x and y = x² on [0, 1] is revolved " +
+      "about the x-axis.\n\n" +
+      "(a) Identify the outer and inner radius functions for the " +
+      "washer method.\n" +
+      "(b) Find the volume of the resulting solid.",
+    explanation:
+      "(a) On [0, 1], y = x lies above y = x², so the outer radius is " +
+      "R(x) = x and the inner radius is r(x) = x².\n" +
+      "(b) V = π∫₀¹ [x² − (x²)²] dx = π∫₀¹ (x² − x⁴) dx = " +
+      "π[x³/3 − x⁵/5] from 0 to 1 = π(1/3 − 1/5) = π(2/15) = 2π/15.",
+  },
+  {
+    id: "u8-c3-q3",
+    chapter: "Volumes using disk and washer methods",
+    type: "mc",
+    calculatorAllowed: false,
+    prompt:
+      "The region bounded by y = x² and y = 4 is revolved about the " +
+      "x-axis. Which integral represents the volume using the washer " +
+      "method?",
+    choices: [
+      { label: "A", text: "π∫₋₂² (16 − x⁴) dx" },
+      { label: "B", text: "π∫₋₂² (4 − x²)² dx" },
+      { label: "C", text: "π∫₋₂² (x⁴ − 16) dx" },
+      { label: "D", text: "2π∫₀² x(4 − x²) dx" },
+    ],
+    correctChoice: "A",
+    explanation:
+      "The curves intersect where x² = 4, at x = ±2. The outer radius " +
+      "is 4 (the line) and the inner radius is x² (the parabola), so " +
+      "the washer's area is π(outer² − inner²) = π(4² − (x²)²) = " +
+      "π(16 − x⁴). The volume is π∫₋₂² (16 − x⁴) dx. (Choice B makes " +
+      "the common mistake of squaring the difference of the radii " +
+      "instead of subtracting their squares.)",
+  },
+  {
+    id: "u8-c4-q1",
+    chapter: "Average value of a function",
+    type: "mc",
+    calculatorAllowed: true,
+    prompt: "Find the average value of f(x) = x² on [0, 3].",
+    choices: [
+      { label: "A", text: "3" },
+      { label: "B", text: "9" },
+      { label: "C", text: "1" },
+      { label: "D", text: "6" },
+    ],
+    correctChoice: "A",
+    explanation:
+      "The average value is (1/(3 − 0)) ∫₀³ x² dx = (1/3)[x³/3] from " +
+      "0 to 3 = (1/3)(9) = 3.",
+  },
+  {
+    id: "u8-c4-q2",
+    chapter: "Average value of a function",
+    type: "frq",
+    calculatorAllowed: true,
+    prompt:
+      "Let f(x) = sin(x) on [0, π].\n\n" +
+      "(a) Find the average value of f on [0, π].\n" +
+      "(b) By the Mean Value Theorem for Integrals, there exists a " +
+      "value c in [0, π] with f(c) equal to the average value. Explain " +
+      "why the equation sin(c) = your answer to (a) is guaranteed to " +
+      "have a solution on [0, π].",
+    explanation:
+      "(a) The average value is (1/π) ∫₀^π sin(x) dx = " +
+      "(1/π)[−cos(x)] from 0 to π = (1/π)(−cos(π) + cos(0)) = " +
+      "(1/π)(1 + 1) = 2/π.\n" +
+      "(b) Since sin(x) is continuous on [0, π], the Mean Value " +
+      "Theorem for Integrals guarantees some c in [0, π] where f(c) " +
+      "equals the average value 2/π. Because sin(x) ranges continuously " +
+      "from 0 up to 1 and back to 0 on [0, π], and 2/π ≈ 0.637 is " +
+      "between those extremes, the Intermediate Value Theorem confirms " +
+      "such a c exists.",
+  },
+  {
+    id: "u8-c4-q3",
+    chapter: "Average value of a function",
+    type: "mc",
+    calculatorAllowed: false,
+    prompt:
+      "If the average value of f on [1, 5] is 7, what is ∫₁⁵ f(x) dx?",
+    choices: [
+      { label: "A", text: "28" },
+      { label: "B", text: "7" },
+      { label: "C", text: "35" },
+      { label: "D", text: "4" },
+    ],
+    correctChoice: "A",
+    explanation:
+      "The average value formula is avg = (1/(5 − 1)) ∫₁⁵ f(x) dx. " +
+      "Setting this equal to 7: 7 = (1/4) ∫₁⁵ f(x) dx, so " +
+      "∫₁⁵ f(x) dx = 28.",
+  },
+  {
+    id: "u8-c5-q1",
+    chapter: "Motion problems (position, velocity, acceleration)",
+    type: "mc",
+    calculatorAllowed: true,
+    prompt:
+      "A particle moves along a line with velocity v(t) = 3t² − 6t " +
+      "(m/s) for t ≥ 0. Find the particle's displacement from t = 0 to " +
+      "t = 3.",
+    choices: [
+      { label: "A", text: "0 m" },
+      { label: "B", text: "9 m" },
+      { label: "C", text: "−9 m" },
+      { label: "D", text: "18 m" },
+    ],
+    correctChoice: "A",
+    explanation:
+      "Displacement is ∫₀³ v(t) dt = ∫₀³ (3t² − 6t) dt = " +
+      "[t³ − 3t²] from 0 to 3 = (27 − 27) − 0 = 0.",
+  },
+  {
+    id: "u8-c5-q2",
+    chapter: "Motion problems (position, velocity, acceleration)",
+    type: "frq",
+    calculatorAllowed: true,
+    prompt:
+      "A particle moves along a line with velocity v(t) = 3t² − 6t " +
+      "(m/s) for t ≥ 0.\n\n" +
+      "(a) Find the time(s) in (0, 3) at which the particle changes " +
+      "direction.\n" +
+      "(b) Find the total distance traveled by the particle from t = 0 " +
+      "to t = 3.",
+    explanation:
+      "(a) v(t) = 3t² − 6t = 3t(t − 2), so v(t) = 0 at t = 0 and t = 2. " +
+      "Testing t = 1: v(1) = 3 − 6 = −3 < 0, and v is positive for " +
+      "t > 2 (e.g. v(3) = 27 − 18 = 9 > 0). Since v changes sign at " +
+      "t = 2, the particle changes direction there.\n" +
+      "(b) Total distance is ∫₀² |v(t)| dt + ∫₂³ |v(t)| dt. " +
+      "∫₀² (3t² − 6t) dt = [t³ − 3t²] from 0 to 2 = 8 − 12 = −4, so " +
+      "this piece contributes |−4| = 4. " +
+      "∫₂³ (3t² − 6t) dt = [t³ − 3t²] from 2 to 3 = " +
+      "(27 − 27) − (8 − 12) = 0 − (−4) = 4. The total distance is " +
+      "4 + 4 = 8 meters.",
+  },
+  {
+    id: "u8-c5-q3",
+    chapter: "Motion problems (position, velocity, acceleration)",
+    type: "mc",
+    calculatorAllowed: true,
+    prompt:
+      "A particle has acceleration a(t) = 6t − 4 (m/s²) for t ≥ 0, and " +
+      "initial velocity v(0) = 3 m/s. Find v(2).",
+    choices: [
+      { label: "A", text: "7 m/s" },
+      { label: "B", text: "12 m/s" },
+      { label: "C", text: "3 m/s" },
+      { label: "D", text: "16 m/s" },
+    ],
+    correctChoice: "A",
+    explanation:
+      "v(t) = ∫a(t) dt = 3t² − 4t + C. Using v(0) = 3 gives C = 3, so " +
+      "v(t) = 3t² − 4t + 3. Then v(2) = 3(4) − 4(2) + 3 = 12 − 8 + 3 = 7.",
+  },
+];
+
 const PRACTICE_QUESTIONS_BY_UNIT: Record<number, PracticeQuestion[]> = {
   1: UNIT_1_QUESTIONS,
   2: UNIT_2_QUESTIONS,
   3: UNIT_3_QUESTIONS,
   4: UNIT_4_QUESTIONS,
   5: UNIT_5_QUESTIONS,
+  6: UNIT_6_QUESTIONS,
+  7: UNIT_7_QUESTIONS,
+  8: UNIT_8_QUESTIONS,
 };
 
 export function getPracticeQuestions(
