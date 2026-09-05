@@ -125,7 +125,7 @@ function ChevronDownIcon(props: React.SVGProps<SVGSVGElement>) {
 
 const STUDY_PRACTICE_SUBTABS: { href: string; label: string }[] = [
   { href: "/lessons", label: "Lessons" },
-  { href: "/units", label: "Question Bank" },
+  { href: "/question-bank", label: "Question Bank" },
   { href: "/diagnostic", label: "Diagnostic Test" },
 ];
 

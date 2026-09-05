@@ -96,7 +96,7 @@ export default function UnitsPage() {
                   </ul>
                   {getPracticeQuestions(unit.number) ? (
                     <Link
-                      href={`/units/${unit.number}/practice`}
+                      href={`/question-bank#unit-${unit.number}`}
                       className="text-sm font-medium text-primary hover:underline"
                     >
                       Practice questions →
