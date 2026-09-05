@@ -7,6 +7,7 @@ import { Card, CardContent, CardHeader } from "~/components/ui/card";
 import { Textarea } from "~/components/ui/textarea";
 import type { PracticeQuestion } from "~/lib/practice-questions";
 import { cn } from "~/lib/utils";
+import { MathText } from "./math-text";
 import { TutorPanel } from "./tutor-panel";
 
 export type QuestionAttemptResult = "correct" | "incorrect" | "attempted";
@@ -66,7 +67,9 @@ export function QuestionCard({ question, index, onReveal }: QuestionCardProps) {
             {question.label}
           </Badge>
         </div>
-        <p className="whitespace-pre-line text-sm">{question.prompt}</p>
+        <p className="whitespace-pre-line text-sm">
+          <MathText text={question.prompt} />
+        </p>
       </CardHeader>
       <CardContent className="flex flex-col gap-4">
         {question.type === "mc" && question.choices ? (
@@ -95,7 +98,9 @@ export function QuestionCard({ question, index, onReveal }: QuestionCardProps) {
                   )}
                 >
                   <span className="font-semibold">{choice.label}.</span>
-                  <span>{choice.text}</span>
+                  <span>
+                    <MathText text={choice.text} />
+                  </span>
                 </button>
               );
             })}
@@ -149,7 +154,7 @@ export function QuestionCard({ question, index, onReveal }: QuestionCardProps) {
               </p>
             )}
             <p className="whitespace-pre-line text-muted-foreground">
-              {question.explanation}
+              <MathText text={question.explanation} />
             </p>
           </div>
         )}
