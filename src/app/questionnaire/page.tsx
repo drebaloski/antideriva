@@ -13,7 +13,7 @@ export default async function QuestionnairePage() {
   }
 
   return (
-    <main className="mx-auto flex min-h-[calc(100vh-3.5rem)] max-w-5xl p-8">
+    <main className="mx-auto flex min-h-screen max-w-5xl p-8">
       <QuestionnaireForm />
     </main>
   );

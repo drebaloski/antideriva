@@ -21,7 +21,7 @@ export default async function AdminPage() {
   const { data: users, error } = await supabase.rpc("admin_list_users");
 
   return (
-    <main className="mx-auto flex min-h-[calc(100vh-3.5rem)] max-w-3xl flex-col gap-8 p-8">
+    <main className="mx-auto flex min-h-screen max-w-3xl flex-col gap-8 p-8">
       <div className="flex flex-col gap-2">
         <h1 className="text-3xl font-bold tracking-tight">Admin</h1>
         <p className="text-muted-foreground">

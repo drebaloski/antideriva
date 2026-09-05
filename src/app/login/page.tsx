@@ -38,7 +38,7 @@ export default function LoginPage() {
   }
 
   return (
-    <main className="flex min-h-[calc(100vh-3.5rem)] flex-col items-center justify-center p-8">
+    <main className="flex min-h-screen flex-col items-center justify-center p-8">
       <div className="flex w-full max-w-sm flex-col gap-6">
         <div className="flex flex-col gap-1 text-center">
           <h1 className="text-2xl font-bold tracking-tight">Sign in</h1>

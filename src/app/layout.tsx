@@ -41,12 +41,14 @@ export default async function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <body className={`${spaceGrotesk.variable} font-sans`}>
         <ThemeProvider>
-          <Navbar
-            user={user ? { email: user.email ?? null } : null}
-            isAdmin={isAdmin}
-            plan={plan}
-          />
-          {children}
+          <div className="flex min-h-screen">
+            <Navbar
+              user={user ? { email: user.email ?? null } : null}
+              isAdmin={isAdmin}
+              plan={plan}
+            />
+            <div className="min-w-0 flex-1">{children}</div>
+          </div>
         </ThemeProvider>
       </body>
     </html>
