@@ -3,6 +3,7 @@ import { Space_Grotesk } from "next/font/google";
 import { Navbar } from "~/components/navbar";
 import { createClient } from "~/lib/supabase/server";
 import { ThemeProvider } from "./theme-provider";
+import "katex/dist/katex.min.css";
 import "./globals.css";
 
 const spaceGrotesk = Space_Grotesk({
