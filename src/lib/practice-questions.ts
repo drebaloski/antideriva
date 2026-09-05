@@ -5,6 +5,10 @@ export interface McChoice {
 
 export interface PracticeQuestion {
   id: string;
+  // Short, unique code (mix of letters and numbers) so a specific question
+  // can be referenced later — e.g. by a student asking the AI tutor about
+  // "question 44C1". Every question added to the bank needs one.
+  label: string;
   chapter: string;
   type: "mc" | "frq";
   calculatorAllowed: boolean;
@@ -19,6 +23,7 @@ export interface PracticeQuestion {
 const UNIT_1_QUESTIONS: PracticeQuestion[] = [
   {
     id: "u1-c1-q1",
+    label: "44C1",
     chapter: "Estimating limits from graphs and tables",
     type: "mc",
     calculatorAllowed: false,
@@ -42,6 +47,7 @@ const UNIT_1_QUESTIONS: PracticeQuestion[] = [
   },
   {
     id: "u1-c1-q2",
+    label: "C091",
     chapter: "Estimating limits from graphs and tables",
     type: "mc",
     calculatorAllowed: false,
@@ -68,6 +74,7 @@ const UNIT_1_QUESTIONS: PracticeQuestion[] = [
   },
   {
     id: "u1-c1-q3",
+    label: "04B9",
     chapter: "Estimating limits from graphs and tables",
     type: "frq",
     calculatorAllowed: true,
@@ -91,6 +98,7 @@ const UNIT_1_QUESTIONS: PracticeQuestion[] = [
   },
   {
     id: "u1-c2-q1",
+    label: "7E0F",
     chapter: "Algebraic techniques for evaluating limits",
     type: "mc",
     calculatorAllowed: false,
@@ -109,6 +117,7 @@ const UNIT_1_QUESTIONS: PracticeQuestion[] = [
   },
   {
     id: "u1-c2-q2",
+    label: "2951",
     chapter: "Algebraic techniques for evaluating limits",
     type: "mc",
     calculatorAllowed: false,
@@ -129,6 +138,7 @@ const UNIT_1_QUESTIONS: PracticeQuestion[] = [
   },
   {
     id: "u1-c2-q3",
+    label: "0618",
     chapter: "Algebraic techniques for evaluating limits",
     type: "frq",
     calculatorAllowed: false,
@@ -144,6 +154,7 @@ const UNIT_1_QUESTIONS: PracticeQuestion[] = [
   },
   {
     id: "u1-c3-q1",
+    label: "FC2B",
     chapter: "Limits involving infinity and asymptotic behavior",
     type: "mc",
     calculatorAllowed: false,
@@ -161,6 +172,7 @@ const UNIT_1_QUESTIONS: PracticeQuestion[] = [
   },
   {
     id: "u1-c3-q2",
+    label: "9452",
     chapter: "Limits involving infinity and asymptotic behavior",
     type: "mc",
     calculatorAllowed: false,
@@ -196,6 +208,7 @@ const UNIT_1_QUESTIONS: PracticeQuestion[] = [
   },
   {
     id: "u1-c3-q3",
+    label: "2268",
     chapter: "Limits involving infinity and asymptotic behavior",
     type: "frq",
     calculatorAllowed: true,
@@ -218,6 +231,7 @@ const UNIT_1_QUESTIONS: PracticeQuestion[] = [
   },
   {
     id: "u1-c4-q1",
+    label: "3B71",
     chapter: "Continuity and identifying discontinuities",
     type: "mc",
     calculatorAllowed: false,
@@ -238,6 +252,7 @@ const UNIT_1_QUESTIONS: PracticeQuestion[] = [
   },
   {
     id: "u1-c4-q2",
+    label: "9437",
     chapter: "Continuity and identifying discontinuities",
     type: "mc",
     calculatorAllowed: false,
@@ -268,6 +283,7 @@ const UNIT_1_QUESTIONS: PracticeQuestion[] = [
   },
   {
     id: "u1-c4-q3",
+    label: "4F2D",
     chapter: "Continuity and identifying discontinuities",
     type: "frq",
     calculatorAllowed: false,
@@ -291,6 +307,7 @@ const UNIT_1_QUESTIONS: PracticeQuestion[] = [
   },
   {
     id: "u1-c5-q1",
+    label: "0F2C",
     chapter: "The Intermediate Value Theorem",
     type: "mc",
     calculatorAllowed: false,
@@ -311,6 +328,7 @@ const UNIT_1_QUESTIONS: PracticeQuestion[] = [
   },
   {
     id: "u1-c5-q2",
+    label: "0EA7",
     chapter: "The Intermediate Value Theorem",
     type: "mc",
     calculatorAllowed: true,
@@ -339,6 +357,7 @@ const UNIT_1_QUESTIONS: PracticeQuestion[] = [
   },
   {
     id: "u1-c5-q3",
+    label: "C3DA",
     chapter: "The Intermediate Value Theorem",
     type: "frq",
     calculatorAllowed: false,
@@ -363,6 +382,7 @@ const UNIT_1_QUESTIONS: PracticeQuestion[] = [
 const UNIT_2_QUESTIONS: PracticeQuestion[] = [
   {
     id: "u2-c1-q1",
+    label: "0EEA",
     chapter: "Definition of the derivative (limit definition)",
     type: "mc",
     calculatorAllowed: false,
@@ -382,6 +402,7 @@ const UNIT_2_QUESTIONS: PracticeQuestion[] = [
   },
   {
     id: "u2-c1-q2",
+    label: "E6F4",
     chapter: "Definition of the derivative (limit definition)",
     type: "mc",
     calculatorAllowed: false,
@@ -402,6 +423,7 @@ const UNIT_2_QUESTIONS: PracticeQuestion[] = [
   },
   {
     id: "u2-c1-q3",
+    label: "D310",
     chapter: "Definition of the derivative (limit definition)",
     type: "frq",
     calculatorAllowed: false,
@@ -424,6 +446,7 @@ const UNIT_2_QUESTIONS: PracticeQuestion[] = [
   },
   {
     id: "u2-c2-q1",
+    label: "E2A1",
     chapter: "Power, constant, and sum/difference rules",
     type: "mc",
     calculatorAllowed: false,
@@ -442,6 +465,7 @@ const UNIT_2_QUESTIONS: PracticeQuestion[] = [
   },
   {
     id: "u2-c2-q2",
+    label: "24E9",
     chapter: "Power, constant, and sum/difference rules",
     type: "mc",
     calculatorAllowed: false,
@@ -460,6 +484,7 @@ const UNIT_2_QUESTIONS: PracticeQuestion[] = [
   },
   {
     id: "u2-c2-q3",
+    label: "0156",
     chapter: "Power, constant, and sum/difference rules",
     type: "frq",
     calculatorAllowed: true,
@@ -478,6 +503,7 @@ const UNIT_2_QUESTIONS: PracticeQuestion[] = [
   },
   {
     id: "u2-c3-q1",
+    label: "7DE3",
     chapter: "Product and quotient rules",
     type: "mc",
     calculatorAllowed: false,
@@ -496,6 +522,7 @@ const UNIT_2_QUESTIONS: PracticeQuestion[] = [
   },
   {
     id: "u2-c3-q2",
+    label: "DDF5",
     chapter: "Product and quotient rules",
     type: "mc",
     calculatorAllowed: false,
@@ -514,6 +541,7 @@ const UNIT_2_QUESTIONS: PracticeQuestion[] = [
   },
   {
     id: "u2-c3-q3",
+    label: "D114",
     chapter: "Product and quotient rules",
     type: "frq",
     calculatorAllowed: false,
@@ -535,6 +563,7 @@ const UNIT_2_QUESTIONS: PracticeQuestion[] = [
   },
   {
     id: "u2-c4-q1",
+    label: "520D",
     chapter: "Derivatives of trig, exponential, and log functions",
     type: "mc",
     calculatorAllowed: false,
@@ -552,6 +581,7 @@ const UNIT_2_QUESTIONS: PracticeQuestion[] = [
   },
   {
     id: "u2-c4-q2",
+    label: "8EBE",
     chapter: "Derivatives of trig, exponential, and log functions",
     type: "mc",
     calculatorAllowed: false,
@@ -569,6 +599,7 @@ const UNIT_2_QUESTIONS: PracticeQuestion[] = [
   },
   {
     id: "u2-c4-q3",
+    label: "C9EB",
     chapter: "Derivatives of trig, exponential, and log functions",
     type: "frq",
     calculatorAllowed: false,
@@ -588,6 +619,7 @@ const UNIT_2_QUESTIONS: PracticeQuestion[] = [
   },
   {
     id: "u2-c5-q1",
+    label: "B8DB",
     chapter: "Estimating derivatives from graphs and tables",
     type: "mc",
     calculatorAllowed: true,
@@ -614,6 +646,7 @@ const UNIT_2_QUESTIONS: PracticeQuestion[] = [
   },
   {
     id: "u2-c5-q2",
+    label: "620C",
     chapter: "Estimating derivatives from graphs and tables",
     type: "mc",
     calculatorAllowed: false,
@@ -635,6 +668,7 @@ const UNIT_2_QUESTIONS: PracticeQuestion[] = [
   },
   {
     id: "u2-c5-q3",
+    label: "E231",
     chapter: "Estimating derivatives from graphs and tables",
     type: "frq",
     calculatorAllowed: true,
@@ -667,6 +701,7 @@ const UNIT_2_QUESTIONS: PracticeQuestion[] = [
 const UNIT_3_QUESTIONS: PracticeQuestion[] = [
   {
     id: "u3-c1-q1",
+    label: "0D2F",
     chapter: "Chain rule",
     type: "mc",
     calculatorAllowed: false,
@@ -684,6 +719,7 @@ const UNIT_3_QUESTIONS: PracticeQuestion[] = [
   },
   {
     id: "u3-c1-q2",
+    label: "E720",
     chapter: "Chain rule",
     type: "mc",
     calculatorAllowed: false,
@@ -701,6 +737,7 @@ const UNIT_3_QUESTIONS: PracticeQuestion[] = [
   },
   {
     id: "u3-c1-q3",
+    label: "0E1C",
     chapter: "Chain rule",
     type: "frq",
     calculatorAllowed: false,
@@ -718,6 +755,7 @@ const UNIT_3_QUESTIONS: PracticeQuestion[] = [
   },
   {
     id: "u3-c2-q1",
+    label: "CC14",
     chapter: "Implicit differentiation",
     type: "mc",
     calculatorAllowed: false,
@@ -735,6 +773,7 @@ const UNIT_3_QUESTIONS: PracticeQuestion[] = [
   },
   {
     id: "u3-c2-q2",
+    label: "7C36",
     chapter: "Implicit differentiation",
     type: "mc",
     calculatorAllowed: false,
@@ -754,6 +793,7 @@ const UNIT_3_QUESTIONS: PracticeQuestion[] = [
   },
   {
     id: "u3-c2-q3",
+    label: "92F9",
     chapter: "Implicit differentiation",
     type: "frq",
     calculatorAllowed: false,
@@ -772,6 +812,7 @@ const UNIT_3_QUESTIONS: PracticeQuestion[] = [
   },
   {
     id: "u3-c3-q1",
+    label: "F4C1",
     chapter: "Derivatives of inverse functions",
     type: "mc",
     calculatorAllowed: false,
@@ -792,6 +833,7 @@ const UNIT_3_QUESTIONS: PracticeQuestion[] = [
   },
   {
     id: "u3-c3-q2",
+    label: "44D8",
     chapter: "Derivatives of inverse functions",
     type: "mc",
     calculatorAllowed: false,
@@ -812,6 +854,7 @@ const UNIT_3_QUESTIONS: PracticeQuestion[] = [
   },
   {
     id: "u3-c3-q3",
+    label: "31B0",
     chapter: "Derivatives of inverse functions",
     type: "frq",
     calculatorAllowed: true,
@@ -833,6 +876,7 @@ const UNIT_3_QUESTIONS: PracticeQuestion[] = [
   },
   {
     id: "u3-c4-q1",
+    label: "646C",
     chapter: "Derivatives of inverse trigonometric functions",
     type: "mc",
     calculatorAllowed: false,
@@ -850,6 +894,7 @@ const UNIT_3_QUESTIONS: PracticeQuestion[] = [
   },
   {
     id: "u3-c4-q2",
+    label: "C94C",
     chapter: "Derivatives of inverse trigonometric functions",
     type: "mc",
     calculatorAllowed: false,
@@ -867,6 +912,7 @@ const UNIT_3_QUESTIONS: PracticeQuestion[] = [
   },
   {
     id: "u3-c4-q3",
+    label: "7FD5",
     chapter: "Derivatives of inverse trigonometric functions",
     type: "frq",
     calculatorAllowed: false,
@@ -884,6 +930,7 @@ const UNIT_3_QUESTIONS: PracticeQuestion[] = [
   },
   {
     id: "u3-c5-q1",
+    label: "266D",
     chapter: "Higher-order derivatives",
     type: "mc",
     calculatorAllowed: false,
@@ -900,6 +947,7 @@ const UNIT_3_QUESTIONS: PracticeQuestion[] = [
   },
   {
     id: "u3-c5-q2",
+    label: "D082",
     chapter: "Higher-order derivatives",
     type: "mc",
     calculatorAllowed: false,
@@ -918,6 +966,7 @@ const UNIT_3_QUESTIONS: PracticeQuestion[] = [
   },
   {
     id: "u3-c5-q3",
+    label: "8311",
     chapter: "Higher-order derivatives",
     type: "frq",
     calculatorAllowed: true,
@@ -948,6 +997,7 @@ const UNIT_3_QUESTIONS: PracticeQuestion[] = [
 const UNIT_4_QUESTIONS: PracticeQuestion[] = [
   {
     id: "u4-c1-q1",
+    label: "3A77",
     chapter: "Straight-line motion: position, velocity, and acceleration",
     type: "mc",
     calculatorAllowed: false,
@@ -970,6 +1020,7 @@ const UNIT_4_QUESTIONS: PracticeQuestion[] = [
   },
   {
     id: "u4-c1-q2",
+    label: "0C89",
     chapter: "Straight-line motion: position, velocity, and acceleration",
     type: "mc",
     calculatorAllowed: false,
@@ -991,6 +1042,7 @@ const UNIT_4_QUESTIONS: PracticeQuestion[] = [
   },
   {
     id: "u4-c1-q3",
+    label: "E257",
     chapter: "Straight-line motion: position, velocity, and acceleration",
     type: "frq",
     calculatorAllowed: true,
@@ -1012,6 +1064,7 @@ const UNIT_4_QUESTIONS: PracticeQuestion[] = [
   },
   {
     id: "u4-c2-q1",
+    label: "D26B",
     chapter: "Related rates",
     type: "mc",
     calculatorAllowed: true,
@@ -1032,6 +1085,7 @@ const UNIT_4_QUESTIONS: PracticeQuestion[] = [
   },
   {
     id: "u4-c2-q2",
+    label: "D29E",
     chapter: "Related rates",
     type: "mc",
     calculatorAllowed: true,
@@ -1056,6 +1110,7 @@ const UNIT_4_QUESTIONS: PracticeQuestion[] = [
   },
   {
     id: "u4-c2-q3",
+    label: "9067",
     chapter: "Related rates",
     type: "frq",
     calculatorAllowed: true,
@@ -1077,6 +1132,7 @@ const UNIT_4_QUESTIONS: PracticeQuestion[] = [
   },
   {
     id: "u4-c3-q1",
+    label: "D581",
     chapter: "Linear approximation and local linearity",
     type: "mc",
     calculatorAllowed: false,
@@ -1097,6 +1153,7 @@ const UNIT_4_QUESTIONS: PracticeQuestion[] = [
   },
   {
     id: "u4-c3-q2",
+    label: "C5E3",
     chapter: "Linear approximation and local linearity",
     type: "mc",
     calculatorAllowed: false,
@@ -1132,6 +1189,7 @@ const UNIT_4_QUESTIONS: PracticeQuestion[] = [
   },
   {
     id: "u4-c3-q3",
+    label: "1A48",
     chapter: "Linear approximation and local linearity",
     type: "frq",
     calculatorAllowed: false,
@@ -1154,6 +1212,7 @@ const UNIT_4_QUESTIONS: PracticeQuestion[] = [
   },
   {
     id: "u4-c4-q1",
+    label: "25E6",
     chapter: "L'Hôpital's Rule for limits",
     type: "mc",
     calculatorAllowed: false,
@@ -1172,6 +1231,7 @@ const UNIT_4_QUESTIONS: PracticeQuestion[] = [
   },
   {
     id: "u4-c4-q2",
+    label: "8183",
     chapter: "L'Hôpital's Rule for limits",
     type: "mc",
     calculatorAllowed: false,
@@ -1190,6 +1250,7 @@ const UNIT_4_QUESTIONS: PracticeQuestion[] = [
   },
   {
     id: "u4-c4-q3",
+    label: "B275",
     chapter: "L'Hôpital's Rule for limits",
     type: "frq",
     calculatorAllowed: false,
@@ -1210,6 +1271,7 @@ const UNIT_4_QUESTIONS: PracticeQuestion[] = [
   },
   {
     id: "u4-c5-q1",
+    label: "E1FF",
     chapter: "Interpreting derivatives as rates of change in context",
     type: "mc",
     calculatorAllowed: false,
@@ -1241,6 +1303,7 @@ const UNIT_4_QUESTIONS: PracticeQuestion[] = [
   },
   {
     id: "u4-c5-q2",
+    label: "EB37",
     chapter: "Interpreting derivatives as rates of change in context",
     type: "mc",
     calculatorAllowed: true,
@@ -1278,6 +1341,7 @@ const UNIT_4_QUESTIONS: PracticeQuestion[] = [
   },
   {
     id: "u4-c5-q3",
+    label: "D2A2",
     chapter: "Interpreting derivatives as rates of change in context",
     type: "frq",
     calculatorAllowed: true,
@@ -1314,6 +1378,7 @@ const UNIT_4_QUESTIONS: PracticeQuestion[] = [
 const UNIT_5_QUESTIONS: PracticeQuestion[] = [
   {
     id: "u5-c1-q1",
+    label: "D1E5",
     chapter: "The Mean Value Theorem",
     type: "mc",
     calculatorAllowed: false,
@@ -1338,6 +1403,7 @@ const UNIT_5_QUESTIONS: PracticeQuestion[] = [
   },
   {
     id: "u5-c2-q1",
+    label: "F2E6",
     chapter: "Finding critical points and increasing/decreasing intervals",
     type: "mc",
     calculatorAllowed: false,
@@ -1356,6 +1422,7 @@ const UNIT_5_QUESTIONS: PracticeQuestion[] = [
   },
   {
     id: "u5-c2-q2",
+    label: "4E32",
     chapter: "Finding critical points and increasing/decreasing intervals",
     type: "frq",
     calculatorAllowed: false,
@@ -1375,6 +1442,7 @@ const UNIT_5_QUESTIONS: PracticeQuestion[] = [
   },
   {
     id: "u5-c3-q1",
+    label: "ABFA",
     chapter: "First derivative test for relative extrema",
     type: "mc",
     calculatorAllowed: false,
@@ -1398,6 +1466,7 @@ const UNIT_5_QUESTIONS: PracticeQuestion[] = [
   },
   {
     id: "u5-c3-q2",
+    label: "5B40",
     chapter: "First derivative test for relative extrema",
     type: "frq",
     calculatorAllowed: false,
@@ -1420,6 +1489,7 @@ const UNIT_5_QUESTIONS: PracticeQuestion[] = [
   },
   {
     id: "u5-c4-q1",
+    label: "C999",
     chapter: "The Candidates Test for absolute (global) extrema",
     type: "mc",
     calculatorAllowed: false,
@@ -1440,6 +1510,7 @@ const UNIT_5_QUESTIONS: PracticeQuestion[] = [
   },
   {
     id: "u5-c4-q2",
+    label: "D2CC",
     chapter: "The Candidates Test for absolute (global) extrema",
     type: "frq",
     calculatorAllowed: true,
@@ -1458,6 +1529,7 @@ const UNIT_5_QUESTIONS: PracticeQuestion[] = [
   },
   {
     id: "u5-c5-q1",
+    label: "90EE",
     chapter: "Concavity and the second derivative test",
     type: "mc",
     calculatorAllowed: false,
@@ -1478,6 +1550,7 @@ const UNIT_5_QUESTIONS: PracticeQuestion[] = [
   },
   {
     id: "u5-c5-q2",
+    label: "2C6A",
     chapter: "Concavity and the second derivative test",
     type: "frq",
     calculatorAllowed: false,
@@ -1498,6 +1571,7 @@ const UNIT_5_QUESTIONS: PracticeQuestion[] = [
   },
   {
     id: "u5-c6-q1",
+    label: "99F0",
     chapter: "Interpreting graphs of f, f′, and f″ together",
     type: "mc",
     calculatorAllowed: false,
@@ -1518,6 +1592,7 @@ const UNIT_5_QUESTIONS: PracticeQuestion[] = [
   },
   {
     id: "u5-c6-q2",
+    label: "E344",
     chapter: "Interpreting graphs of f, f′, and f″ together",
     type: "frq",
     calculatorAllowed: false,
@@ -1541,6 +1616,7 @@ const UNIT_5_QUESTIONS: PracticeQuestion[] = [
   },
   {
     id: "u5-c7-q1",
+    label: "4CC4",
     chapter: "Optimization word problems",
     type: "mc",
     calculatorAllowed: true,
@@ -1565,6 +1641,7 @@ const UNIT_5_QUESTIONS: PracticeQuestion[] = [
   },
   {
     id: "u5-c7-q2",
+    label: "023A",
     chapter: "Optimization word problems",
     type: "frq",
     calculatorAllowed: true,
@@ -1589,6 +1666,7 @@ const UNIT_5_QUESTIONS: PracticeQuestion[] = [
   },
   {
     id: "u5-c8-q1",
+    label: "E4D8",
     chapter: "Analyzing behaviors of implicit relations",
     type: "mc",
     calculatorAllowed: false,
@@ -1610,6 +1688,7 @@ const UNIT_5_QUESTIONS: PracticeQuestion[] = [
   },
   {
     id: "u5-c8-q2",
+    label: "A295",
     chapter: "Analyzing behaviors of implicit relations",
     type: "frq",
     calculatorAllowed: false,
@@ -1643,6 +1722,7 @@ const UNIT_5_QUESTIONS: PracticeQuestion[] = [
 const UNIT_6_QUESTIONS: PracticeQuestion[] = [
   {
     id: "u6-c1-q1",
+    label: "D303",
     chapter: "Antiderivatives and indefinite integrals",
     type: "mc",
     calculatorAllowed: false,
@@ -1661,6 +1741,7 @@ const UNIT_6_QUESTIONS: PracticeQuestion[] = [
   },
   {
     id: "u6-c1-q2",
+    label: "ACD9",
     chapter: "Antiderivatives and indefinite integrals",
     type: "frq",
     calculatorAllowed: false,
@@ -1675,6 +1756,7 @@ const UNIT_6_QUESTIONS: PracticeQuestion[] = [
   },
   {
     id: "u6-c1-q3",
+    label: "3216",
     chapter: "Antiderivatives and indefinite integrals",
     type: "mc",
     calculatorAllowed: false,
@@ -1695,6 +1777,7 @@ const UNIT_6_QUESTIONS: PracticeQuestion[] = [
   },
   {
     id: "u6-c2-q1",
+    label: "9A71",
     chapter: "Riemann sums and definite integrals",
     type: "mc",
     calculatorAllowed: true,
@@ -1718,6 +1801,7 @@ const UNIT_6_QUESTIONS: PracticeQuestion[] = [
   },
   {
     id: "u6-c2-q2",
+    label: "85D0",
     chapter: "Riemann sums and definite integrals",
     type: "frq",
     calculatorAllowed: true,
@@ -1742,6 +1826,7 @@ const UNIT_6_QUESTIONS: PracticeQuestion[] = [
   },
   {
     id: "u6-c3-q1",
+    label: "9497",
     chapter: "The Fundamental Theorem of Calculus",
     type: "mc",
     calculatorAllowed: false,
@@ -1761,6 +1846,7 @@ const UNIT_6_QUESTIONS: PracticeQuestion[] = [
   },
   {
     id: "u6-c3-q2",
+    label: "F145",
     chapter: "The Fundamental Theorem of Calculus",
     type: "frq",
     calculatorAllowed: false,
@@ -1777,6 +1863,7 @@ const UNIT_6_QUESTIONS: PracticeQuestion[] = [
   },
   {
     id: "u6-c3-q3",
+    label: "C610",
     chapter: "The Fundamental Theorem of Calculus",
     type: "mc",
     calculatorAllowed: true,
@@ -1795,6 +1882,7 @@ const UNIT_6_QUESTIONS: PracticeQuestion[] = [
   },
   {
     id: "u6-c4-q1",
+    label: "E9F7",
     chapter: "u-substitution",
     type: "mc",
     calculatorAllowed: false,
@@ -1812,6 +1900,7 @@ const UNIT_6_QUESTIONS: PracticeQuestion[] = [
   },
   {
     id: "u6-c4-q2",
+    label: "551A",
     chapter: "u-substitution",
     type: "frq",
     calculatorAllowed: true,
@@ -1827,6 +1916,7 @@ const UNIT_6_QUESTIONS: PracticeQuestion[] = [
   },
   {
     id: "u6-c5-q1",
+    label: "D245",
     chapter: "Accumulation functions",
     type: "mc",
     calculatorAllowed: false,
@@ -1848,6 +1938,7 @@ const UNIT_6_QUESTIONS: PracticeQuestion[] = [
   },
   {
     id: "u6-c5-q2",
+    label: "BB87",
     chapter: "Accumulation functions",
     type: "frq",
     calculatorAllowed: false,
@@ -1871,6 +1962,7 @@ const UNIT_6_QUESTIONS: PracticeQuestion[] = [
   },
   {
     id: "u6-c5-q3",
+    label: "8435",
     chapter: "Accumulation functions",
     type: "mc",
     calculatorAllowed: true,
@@ -1889,6 +1981,7 @@ const UNIT_6_QUESTIONS: PracticeQuestion[] = [
   },
   {
     id: "u6-c6-q1",
+    label: "9D90",
     chapter: "Integration using long division and completing the square",
     type: "mc",
     calculatorAllowed: false,
@@ -1908,6 +2001,7 @@ const UNIT_6_QUESTIONS: PracticeQuestion[] = [
   },
   {
     id: "u6-c6-q2",
+    label: "589C",
     chapter: "Integration using long division and completing the square",
     type: "frq",
     calculatorAllowed: false,
@@ -1933,6 +2027,7 @@ const UNIT_6_QUESTIONS: PracticeQuestion[] = [
 const UNIT_7_QUESTIONS: PracticeQuestion[] = [
   {
     id: "u7-c1-q1",
+    label: "DA05",
     chapter: "Setting up differential equations from context",
     type: "mc",
     calculatorAllowed: false,
@@ -1954,6 +2049,7 @@ const UNIT_7_QUESTIONS: PracticeQuestion[] = [
   },
   {
     id: "u7-c1-q2",
+    label: "591D",
     chapter: "Setting up differential equations from context",
     type: "frq",
     calculatorAllowed: false,
@@ -1973,6 +2069,7 @@ const UNIT_7_QUESTIONS: PracticeQuestion[] = [
   },
   {
     id: "u7-c1-q3",
+    label: "AFD1",
     chapter: "Setting up differential equations from context",
     type: "mc",
     calculatorAllowed: false,
@@ -1994,6 +2091,7 @@ const UNIT_7_QUESTIONS: PracticeQuestion[] = [
   },
   {
     id: "u7-c1-q4",
+    label: "9A29",
     chapter: "Setting up differential equations from context",
     type: "frq",
     calculatorAllowed: false,
@@ -2014,6 +2112,7 @@ const UNIT_7_QUESTIONS: PracticeQuestion[] = [
   },
   {
     id: "u7-c2-q1",
+    label: "3AD9",
     chapter: "Slope fields",
     type: "mc",
     calculatorAllowed: false,
@@ -2033,6 +2132,7 @@ const UNIT_7_QUESTIONS: PracticeQuestion[] = [
   },
   {
     id: "u7-c2-q2",
+    label: "DB1B",
     chapter: "Slope fields",
     type: "frq",
     calculatorAllowed: false,
@@ -2052,6 +2152,7 @@ const UNIT_7_QUESTIONS: PracticeQuestion[] = [
   },
   {
     id: "u7-c2-q3",
+    label: "E625",
     chapter: "Slope fields",
     type: "mc",
     calculatorAllowed: false,
@@ -2073,6 +2174,7 @@ const UNIT_7_QUESTIONS: PracticeQuestion[] = [
   },
   {
     id: "u7-c2-q4",
+    label: "95AC",
     chapter: "Slope fields",
     type: "mc",
     calculatorAllowed: false,
@@ -2107,6 +2209,7 @@ const UNIT_7_QUESTIONS: PracticeQuestion[] = [
   },
   {
     id: "u7-c3-q1",
+    label: "3B37",
     chapter: "Separation of variables",
     type: "mc",
     calculatorAllowed: false,
@@ -2125,6 +2228,7 @@ const UNIT_7_QUESTIONS: PracticeQuestion[] = [
   },
   {
     id: "u7-c3-q2",
+    label: "24D9",
     chapter: "Separation of variables",
     type: "frq",
     calculatorAllowed: false,
@@ -2139,6 +2243,7 @@ const UNIT_7_QUESTIONS: PracticeQuestion[] = [
   },
   {
     id: "u7-c3-q3",
+    label: "6C9B",
     chapter: "Separation of variables",
     type: "mc",
     calculatorAllowed: false,
@@ -2158,6 +2263,7 @@ const UNIT_7_QUESTIONS: PracticeQuestion[] = [
   },
   {
     id: "u7-c3-q4",
+    label: "C2E5",
     chapter: "Separation of variables",
     type: "frq",
     calculatorAllowed: true,
@@ -2175,6 +2281,7 @@ const UNIT_7_QUESTIONS: PracticeQuestion[] = [
   },
   {
     id: "u7-c4-q1",
+    label: "A5CA",
     chapter: "Exponential growth and decay models",
     type: "mc",
     calculatorAllowed: true,
@@ -2196,6 +2303,7 @@ const UNIT_7_QUESTIONS: PracticeQuestion[] = [
   },
   {
     id: "u7-c4-q2",
+    label: "0E2C",
     chapter: "Exponential growth and decay models",
     type: "frq",
     calculatorAllowed: true,
@@ -2213,6 +2321,7 @@ const UNIT_7_QUESTIONS: PracticeQuestion[] = [
   },
   {
     id: "u7-c4-q3",
+    label: "144A",
     chapter: "Exponential growth and decay models",
     type: "mc",
     calculatorAllowed: false,
@@ -2243,6 +2352,7 @@ const UNIT_7_QUESTIONS: PracticeQuestion[] = [
 const UNIT_8_QUESTIONS: PracticeQuestion[] = [
   {
     id: "u8-c1-q1",
+    label: "3E47",
     chapter: "Area between curves",
     type: "mc",
     calculatorAllowed: false,
@@ -2263,6 +2373,7 @@ const UNIT_8_QUESTIONS: PracticeQuestion[] = [
   },
   {
     id: "u8-c1-q2",
+    label: "4308",
     chapter: "Area between curves",
     type: "frq",
     calculatorAllowed: false,
@@ -2281,6 +2392,7 @@ const UNIT_8_QUESTIONS: PracticeQuestion[] = [
   },
   {
     id: "u8-c1-q3",
+    label: "9B2C",
     chapter: "Area between curves",
     type: "mc",
     calculatorAllowed: true,
@@ -2303,6 +2415,7 @@ const UNIT_8_QUESTIONS: PracticeQuestion[] = [
   },
   {
     id: "u8-c2-q1",
+    label: "B856",
     chapter: "Volumes with known cross-sections",
     type: "mc",
     calculatorAllowed: true,
@@ -2324,6 +2437,7 @@ const UNIT_8_QUESTIONS: PracticeQuestion[] = [
   },
   {
     id: "u8-c2-q2",
+    label: "9B4C",
     chapter: "Volumes with known cross-sections",
     type: "frq",
     calculatorAllowed: true,
@@ -2347,6 +2461,7 @@ const UNIT_8_QUESTIONS: PracticeQuestion[] = [
   },
   {
     id: "u8-c2-q3",
+    label: "FA03",
     chapter: "Volumes with known cross-sections",
     type: "mc",
     calculatorAllowed: true,
@@ -2368,6 +2483,7 @@ const UNIT_8_QUESTIONS: PracticeQuestion[] = [
   },
   {
     id: "u8-c3-q1",
+    label: "22AF",
     chapter: "Volumes using disk and washer methods",
     type: "mc",
     calculatorAllowed: false,
@@ -2387,6 +2503,7 @@ const UNIT_8_QUESTIONS: PracticeQuestion[] = [
   },
   {
     id: "u8-c3-q2",
+    label: "38C5",
     chapter: "Volumes using disk and washer methods",
     type: "frq",
     calculatorAllowed: false,
@@ -2404,6 +2521,7 @@ const UNIT_8_QUESTIONS: PracticeQuestion[] = [
   },
   {
     id: "u8-c3-q3",
+    label: "28B1",
     chapter: "Volumes using disk and washer methods",
     type: "mc",
     calculatorAllowed: false,
@@ -2428,6 +2546,7 @@ const UNIT_8_QUESTIONS: PracticeQuestion[] = [
   },
   {
     id: "u8-c4-q1",
+    label: "C73F",
     chapter: "Average value of a function",
     type: "mc",
     calculatorAllowed: true,
@@ -2445,6 +2564,7 @@ const UNIT_8_QUESTIONS: PracticeQuestion[] = [
   },
   {
     id: "u8-c4-q2",
+    label: "98C5",
     chapter: "Average value of a function",
     type: "frq",
     calculatorAllowed: true,
@@ -2468,6 +2588,7 @@ const UNIT_8_QUESTIONS: PracticeQuestion[] = [
   },
   {
     id: "u8-c4-q3",
+    label: "16CB",
     chapter: "Average value of a function",
     type: "mc",
     calculatorAllowed: false,
@@ -2486,6 +2607,7 @@ const UNIT_8_QUESTIONS: PracticeQuestion[] = [
   },
   {
     id: "u8-c5-q1",
+    label: "41CB",
     chapter: "Motion problems (position, velocity, acceleration)",
     type: "mc",
     calculatorAllowed: true,
@@ -2506,6 +2628,7 @@ const UNIT_8_QUESTIONS: PracticeQuestion[] = [
   },
   {
     id: "u8-c5-q2",
+    label: "E1BF",
     chapter: "Motion problems (position, velocity, acceleration)",
     type: "frq",
     calculatorAllowed: true,
@@ -2530,6 +2653,7 @@ const UNIT_8_QUESTIONS: PracticeQuestion[] = [
   },
   {
     id: "u8-c5-q3",
+    label: "18EA",
     chapter: "Motion problems (position, velocity, acceleration)",
     type: "mc",
     calculatorAllowed: true,
@@ -3175,4 +3299,36 @@ export function getPracticeQuestions(
   unit: number,
 ): PracticeQuestion[] | undefined {
   return PRACTICE_QUESTIONS_BY_UNIT[unit];
+}
+
+export interface UnitQuestionGroup {
+  unit: number;
+  questions: PracticeQuestion[];
+}
+
+export function getAllPracticeQuestionsByUnit(): UnitQuestionGroup[] {
+  return Object.entries(PRACTICE_QUESTIONS_BY_UNIT)
+    .map(([unit, questions]) => ({ unit: Number(unit), questions }))
+    .sort((a, b) => a.unit - b.unit);
+}
+
+export interface QuestionLocation {
+  unit: number;
+  index: number;
+  question: PracticeQuestion;
+}
+
+export function findQuestionByLabel(
+  label: string,
+): QuestionLocation | undefined {
+  for (const [unit, questions] of Object.entries(PRACTICE_QUESTIONS_BY_UNIT)) {
+    const index = questions.findIndex((q) => q.label === label);
+    if (index !== -1) {
+      const question = questions[index];
+      if (question) {
+        return { unit: Number(unit), index, question };
+      }
+    }
+  }
+  return undefined;
 }

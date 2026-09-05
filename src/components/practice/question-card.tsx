@@ -9,12 +9,15 @@ import type { PracticeQuestion } from "~/lib/practice-questions";
 import { cn } from "~/lib/utils";
 import { TutorPanel } from "./tutor-panel";
 
+export type QuestionAttemptResult = "correct" | "incorrect" | "attempted";
+
 interface QuestionCardProps {
   question: PracticeQuestion;
   index: number;
+  onReveal?: (result: QuestionAttemptResult) => void;
 }
 
-export function QuestionCard({ question, index }: QuestionCardProps) {
+export function QuestionCard({ question, index, onReveal }: QuestionCardProps) {
   const [selectedChoice, setSelectedChoice] = useState<string | null>(null);
   const [response, setResponse] = useState("");
   const [revealed, setRevealed] = useState(false);
@@ -31,6 +34,20 @@ export function QuestionCard({ question, index }: QuestionCardProps) {
     question.type === "mc" && selectedChoice === question.correctChoice;
   const canReveal = question.type === "frq" || selectedChoice !== null;
 
+  function toggleRevealed() {
+    const nextRevealed = !revealed;
+    setRevealed(nextRevealed);
+    if (nextRevealed) {
+      onReveal?.(
+        question.type === "mc"
+          ? isCorrect
+            ? "correct"
+            : "incorrect"
+          : "attempted",
+      );
+    }
+  }
+
   return (
     <Card>
       <CardHeader className="gap-3">
@@ -44,6 +61,9 @@ export function QuestionCard({ question, index }: QuestionCardProps) {
             {question.calculatorAllowed
               ? "Calculator allowed"
               : "No calculator"}
+          </Badge>
+          <Badge variant="outline" className="font-mono">
+            {question.label}
           </Badge>
         </div>
         <p className="whitespace-pre-line text-sm">{question.prompt}</p>
@@ -95,7 +115,7 @@ export function QuestionCard({ question, index }: QuestionCardProps) {
             type="button"
             size="sm"
             variant="outline"
-            onClick={() => setRevealed((r) => !r)}
+            onClick={toggleRevealed}
             disabled={!revealed && !canReveal}
           >
             {revealed
