@@ -20,6 +20,7 @@ const SUPERSCRIPT_MAP: Record<string, string> = {
   ⁿ: "n",
   ⁱ: "i",
   ˣ: "x",
+  ᵖ: "p",
   "⁽": "(",
   "⁾": ")",
 };
@@ -36,7 +37,9 @@ const SUBSCRIPT_MAP: Record<string, string> = {
   "₈": "8",
   "₉": "9",
   "₋": "-",
+  "₊": "+",
   ₐ: "a",
+  ₙ: "n",
 };
 
 const SYMBOL_MAP: Record<string, string> = {
@@ -52,7 +55,9 @@ const SYMBOL_MAP: Record<string, string> = {
   "−": "-",
   "∞": "\\infty",
   π: "\\pi",
+  θ: "\\theta",
   "∫": "\\int",
+  "∑": "\\sum",
   "°": "^\\circ",
 };
 
@@ -76,8 +81,8 @@ const FUNCTION_NAMES = [
 const FUNCTION_NAME_SET = new Set(FUNCTION_NAMES);
 const FUNCTION_NAME_RE = new RegExp(`\\b(${FUNCTION_NAMES.join("|")})\\b`, "g");
 
-const SUPER_RUN_RE = /[⁰¹²³⁴⁵⁶⁷⁸⁹⁺⁻ⁿⁱˣ⁽⁾]+/g;
-const SUB_RUN_RE = /[₀₁₂₃₄₅₆₇₈₉₋ₐ]+/g;
+const SUPER_RUN_RE = /[⁰¹²³⁴⁵⁶⁷⁸⁹⁺⁻ⁿⁱˣᵖ⁽⁾]+/g;
+const SUB_RUN_RE = /[₀₁₂₃₄₅₆₇₈₉₋₊ₐₙ]+/g;
 
 function mapRun(run: string, table: Record<string, string>): string {
   return [...run].map((c) => table[c] ?? "").join("");
@@ -89,10 +94,17 @@ function convertScripts(s: string): string {
     .replace(SUB_RUN_RE, (m) => `_{${mapRun(m, SUBSCRIPT_MAP)}}`);
 }
 
+const BRACKET_PAIRS: Record<string, string> = {
+  "(": ")",
+  "[": "]",
+  "{": "}",
+  "⟨": "⟩",
+};
+
 /** Finds the index of the bracket matching the opener at `openIndex`. */
 function findClosing(s: string, openIndex: number): number {
-  const open = s[openIndex];
-  const close = open === "(" ? ")" : open === "[" ? "]" : "}";
+  const open = s[openIndex] ?? "";
+  const close = BRACKET_PAIRS[open] ?? "}";
   let depth = 1;
   for (let k = openIndex + 1; k < s.length; k++) {
     if (s[k] === open) depth++;
@@ -148,29 +160,78 @@ function convertCaretGroups(s: string): string {
   return out;
 }
 
-/** Walks backward from the end of `out` to grab the operand of a "/". */
-function extractLeftOperand(out: string): { operand: string; rest: string } {
-  const end = out.length;
-  if (end === 0) return { operand: "", rest: out };
-  const last = out[end - 1];
-  if (last === "}" || last === ")" || last === "]") {
-    const openChar = last === "}" ? "{" : last === ")" ? "(" : "[";
+const CLOSE_TO_OPEN: Record<string, string> = {
+  "}": "{",
+  ")": "(",
+  "]": "[",
+  "⟩": "⟨",
+};
+
+/** Finds the start of the atom ending at index `end` (for a "/"'s left operand). */
+function atomStart(s: string, end: number): number {
+  if (end <= 0) return end;
+  const last = s[end - 1] ?? "";
+  if (last in CLOSE_TO_OPEN) {
+    const openChar = CLOSE_TO_OPEN[last];
     let depth = 1;
     let k = end - 2;
     while (k >= 0 && depth > 0) {
-      if (out[k] === last) depth++;
-      else if (out[k] === openChar) depth--;
+      if (s[k] === last) depth++;
+      else if (s[k] === openChar) depth--;
       k--;
     }
-    const start = k + 1;
-    let cmdStart = start;
-    while (cmdStart > 0 && /[a-zA-Z]/.test(out[cmdStart - 1] ?? "")) cmdStart--;
-    if (cmdStart > 0 && out[cmdStart - 1] === "\\") cmdStart--;
-    return { operand: out.slice(cmdStart, end), rest: out.slice(0, cmdStart) };
+    let start = k + 1;
+    while (start > 0 && /[a-zA-Z]/.test(s[start - 1] ?? "")) start--;
+    if (start > 0 && s[start - 1] === "\\") start--;
+    // "_{...}" / "^{...}" is a script, not a standalone atom — pull in its base too.
+    if (start > 0 && (s[start - 1] === "_" || s[start - 1] === "^")) {
+      return atomStart(s, start - 1);
+    }
+    return start;
   }
-  let k = end - 1;
-  while (k >= 0 && /[a-zA-Z0-9.]/.test(out[k] ?? "")) k--;
-  return { operand: out.slice(k + 1, end), rest: out.slice(0, k + 1) };
+  if (/[a-zA-Z0-9.]/.test(last)) {
+    let k = end - 1;
+    while (k >= 0 && /[a-zA-Z0-9.]/.test(s[k] ?? "")) k--;
+    const start = k + 1;
+    if (start > 0 && (s[start - 1] === "_" || s[start - 1] === "^")) {
+      return atomStart(s, start - 1);
+    }
+    return start;
+  }
+  return end;
+}
+
+/** Finds the end of the atom starting at index `start` (for a "/"'s right operand). */
+function atomEnd(s: string, start: number): number {
+  if (start >= s.length) return start;
+  const ch = s[start] ?? "";
+  let end = start;
+  if (ch === "(" || ch === "[" || ch === "⟨") {
+    const close = findClosing(s, start);
+    end = close === -1 ? s.length : close + 1;
+  } else if (/[a-zA-Z0-9.]/.test(ch)) {
+    let k = start;
+    while (k < s.length && /[a-zA-Z0-9.]/.test(s[k] ?? "")) k++;
+    end = k;
+  } else {
+    return start;
+  }
+  // Greedily absorb any immediately-following "_{...}" / "^{...}" scripts.
+  while (s[end] === "_" || s[end] === "^") {
+    if (s[end + 1] === "{") {
+      const close = findClosing(s, end + 1);
+      end = close === -1 ? s.length : close + 1;
+    } else {
+      end += 2;
+    }
+  }
+  return end;
+}
+
+/** Walks backward from the end of `out` to grab the operand of a "/". */
+function extractLeftOperand(out: string): { operand: string; rest: string } {
+  const start = atomStart(out, out.length);
+  return { operand: out.slice(start), rest: out.slice(0, start) };
 }
 
 /** Walks forward from `start` (just past a "/") to grab the other operand. */
@@ -178,15 +239,8 @@ function extractRightOperand(
   s: string,
   start: number,
 ): { operand: string; next: number } {
-  if (start >= s.length) return { operand: "", next: start };
-  const ch = s[start];
-  if (ch === "(" || ch === "[") {
-    const end = findClosing(s, start);
-    if (end !== -1) return { operand: s.slice(start, end + 1), next: end + 1 };
-  }
-  let k = start;
-  while (k < s.length && /[a-zA-Z0-9.]/.test(s[k] ?? "")) k++;
-  return { operand: s.slice(start, k), next: k };
+  const end = atomEnd(s, start);
+  return { operand: s.slice(start, end), next: end };
 }
 
 /** Turns "a/b" into "\frac{a}{b}" so division renders as a stacked fraction. */
@@ -242,7 +296,7 @@ function convertMathRun(raw: string): string {
 }
 
 const MATH_CHAR_RE =
-  /[0-9√≤≥≠≈→∞∫π×÷±°·^_=+<>(){}[\]/¹²³⁰⁴⁵⁶⁷⁸⁹⁻⁺ⁿⁱˣ⁽⁾₀₁₂₃₄₅₆₇₈₉₋ₐ−]/;
+  /[0-9√≤≥≠≈→∞∫∑πθ×÷±°·^_=+<>(){}[\]⟨⟩/¹²³⁰⁴⁵⁶⁷⁸⁹⁻⁺ⁿⁱˣᵖ⁽⁾₀₁₂₃₄₅₆₇₈₉₋₊ₐₙ−]/;
 const WORDY_SINGLE_LETTERS = new Set(["a", "A", "I"]);
 
 function splitPunct(tok: string): {
@@ -384,8 +438,9 @@ export function splitMathSegments(text: string): MathTextSegment[] {
     const mathy = forced || isMathToken(piece);
 
     for (const ch of piece) {
-      if (ch === "(" || ch === "[") depth++;
-      else if (ch === ")" || ch === "]") depth = Math.max(0, depth - 1);
+      if (ch === "(" || ch === "[" || ch === "⟨") depth++;
+      else if (ch === ")" || ch === "]" || ch === "⟩")
+        depth = Math.max(0, depth - 1);
     }
 
     if (mathy) {
