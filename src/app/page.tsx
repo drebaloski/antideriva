@@ -88,7 +88,7 @@ const PATHS = [
 export default function Home() {
   return (
     <main className="flex flex-col items-center gap-8 p-8">
-      <div className="flex min-h-[calc(100vh-3.5rem-4rem)] max-w-2xl flex-col items-center justify-center gap-4 text-center">
+      <div className="flex min-h-[calc(100vh-4rem)] max-w-2xl flex-col items-center justify-center gap-4 text-center">
         <h1 className="text-4xl font-bold tracking-tight">
           AP Calc practice that starts with what you missed.
         </h1>
