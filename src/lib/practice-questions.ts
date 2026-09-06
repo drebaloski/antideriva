@@ -2682,6 +2682,7 @@ const UNIT_8_QUESTIONS: PracticeQuestion[] = [
 const UNIT_9_QUESTIONS: PracticeQuestion[] = [
   {
     id: "u9-c1-q1",
+    label: "CFB8",
     chapter: "Parametric equations and derivatives",
     type: "mc",
     calculatorAllowed: false,
@@ -2701,6 +2702,7 @@ const UNIT_9_QUESTIONS: PracticeQuestion[] = [
   },
   {
     id: "u9-c1-q2",
+    label: "516F",
     chapter: "Parametric equations and derivatives",
     type: "frq",
     calculatorAllowed: false,
@@ -2719,6 +2721,7 @@ const UNIT_9_QUESTIONS: PracticeQuestion[] = [
   },
   {
     id: "u9-c1-q3",
+    label: "9426",
     chapter: "Parametric equations and derivatives",
     type: "mc",
     calculatorAllowed: false,
@@ -2738,6 +2741,7 @@ const UNIT_9_QUESTIONS: PracticeQuestion[] = [
   },
   {
     id: "u9-c2-q1",
+    label: "3C1A",
     chapter: "Vector-valued functions and motion",
     type: "mc",
     calculatorAllowed: false,
@@ -2757,6 +2761,7 @@ const UNIT_9_QUESTIONS: PracticeQuestion[] = [
   },
   {
     id: "u9-c2-q2",
+    label: "7108",
     chapter: "Vector-valued functions and motion",
     type: "frq",
     calculatorAllowed: true,
@@ -2772,6 +2777,7 @@ const UNIT_9_QUESTIONS: PracticeQuestion[] = [
   },
   {
     id: "u9-c2-q3",
+    label: "FFEA",
     chapter: "Vector-valued functions and motion",
     type: "mc",
     calculatorAllowed: false,
@@ -2791,6 +2797,7 @@ const UNIT_9_QUESTIONS: PracticeQuestion[] = [
   },
   {
     id: "u9-c3-q1",
+    label: "31D4",
     chapter: "Polar coordinates and curves",
     type: "mc",
     calculatorAllowed: false,
@@ -2810,6 +2817,7 @@ const UNIT_9_QUESTIONS: PracticeQuestion[] = [
   },
   {
     id: "u9-c3-q2",
+    label: "76EA",
     chapter: "Polar coordinates and curves",
     type: "frq",
     calculatorAllowed: false,
@@ -2830,6 +2838,7 @@ const UNIT_9_QUESTIONS: PracticeQuestion[] = [
   },
   {
     id: "u9-c3-q3",
+    label: "D481",
     chapter: "Polar coordinates and curves",
     type: "mc",
     calculatorAllowed: true,
@@ -2851,6 +2860,7 @@ const UNIT_9_QUESTIONS: PracticeQuestion[] = [
   },
   {
     id: "u9-c4-q1",
+    label: "6214",
     chapter: "Area in polar coordinates",
     type: "mc",
     calculatorAllowed: true,
@@ -2871,6 +2881,7 @@ const UNIT_9_QUESTIONS: PracticeQuestion[] = [
   },
   {
     id: "u9-c4-q2",
+    label: "4478",
     chapter: "Area in polar coordinates",
     type: "frq",
     calculatorAllowed: true,
@@ -2884,6 +2895,7 @@ const UNIT_9_QUESTIONS: PracticeQuestion[] = [
   },
   {
     id: "u9-c4-q3",
+    label: "B4DA",
     chapter: "Area in polar coordinates",
     type: "mc",
     calculatorAllowed: false,
@@ -2905,6 +2917,7 @@ const UNIT_9_QUESTIONS: PracticeQuestion[] = [
   },
   {
     id: "u9-c5-q1",
+    label: "EDAB",
     chapter: "Arc length in parametric/polar form",
     type: "mc",
     calculatorAllowed: false,
@@ -2926,6 +2939,7 @@ const UNIT_9_QUESTIONS: PracticeQuestion[] = [
   },
   {
     id: "u9-c5-q2",
+    label: "C719",
     chapter: "Arc length in parametric/polar form",
     type: "frq",
     calculatorAllowed: true,
@@ -2942,6 +2956,7 @@ const UNIT_9_QUESTIONS: PracticeQuestion[] = [
   },
   {
     id: "u9-c5-q3",
+    label: "9EC6",
     chapter: "Arc length in parametric/polar form",
     type: "mc",
     calculatorAllowed: false,
@@ -2973,6 +2988,7 @@ const UNIT_9_QUESTIONS: PracticeQuestion[] = [
 const UNIT_10_QUESTIONS: PracticeQuestion[] = [
   {
     id: "u10-c1-q1",
+    label: "096E",
     chapter: "Convergence and divergence of series",
     type: "mc",
     calculatorAllowed: false,
@@ -3006,6 +3022,7 @@ const UNIT_10_QUESTIONS: PracticeQuestion[] = [
   },
   {
     id: "u10-c2-q1",
+    label: "0C74",
     chapter: "Geometric series",
     type: "mc",
     calculatorAllowed: false,
@@ -3024,6 +3041,7 @@ const UNIT_10_QUESTIONS: PracticeQuestion[] = [
   },
   {
     id: "u10-c2-q2",
+    label: "0520",
     chapter: "Geometric series",
     type: "frq",
     calculatorAllowed: true,
@@ -3043,6 +3061,7 @@ const UNIT_10_QUESTIONS: PracticeQuestion[] = [
   },
   {
     id: "u10-c3-q1",
+    label: "2D20",
     chapter: "The nth term test for divergence",
     type: "mc",
     calculatorAllowed: false,
@@ -3062,6 +3081,7 @@ const UNIT_10_QUESTIONS: PracticeQuestion[] = [
   },
   {
     id: "u10-c3-q2",
+    label: "EE57",
     chapter: "The nth term test for divergence",
     type: "mc",
     calculatorAllowed: false,
@@ -3085,6 +3105,7 @@ const UNIT_10_QUESTIONS: PracticeQuestion[] = [
   },
   {
     id: "u10-c4-q1",
+    label: "0C31",
     chapter: "Harmonic series and p-series",
     type: "mc",
     calculatorAllowed: false,
@@ -3103,6 +3124,7 @@ const UNIT_10_QUESTIONS: PracticeQuestion[] = [
   },
   {
     id: "u10-c5-q1",
+    label: "8752",
     chapter: "Comparison, ratio, and integral tests",
     type: "mc",
     calculatorAllowed: false,
@@ -3124,6 +3146,7 @@ const UNIT_10_QUESTIONS: PracticeQuestion[] = [
   },
   {
     id: "u10-c5-q2",
+    label: "1A3E",
     chapter: "Comparison, ratio, and integral tests",
     type: "frq",
     calculatorAllowed: true,
@@ -3142,6 +3165,7 @@ const UNIT_10_QUESTIONS: PracticeQuestion[] = [
   },
   {
     id: "u10-c6-q1",
+    label: "FB4D",
     chapter: "Alternating series test",
     type: "mc",
     calculatorAllowed: false,
@@ -3162,6 +3186,7 @@ const UNIT_10_QUESTIONS: PracticeQuestion[] = [
   },
   {
     id: "u10-c7-q1",
+    label: "C5AD",
     chapter: "Absolute vs. conditional convergence",
     type: "mc",
     calculatorAllowed: false,
@@ -3185,6 +3210,7 @@ const UNIT_10_QUESTIONS: PracticeQuestion[] = [
   },
   {
     id: "u10-c8-q1",
+    label: "362B",
     chapter: "Taylor and Maclaurin series",
     type: "mc",
     calculatorAllowed: false,
@@ -3204,6 +3230,7 @@ const UNIT_10_QUESTIONS: PracticeQuestion[] = [
   },
   {
     id: "u10-c8-q2",
+    label: "742B",
     chapter: "Taylor and Maclaurin series",
     type: "frq",
     calculatorAllowed: false,
@@ -3221,6 +3248,7 @@ const UNIT_10_QUESTIONS: PracticeQuestion[] = [
   },
   {
     id: "u10-c9-q1",
+    label: "A7BB",
     chapter: "Power series and radius of convergence",
     type: "mc",
     calculatorAllowed: false,
@@ -3240,6 +3268,7 @@ const UNIT_10_QUESTIONS: PracticeQuestion[] = [
   },
   {
     id: "u10-c9-q2",
+    label: "F3C2",
     chapter: "Power series and radius of convergence",
     type: "frq",
     calculatorAllowed: true,
@@ -3259,6 +3288,7 @@ const UNIT_10_QUESTIONS: PracticeQuestion[] = [
   },
   {
     id: "u10-c10-q1",
+    label: "5E4E",
     chapter: "Error bounds for series approximations",
     type: "mc",
     calculatorAllowed: true,
