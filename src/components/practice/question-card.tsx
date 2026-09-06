@@ -6,6 +6,7 @@ import { Button } from "~/components/ui/button";
 import { Card, CardContent, CardHeader } from "~/components/ui/card";
 import { Textarea } from "~/components/ui/textarea";
 import type { PracticeQuestion } from "~/lib/practice-questions";
+import { isBcOnlyChapter } from "~/lib/units";
 import { cn } from "~/lib/utils";
 import { MathText } from "./math-text";
 import { TutorPanel } from "./tutor-panel";
@@ -66,6 +67,9 @@ export function QuestionCard({ question, index, onReveal }: QuestionCardProps) {
           <Badge variant="outline" className="font-mono">
             {question.label}
           </Badge>
+          {isBcOnlyChapter(question.chapter) && (
+            <Badge variant="default">BC</Badge>
+          )}
         </div>
         <p className="whitespace-pre-line text-sm">
           <MathText text={question.prompt} />

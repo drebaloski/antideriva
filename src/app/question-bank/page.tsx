@@ -4,7 +4,7 @@ import { useEffect, useMemo, useState } from "react";
 import { QuestionBankCard } from "~/components/practice/question-bank-card";
 import { Input } from "~/components/ui/input";
 import { getAllPracticeQuestionsByUnit } from "~/lib/practice-questions";
-import { UNITS } from "~/lib/units";
+import { isBcOnlyChapter, UNITS } from "~/lib/units";
 import { cn } from "~/lib/utils";
 
 type Tab = "all" | "unsolved" | "solved" | "incorrect" | "correct";
@@ -165,18 +165,11 @@ export default function QuestionBankPage() {
     new Set(),
   );
 
-  const chapterBcOnly = useMemo(() => {
-    const map = new Map<string, boolean>();
-    for (const unit of UNITS) {
-      for (const chapter of unit.chapters) {
-        map.set(chapter.title, Boolean(unit.bcOnly) || Boolean(chapter.bcOnly));
-      }
-    }
-    return map;
-  }, []);
-
   const abCount = allQuestions.filter(
-    (question) => !chapterBcOnly.get(question.chapter),
+    (question) => !isBcOnlyChapter(question.chapter),
+  ).length;
+  const bcCount = allQuestions.filter((question) =>
+    isBcOnlyChapter(question.chapter),
   ).length;
 
   const unitCounts = useMemo(() => {
@@ -351,7 +344,7 @@ export default function QuestionBankPage() {
                 active={trackFilter === "bc"}
                 onClick={() => setTrackFilter("bc")}
               >
-                BC <Count>{totalCount}</Count>
+                BC <Count>{bcCount}</Count>
               </Pill>
             </PillRow>
           </FilterSection>
