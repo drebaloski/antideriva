@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { QuestionBankCard } from "~/components/practice/question-bank-card";
 import { Input } from "~/components/ui/input";
 import { getAllPracticeQuestionsByUnit } from "~/lib/practice-questions";
@@ -195,9 +195,30 @@ export default function QuestionBankPage() {
     return counts;
   }, [allQuestions]);
 
-  const allChapters = UNITS.flatMap((unit) =>
-    unit.chapters.map((chapter) => chapter.title),
-  );
+  const chaptersForSelectedUnits = useMemo(() => {
+    if (unitFilters.size === 0) return [];
+    const seen = new Set<string>();
+    const chapters: string[] = [];
+    for (const unit of UNITS) {
+      if (!unitFilters.has(unit.number)) continue;
+      for (const chapter of unit.chapters) {
+        if (seen.has(chapter.title)) continue;
+        seen.add(chapter.title);
+        chapters.push(chapter.title);
+      }
+    }
+    return chapters;
+  }, [unitFilters]);
+
+  // Drop any selected chapter that no longer belongs to the selected units,
+  // so toggling units off doesn't leave an invisible chapter filter active.
+  useEffect(() => {
+    const visible = new Set(chaptersForSelectedUnits);
+    setChapterFilters((prev) => {
+      const next = new Set([...prev].filter((chapter) => visible.has(chapter)));
+      return next.size === prev.size ? prev : next;
+    });
+  }, [chaptersForSelectedUnits]);
 
   const query = search.trim().toLowerCase();
   const visibleGroups = unitGroups
@@ -352,19 +373,25 @@ export default function QuestionBankPage() {
           </FilterSection>
 
           <FilterSection title="Chapter">
-            <ListBox scroll>
-              {allChapters.map((chapter) => (
-                <ListRow
-                  key={chapter}
-                  label={chapter}
-                  count={chapterCounts.get(chapter) ?? 0}
-                  active={chapterFilters.has(chapter)}
-                  onClick={() =>
-                    toggleInSet(chapterFilters, chapter, setChapterFilters)
-                  }
-                />
-              ))}
-            </ListBox>
+            {chaptersForSelectedUnits.length === 0 ? (
+              <p className="rounded-md border border-dashed px-3 py-4 text-center text-xs text-muted-foreground">
+                Choose a unit to filter by chapter.
+              </p>
+            ) : (
+              <ListBox scroll>
+                {chaptersForSelectedUnits.map((chapter) => (
+                  <ListRow
+                    key={chapter}
+                    label={chapter}
+                    count={chapterCounts.get(chapter) ?? 0}
+                    active={chapterFilters.has(chapter)}
+                    onClick={() =>
+                      toggleInSet(chapterFilters, chapter, setChapterFilters)
+                    }
+                  />
+                ))}
+              </ListBox>
+            )}
           </FilterSection>
 
           <FilterSection title="Difficulty">
