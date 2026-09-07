@@ -155,8 +155,9 @@ export default function QuestionBankPage() {
   const [tab, setTab] = useState<Tab>("all");
   const [search, setSearch] = useState("");
 
-  // Filters below mirror the question-bank filter panel design, but are
-  // visual only for now — selecting them doesn't change which questions show.
+  // Unit and Chapter actually filter the question list below. Added, Track,
+  // and Difficulty still mirror the filter panel design but are visual only
+  // for now — selecting them doesn't change which questions show.
   const [addedFilter, setAddedFilter] = useState<"all" | "new">("all");
   const [trackFilter, setTrackFilter] = useState<"all" | "ab" | "bc">("all");
   const [unitFilters, setUnitFilters] = useState<Set<number>>(new Set());
@@ -215,9 +216,13 @@ export default function QuestionBankPage() {
 
   const query = search.trim().toLowerCase();
   const visibleGroups = unitGroups
+    .filter((group) => unitFilters.size === 0 || unitFilters.has(group.unit))
     .map((group) => ({
       ...group,
       questions: group.questions.filter((question) => {
+        if (chapterFilters.size > 0 && !chapterFilters.has(question.chapter)) {
+          return false;
+        }
         if (!query) return true;
         return (
           question.label.toLowerCase().includes(query) ||
@@ -416,7 +421,9 @@ export default function QuestionBankPage() {
             </p>
           ) : visibleGroups.length === 0 ? (
             <p className="text-sm text-muted-foreground italic">
-              No questions match &quot;{search}&quot;.
+              {query
+                ? `No questions match "${search}".`
+                : "No questions match the selected filters."}
             </p>
           ) : (
             visibleGroups.map((group) => {
