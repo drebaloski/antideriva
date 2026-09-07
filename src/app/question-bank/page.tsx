@@ -155,12 +155,13 @@ export default function QuestionBankPage() {
   const [tab, setTab] = useState<Tab>("all");
   const [search, setSearch] = useState("");
 
-  // Unit and Chapter actually filter the question list below. Added, Track,
-  // and Difficulty still mirror the filter panel design but are visual only
-  // for now — selecting them doesn't change which questions show. Every
-  // section only allows one active selection at a time.
+  // Unit, Chapter, and Type actually filter the question list below. Added,
+  // Track, and Difficulty still mirror the filter panel design but are
+  // visual only for now — selecting them doesn't change which questions
+  // show. Every section only allows one active selection at a time.
   const [addedFilter, setAddedFilter] = useState<"all" | "new">("all");
   const [trackFilter, setTrackFilter] = useState<"all" | "ab" | "bc">("all");
+  const [typeFilter, setTypeFilter] = useState<"all" | "mc" | "frq">("all");
   const [unitFilter, setUnitFilter] = useState<number | null>(null);
   const [chapterFilter, setChapterFilter] = useState<string | null>(null);
   const [difficultyFilter, setDifficultyFilter] = useState<string | null>(null);
@@ -170,6 +171,12 @@ export default function QuestionBankPage() {
   ).length;
   const bcCount = allQuestions.filter((question) =>
     isBcOnlyChapter(question.chapter),
+  ).length;
+  const mcCount = allQuestions.filter(
+    (question) => question.type === "mc",
+  ).length;
+  const frqCount = allQuestions.filter(
+    (question) => question.type === "frq",
   ).length;
 
   const unitCounts = useMemo(() => {
@@ -211,6 +218,9 @@ export default function QuestionBankPage() {
         if (chapterFilter !== null && question.chapter !== chapterFilter) {
           return false;
         }
+        if (typeFilter !== "all" && question.type !== typeFilter) {
+          return false;
+        }
         if (!query) return true;
         return (
           question.label.toLowerCase().includes(query) ||
@@ -227,6 +237,7 @@ export default function QuestionBankPage() {
   function clearFilters() {
     setAddedFilter("all");
     setTrackFilter("all");
+    setTypeFilter("all");
     setUnitFilter(null);
     setChapterFilter(null);
     setDifficultyFilter(null);
@@ -338,6 +349,29 @@ export default function QuestionBankPage() {
                 onClick={() => setTrackFilter("bc")}
               >
                 BC <Count>{bcCount}</Count>
+              </Pill>
+            </PillRow>
+          </FilterSection>
+
+          <FilterSection title="Type">
+            <PillRow>
+              <Pill
+                active={typeFilter === "all"}
+                onClick={() => setTypeFilter("all")}
+              >
+                All <Count>{totalCount}</Count>
+              </Pill>
+              <Pill
+                active={typeFilter === "mc"}
+                onClick={() => setTypeFilter("mc")}
+              >
+                MCQ <Count>{mcCount}</Count>
+              </Pill>
+              <Pill
+                active={typeFilter === "frq"}
+                onClick={() => setTypeFilter("frq")}
+              >
+                FRQ <Count>{frqCount}</Count>
               </Pill>
             </PillRow>
           </FilterSection>
