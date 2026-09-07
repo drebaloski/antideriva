@@ -146,3 +146,17 @@ export const UNITS: Unit[] = [
     ],
   },
 ];
+
+const BC_ONLY_CHAPTER_TITLES = new Set(
+  UNITS.flatMap((unit) =>
+    unit.chapters
+      .filter((chapter) => unit.bcOnly || chapter.bcOnly)
+      .map((chapter) => chapter.title),
+  ),
+);
+
+// A question's chapter is BC-only if its unit is BC-exclusive (Units 9-10)
+// or the chapter itself is a BC-only addition within an AB/BC shared unit.
+export function isBcOnlyChapter(chapterTitle: string): boolean {
+  return BC_ONLY_CHAPTER_TITLES.has(chapterTitle);
+}

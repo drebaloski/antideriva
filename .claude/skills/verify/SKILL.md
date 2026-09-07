@@ -50,8 +50,12 @@ runs `npm run dev` on port 3000). Do not run the dev server via Bash.
 - The sidebar is a fixed `w-64` with no responsive/mobile collapse. Below
   ~768px it eats over half the viewport. Flag this if a change touches
   layout/responsiveness rather than silently patching it.
-- The Question Bank's filter sidebar (Added/Track/Unit/Chapter/Difficulty)
-  is a visual shell only — clicking filters doesn't change which questions
-  show. This is intentional (agreed scope), not a bug. The tabs
-  (All/Unsolved/Solved/Incorrect/Correct) and the search box, by contrast,
-  really do filter.
+- The Question Bank's filter sidebar: Unit and Chapter actually filter the
+  question list (combined with search), and every section — Unit, Chapter,
+  Difficulty — is single-select (picking a new option replaces the old one;
+  re-clicking the active option clears it). Chapter only appears once a Unit
+  is selected (placeholder shown otherwise), and is pruned if the selected
+  unit changes. Added, Track, and Difficulty remain visual only — selecting
+  them doesn't change which questions show (Track's AB/BC counts are real
+  numbers now, just not wired to filter yet). This is intentional
+  (agreed scope), not a bug.

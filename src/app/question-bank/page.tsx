@@ -1,10 +1,10 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { QuestionBankCard } from "~/components/practice/question-bank-card";
 import { Input } from "~/components/ui/input";
 import { getAllPracticeQuestionsByUnit } from "~/lib/practice-questions";
-import { UNITS } from "~/lib/units";
+import { isBcOnlyChapter, UNITS } from "~/lib/units";
 import { cn } from "~/lib/utils";
 
 type Tab = "all" | "unsolved" | "solved" | "incorrect" | "correct";
@@ -134,14 +134,14 @@ function ListRow({
   );
 }
 
-function toggleInSet<T>(set: Set<T>, value: T, setter: (next: Set<T>) => void) {
-  const next = new Set(set);
-  if (next.has(value)) {
-    next.delete(value);
-  } else {
-    next.add(value);
-  }
-  setter(next);
+// Each filter section only allows one active selection at a time — clicking
+// the active option clears it, clicking a different one replaces it.
+function selectSingle<T>(
+  current: T | null,
+  value: T,
+  setter: (next: T | null) => void,
+) {
+  setter(current === value ? null : value);
 }
 
 export default function QuestionBankPage() {
@@ -155,28 +155,21 @@ export default function QuestionBankPage() {
   const [tab, setTab] = useState<Tab>("all");
   const [search, setSearch] = useState("");
 
-  // Filters below mirror the question-bank filter panel design, but are
-  // visual only for now — selecting them doesn't change which questions show.
+  // Unit and Chapter actually filter the question list below. Added, Track,
+  // and Difficulty still mirror the filter panel design but are visual only
+  // for now — selecting them doesn't change which questions show. Every
+  // section only allows one active selection at a time.
   const [addedFilter, setAddedFilter] = useState<"all" | "new">("all");
   const [trackFilter, setTrackFilter] = useState<"all" | "ab" | "bc">("all");
-  const [unitFilters, setUnitFilters] = useState<Set<number>>(new Set());
-  const [chapterFilters, setChapterFilters] = useState<Set<string>>(new Set());
-  const [difficultyFilters, setDifficultyFilters] = useState<Set<string>>(
-    new Set(),
-  );
-
-  const chapterBcOnly = useMemo(() => {
-    const map = new Map<string, boolean>();
-    for (const unit of UNITS) {
-      for (const chapter of unit.chapters) {
-        map.set(chapter.title, Boolean(unit.bcOnly) || Boolean(chapter.bcOnly));
-      }
-    }
-    return map;
-  }, []);
+  const [unitFilter, setUnitFilter] = useState<number | null>(null);
+  const [chapterFilter, setChapterFilter] = useState<string | null>(null);
+  const [difficultyFilter, setDifficultyFilter] = useState<string | null>(null);
 
   const abCount = allQuestions.filter(
-    (question) => !chapterBcOnly.get(question.chapter),
+    (question) => !isBcOnlyChapter(question.chapter),
+  ).length;
+  const bcCount = allQuestions.filter((question) =>
+    isBcOnlyChapter(question.chapter),
   ).length;
 
   const unitCounts = useMemo(() => {
@@ -195,15 +188,29 @@ export default function QuestionBankPage() {
     return counts;
   }, [allQuestions]);
 
-  const allChapters = UNITS.flatMap((unit) =>
-    unit.chapters.map((chapter) => chapter.title),
-  );
+  const chaptersForSelectedUnit = useMemo(() => {
+    if (unitFilter === null) return [];
+    const unit = UNITS.find((u) => u.number === unitFilter);
+    return unit ? unit.chapters.map((chapter) => chapter.title) : [];
+  }, [unitFilter]);
+
+  // Drop the selected chapter if it no longer belongs to the selected unit,
+  // so switching units doesn't leave an invisible chapter filter active.
+  useEffect(() => {
+    if (chapterFilter && !chaptersForSelectedUnit.includes(chapterFilter)) {
+      setChapterFilter(null);
+    }
+  }, [chaptersForSelectedUnit, chapterFilter]);
 
   const query = search.trim().toLowerCase();
   const visibleGroups = unitGroups
+    .filter((group) => unitFilter === null || group.unit === unitFilter)
     .map((group) => ({
       ...group,
       questions: group.questions.filter((question) => {
+        if (chapterFilter !== null && question.chapter !== chapterFilter) {
+          return false;
+        }
         if (!query) return true;
         return (
           question.label.toLowerCase().includes(query) ||
@@ -220,9 +227,9 @@ export default function QuestionBankPage() {
   function clearFilters() {
     setAddedFilter("all");
     setTrackFilter("all");
-    setUnitFilters(new Set());
-    setChapterFilters(new Set());
-    setDifficultyFilters(new Set());
+    setUnitFilter(null);
+    setChapterFilter(null);
+    setDifficultyFilter(null);
   }
 
   return (
@@ -330,7 +337,7 @@ export default function QuestionBankPage() {
                 active={trackFilter === "bc"}
                 onClick={() => setTrackFilter("bc")}
               >
-                BC <Count>{totalCount}</Count>
+                BC <Count>{bcCount}</Count>
               </Pill>
             </PillRow>
           </FilterSection>
@@ -342,9 +349,9 @@ export default function QuestionBankPage() {
                   key={unit.number}
                   label={`Unit ${unit.number}`}
                   count={unitCounts.get(unit.number) ?? 0}
-                  active={unitFilters.has(unit.number)}
+                  active={unitFilter === unit.number}
                   onClick={() =>
-                    toggleInSet(unitFilters, unit.number, setUnitFilters)
+                    selectSingle(unitFilter, unit.number, setUnitFilter)
                   }
                 />
               ))}
@@ -352,19 +359,25 @@ export default function QuestionBankPage() {
           </FilterSection>
 
           <FilterSection title="Chapter">
-            <ListBox scroll>
-              {allChapters.map((chapter) => (
-                <ListRow
-                  key={chapter}
-                  label={chapter}
-                  count={chapterCounts.get(chapter) ?? 0}
-                  active={chapterFilters.has(chapter)}
-                  onClick={() =>
-                    toggleInSet(chapterFilters, chapter, setChapterFilters)
-                  }
-                />
-              ))}
-            </ListBox>
+            {chaptersForSelectedUnit.length === 0 ? (
+              <p className="rounded-md border border-dashed px-3 py-4 text-center text-xs text-muted-foreground">
+                Choose a unit to filter by chapter.
+              </p>
+            ) : (
+              <ListBox scroll>
+                {chaptersForSelectedUnit.map((chapter) => (
+                  <ListRow
+                    key={chapter}
+                    label={chapter}
+                    count={chapterCounts.get(chapter) ?? 0}
+                    active={chapterFilter === chapter}
+                    onClick={() =>
+                      selectSingle(chapterFilter, chapter, setChapterFilter)
+                    }
+                  />
+                ))}
+              </ListBox>
+            )}
           </FilterSection>
 
           <FilterSection title="Difficulty">
@@ -372,9 +385,9 @@ export default function QuestionBankPage() {
               {DIFFICULTIES.map((level) => (
                 <Pill
                   key={level}
-                  active={difficultyFilters.has(level)}
+                  active={difficultyFilter === level}
                   onClick={() =>
-                    toggleInSet(difficultyFilters, level, setDifficultyFilters)
+                    selectSingle(difficultyFilter, level, setDifficultyFilter)
                   }
                 >
                   {level}
@@ -396,7 +409,9 @@ export default function QuestionBankPage() {
             </p>
           ) : visibleGroups.length === 0 ? (
             <p className="text-sm text-muted-foreground italic">
-              No questions match &quot;{search}&quot;.
+              {query
+                ? `No questions match "${search}".`
+                : "No questions match the selected filters."}
             </p>
           ) : (
             visibleGroups.map((group) => {

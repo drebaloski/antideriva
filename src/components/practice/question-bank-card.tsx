@@ -6,6 +6,7 @@ import { Badge } from "~/components/ui/badge";
 import { Button } from "~/components/ui/button";
 import { Card, CardContent, CardHeader } from "~/components/ui/card";
 import type { PracticeQuestion } from "~/lib/practice-questions";
+import { isBcOnlyChapter } from "~/lib/units";
 import { cn } from "~/lib/utils";
 
 function BookmarkIcon(props: React.SVGProps<SVGSVGElement>) {
@@ -41,6 +42,9 @@ export function QuestionBankCard({ question, unit }: QuestionBankCardProps) {
             <Badge variant="outline">
               {question.type === "mc" ? "Multiple choice" : "Free response"}
             </Badge>
+            {isBcOnlyChapter(question.chapter) && (
+              <Badge variant="default">BC</Badge>
+            )}
             <span className="font-mono text-xs text-muted-foreground">
               {question.label}
             </span>
